@@ -42,11 +42,11 @@ const NOTES: { note: Note; applies: (a: Answers) => boolean }[] = [
   {
     note: {
       id: 'family-agreement',
-      title: 'If the family does not agree',
-      text: 'When brothers and sisters or other family members disagree about who should claim, banks may ask for legal papers. A lawyer can help.',
+      title: 'If family members disagree',
+      text: 'Banks may ask for legal papers when family members do not agree on a claim. A lawyer can help.',
       guide: 'family-claims',
     },
-    applies: (a) => ['son', 'daughter', 'sibling'].includes(a.relationship),
+    applies: (a) => unsure(a.will) || unsure(a.nominee),
   },
   {
     note: {

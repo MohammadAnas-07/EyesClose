@@ -62,13 +62,17 @@ describe('FormFlow', () => {
     expect(headings).toEqual(['Good to know', 'First 7 days', 'Weeks 2 to 4', 'Later']);
     const first = within(screen.getByRole('region', { name: 'First 7 days' })).getAllByRole('heading', { level: 3 });
     expect(first.map((h) => h.textContent)).toEqual([
+      'Get the death certificate',
       'Jio mobile number',
       'PhonePe',
       'SBI accounts',
       'Other bank accounts',
-      'Get the death certificate',
     ]);
     expect(screen.getByText('A joint account, a nominee or a will')).toBeInTheDocument();
+    // Notes start collapsed; only their titles show.
+    const family = screen.getByText('If family members disagree').closest('details');
+    expect(family).not.toBeNull();
+    expect(family).not.toHaveAttribute('open');
     expect(screen.getAllByText('Not yet checked by a professional').length).toBeGreaterThan(0);
 
     fireEvent.click(screen.getByLabelText('Jio mobile number'));

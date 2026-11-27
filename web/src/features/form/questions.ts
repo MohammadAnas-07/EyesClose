@@ -155,10 +155,10 @@ export const QUESTIONS: Question[] = [
     kind: 'multi',
     key: 'work',
     title: 'Did they have a job or pension?',
-    hint: 'EPFO is the provident fund for people in private jobs. Choose all that apply.',
+    hint: 'EPFO is the provident fund for people in private jobs. Choose all that apply. State pensions may differ, so for those contact the pension office.',
     options: [
       { value: 'epfo', label: 'Private job with provident fund (EPFO)' },
-      { value: 'pension', label: 'Government pension' },
+      { value: 'pension', label: 'Central government pension' },
       { value: 'neither', label: 'Neither' },
       NOT_SURE,
     ],

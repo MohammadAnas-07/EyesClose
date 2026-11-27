@@ -45,9 +45,9 @@ describe('buildChecklist', () => {
     expect(noteIds({})).toEqual([]);
   });
 
-  it('no death certificate yet: adds the certificate step and a calm note', () => {
+  it('no death certificate yet: puts the certificate step first and adds a calm note', () => {
     for (const deathCertificate of ['not-yet', 'waiting', 'not-sure'] as const) {
-      expect(group(build({ deathCertificate }), 'first-7-days')).toContain('death-certificate-register');
+      expect(group(build({ deathCertificate, banks: ['sbi'] }), 'first-7-days')).toEqual(['death-certificate-register', 'sim-jio', 'bank-sbi']);
       expect(noteIds({ deathCertificate })).toContain('no-certificate');
     }
     expect(ids(build({}))).not.toContain('death-certificate-register');
@@ -63,6 +63,17 @@ describe('buildChecklist', () => {
     expect(group(groups, 'first-7-days')).toEqual(['sim-jio', 'bank-hdfc', 'bank-sbi']);
     expect(noteIds({ jointAccount: 'yes', will: 'yes' })).toContain('joint-nominee-will');
     expect(noteIds({ nominee: 'not-sure' })).toContain('joint-nominee-will');
+  });
+
+  it('family disagreement note: only when the will or nominee answer is yes or not sure', () => {
+    for (const relationship of ['son', 'daughter', 'sibling'] as const) expect(noteIds({ relationship })).not.toContain('family-agreement');
+    expect(noteIds({ will: 'yes' })).toContain('family-agreement');
+    expect(noteIds({ nominee: 'not-sure' })).toContain('family-agreement');
+    expect(noteIds({ jointAccount: 'yes' })).not.toContain('family-agreement');
+  });
+
+  it('every item with a source records what the page confirms', () => {
+    for (const i of checklistItems) expect(i.source === null).toBe(i.confirms === null);
   });
 
   it('crypto yes: a later step and the crypto note', () => {
@@ -90,7 +101,7 @@ describe('buildChecklist', () => {
       crypto: 'not-sure',
     });
     expect(groups.map((g) => g.id)).toEqual(['first-7-days', 'weeks-2-4', 'later']);
-    expect(group(groups, 'first-7-days')).toEqual(['sim-other', 'upi-other', 'bank-find', 'death-certificate-register']);
+    expect(group(groups, 'first-7-days')).toEqual(['death-certificate-register', 'sim-other', 'upi-other', 'bank-find']);
     expect(group(groups, 'weeks-2-4')).toEqual([
       'epfo-claim',
       'family-pension',
