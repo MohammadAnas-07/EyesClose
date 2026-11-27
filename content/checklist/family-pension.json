@@ -1,0 +1,21 @@
+{
+  "id": "family-pension",
+  "version": 1,
+  "title": "Government pension",
+  "text": "For a central government pension, tell the bank that pays it within one month of the death. The family member named in the pension order can then apply for family pension.",
+  "group": "weeks-2-4",
+  "category": "work",
+  "contact": "The bank branch that pays the pension",
+  "source": "https://cpao.nic.in/FAQ.php",
+  "lastChecked": "2026-11-27",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "work",
+      "anyOf": [
+        "pension",
+        "not-sure"
+      ]
+    }
+  ]
+}

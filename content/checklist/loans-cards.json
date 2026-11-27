@@ -1,0 +1,21 @@
+{
+  "id": "loans-cards",
+  "version": 1,
+  "title": "Loans and credit cards",
+  "text": "Tell each lender and card company about the death. Card companies must publish how they handle dues after a death, so ask them for it in writing.",
+  "group": "weeks-2-4",
+  "category": "loans",
+  "contact": "Each bank or lender",
+  "source": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=12300",
+  "lastChecked": "2026-11-27",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "loans",
+      "anyOf": [
+        "yes",
+        "not-sure"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "crypto-online",
+  "version": 1,
+  "title": "Crypto and online investments",
+  "text": "Do not log in to their accounts. Make a list of the apps, emails and papers that mention them, and talk to a professional before anything is moved.",
+  "group": "later",
+  "category": "money",
+  "contact": null,
+  "source": null,
+  "lastChecked": null,
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "crypto",
+      "anyOf": [
+        "yes",
+        "not-sure"
+      ]
+    }
+  ]
+}

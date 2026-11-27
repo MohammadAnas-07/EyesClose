@@ -1,0 +1,21 @@
+{
+  "id": "vehicle",
+  "version": 1,
+  "title": "Vehicle and its insurance",
+  "text": "The person who now has the vehicle can apply to the RTO with Form 31 to move it into their name, within three months of the death. Also tell the vehicle insurer.",
+  "group": "weeks-2-4",
+  "category": "vehicle",
+  "contact": "The local RTO and the vehicle insurer",
+  "source": "https://parivahan.gov.in/en/content/ownership-transfer",
+  "lastChecked": "2026-11-27",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "vehicleInsurance",
+      "anyOf": [
+        "yes",
+        "not-sure"
+      ]
+    }
+  ]
+}

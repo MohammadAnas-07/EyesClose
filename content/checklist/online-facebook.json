@@ -1,0 +1,21 @@
+{
+  "id": "online-facebook",
+  "version": 1,
+  "title": "Facebook",
+  "text": "You can ask Facebook to turn the profile into a memorial page, or to remove it. You will need proof of death, such as the death certificate.",
+  "group": "later",
+  "category": "online",
+  "contact": "Facebook, through its help centre",
+  "source": "https://www.facebook.com/help/150486848354038",
+  "lastChecked": "2026-11-27",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "emailSocial",
+      "anyOf": [
+        "yes",
+        "not-sure"
+      ]
+    }
+  ]
+}

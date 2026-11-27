@@ -1,0 +1,21 @@
+{
+  "id": "epfo-claim",
+  "version": 1,
+  "title": "Provident fund and EPS pension (EPFO)",
+  "text": "Family members claim PF, EDLI insurance and EPS pension with EPFO's own claim forms, not a letter. A paper claim may need to be signed by their last employer.",
+  "group": "weeks-2-4",
+  "category": "work",
+  "contact": "EPFO, or the HR team of their last employer",
+  "source": "https://www.epfindia.gov.in/site_en/WhichClaimForm.php",
+  "lastChecked": "2026-11-27",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "work",
+      "anyOf": [
+        "epfo",
+        "not-sure"
+      ]
+    }
+  ]
+}

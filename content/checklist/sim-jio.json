@@ -1,0 +1,20 @@
+{
+  "id": "sim-jio",
+  "version": 1,
+  "title": "Jio mobile number",
+  "text": "Jio lets a blood relative or legal heir take over the number with the death certificate and a new customer form. A number that is not used for 90 days may be switched off.",
+  "group": "first-7-days",
+  "category": "sim",
+  "contact": "A Jio store",
+  "source": "https://myjiostatic.cdn.jio.com/jio/regulatory/rjil-telecom-charter-2025.pdf",
+  "lastChecked": "2026-11-27",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "mobile",
+      "anyOf": [
+        "jio"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "life-insurance",
+  "version": 1,
+  "title": "Life insurance",
+  "text": "Tell the insurance company as soon as you can. The nominee usually needs the claim form, the death certificate and the policy document.",
+  "group": "weeks-2-4",
+  "category": "insurance",
+  "contact": "The insurance company, or their insurance agent",
+  "source": "https://policyholder.gov.in/how-to-make-a-claim-life",
+  "lastChecked": "2026-11-27",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "lifeInsurance",
+      "anyOf": [
+        "yes",
+        "not-sure"
+      ]
+    }
+  ]
+}

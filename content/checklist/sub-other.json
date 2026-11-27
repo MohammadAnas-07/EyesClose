@@ -1,0 +1,21 @@
+{
+  "id": "sub-other",
+  "version": 1,
+  "title": "Other subscriptions",
+  "text": "Look at bank and card statements for regular payments. Then cancel each one with the company.",
+  "group": "later",
+  "category": "subscriptions",
+  "contact": null,
+  "source": null,
+  "lastChecked": null,
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "subscriptions",
+      "anyOf": [
+        "yes",
+        "not-sure"
+      ]
+    }
+  ]
+}

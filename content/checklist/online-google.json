@@ -1,0 +1,21 @@
+{
+  "id": "online-google",
+  "version": 1,
+  "title": "Google account and Gmail",
+  "text": "Google has a form that family members can use to close the account or ask for some of its data. Google will not share the password.",
+  "group": "later",
+  "category": "online",
+  "contact": "Google, through its deceased user request form",
+  "source": "https://support.google.com/accounts/troubleshooter/6357590",
+  "lastChecked": "2026-11-27",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "emailSocial",
+      "anyOf": [
+        "yes",
+        "not-sure"
+      ]
+    }
+  ]
+}

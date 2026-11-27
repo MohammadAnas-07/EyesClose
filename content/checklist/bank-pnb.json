@@ -1,0 +1,20 @@
+{
+  "id": "bank-pnb",
+  "version": 1,
+  "title": "Punjab National Bank accounts",
+  "text": "Tell the bank about the death and ask for its deceased claim form. You can also start the claim on PNB's death claim settlement portal, or at any PNB branch.",
+  "group": "first-7-days",
+  "category": "bank",
+  "contact": "Their Punjab National Bank branch",
+  "source": "https://pnb.bank.in/Deceased-Claim-cases.html",
+  "lastChecked": "2026-11-27",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "banks",
+      "anyOf": [
+        "pnb"
+      ]
+    }
+  ]
+}

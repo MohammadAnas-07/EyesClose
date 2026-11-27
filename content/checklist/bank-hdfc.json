@@ -1,0 +1,20 @@
+{
+  "id": "bank-hdfc",
+  "version": 1,
+  "title": "HDFC Bank accounts",
+  "text": "Tell the bank about the death and ask for its deceased claim form. A nominee or joint holder needs the death certificate and their own ID and address proof.",
+  "group": "first-7-days",
+  "category": "bank",
+  "contact": "Their HDFC Bank branch",
+  "source": "https://www.hdfc.bank.in/content/dam/hdfcbankpws/in/en/personal-banking/discover-products/our-corporate-commitment/Deceased_Claim_Process_CASA_and_Deposits.pdf",
+  "lastChecked": "2026-11-27",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "banks",
+      "anyOf": [
+        "hdfc"
+      ]
+    }
+  ]
+}

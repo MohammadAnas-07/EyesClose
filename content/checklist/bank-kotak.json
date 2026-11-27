@@ -1,0 +1,20 @@
+{
+  "id": "bank-kotak",
+  "version": 1,
+  "title": "Kotak Mahindra Bank accounts",
+  "text": "Tell the bank about the death and ask for its deceased claim form. Ask for a service request number so you can follow up on the claim.",
+  "group": "first-7-days",
+  "category": "bank",
+  "contact": "Their Kotak Mahindra Bank branch",
+  "source": "https://www.kotak.bank.in/en/customer-service/important-customer-information/deceased-claim.html",
+  "lastChecked": "2026-11-27",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "banks",
+      "anyOf": [
+        "kotak"
+      ]
+    }
+  ]
+}

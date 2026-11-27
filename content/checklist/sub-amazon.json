@@ -1,0 +1,21 @@
+{
+  "id": "sub-amazon",
+  "version": 1,
+  "title": "Amazon, if they had it",
+  "text": "Amazon acts on a request from the person allowed to act for the estate. Closing the account deletes its content, so save anything you want to keep first.",
+  "group": "later",
+  "category": "subscriptions",
+  "contact": "Amazon customer service",
+  "source": "https://www.amazon.in/gp/help/customer/display.html?nodeId=TzcJJiVFnIi3pG2yDA",
+  "lastChecked": "2026-11-27",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "subscriptions",
+      "anyOf": [
+        "yes",
+        "not-sure"
+      ]
+    }
+  ]
+}

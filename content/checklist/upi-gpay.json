@@ -1,0 +1,20 @@
+{
+  "id": "upi-gpay",
+  "version": 1,
+  "title": "Google Pay",
+  "text": "Google has a form that family members can use to close the Google account of a person who died. The money itself is in the linked bank account, so the bank step matters most.",
+  "group": "first-7-days",
+  "category": "upi",
+  "contact": "Google, through its deceased user request form",
+  "source": "https://support.google.com/accounts/troubleshooter/6357590",
+  "lastChecked": "2026-11-27",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "upi",
+      "anyOf": [
+        "gpay"
+      ]
+    }
+  ]
+}

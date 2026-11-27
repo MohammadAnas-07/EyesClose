@@ -1,0 +1,21 @@
+{
+  "id": "upi-other",
+  "version": 1,
+  "title": "Other UPI or wallet apps",
+  "text": "Contact each app's support team, tell them about the death, and ask which papers they need.",
+  "group": "first-7-days",
+  "category": "upi",
+  "contact": null,
+  "source": null,
+  "lastChecked": null,
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "upi",
+      "anyOf": [
+        "other",
+        "not-sure"
+      ]
+    }
+  ]
+}

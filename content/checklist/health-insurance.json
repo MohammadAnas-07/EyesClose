@@ -1,0 +1,21 @@
+{
+  "id": "health-insurance",
+  "version": 1,
+  "title": "Health insurance",
+  "text": "Tell the insurer about the death. If other family members are on the same policy, ask how their cover continues.",
+  "group": "weeks-2-4",
+  "category": "insurance",
+  "contact": "The insurance company",
+  "source": "https://irdai.gov.in/health-dept",
+  "lastChecked": "2026-11-27",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "healthInsurance",
+      "anyOf": [
+        "yes",
+        "not-sure"
+      ]
+    }
+  ]
+}

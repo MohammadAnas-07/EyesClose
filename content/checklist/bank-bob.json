@@ -1,0 +1,20 @@
+{
+  "id": "bank-bob",
+  "version": 1,
+  "title": "Bank of Baroda accounts",
+  "text": "Tell the bank about the death and ask for its deceased claim form. The papers needed depend on whether there is a nominee.",
+  "group": "first-7-days",
+  "category": "bank",
+  "contact": "Their Bank of Baroda branch",
+  "source": "https://bankofbaroda.bank.in/personal-banking/other-services/settlement-of-claims",
+  "lastChecked": "2026-11-27",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "banks",
+      "anyOf": [
+        "bob"
+      ]
+    }
+  ]
+}
