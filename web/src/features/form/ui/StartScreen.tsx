@@ -1,5 +1,6 @@
 import { Button } from '../../../shared/ui/Button';
 import { QUESTIONS } from '../questions';
+import { HarderEntry } from './HarderEntry';
 import { LockIcon } from './icons';
 
 export function StartScreen({ onStart }: { onStart: () => void }) {
@@ -20,12 +21,14 @@ export function StartScreen({ onStart }: { onStart: () => void }) {
           <p className="mt-1 text-ink-soft">Nothing is sent to us. Refreshing the page also clears your answers.</p>
         </div>
       </div>
-      <div className="mt-auto flex flex-col gap-3 pt-4">
+      <div className="flex flex-col gap-3 pt-2">
         <Button onClick={onStart} className="w-full sm:w-auto sm:self-start">
           Start the questions
         </Button>
         <p className="text-sm text-ink-soft">You can choose "Not sure" for any question.</p>
       </div>
+      {/* Same tab: nothing has been typed yet, so nothing is lost. */}
+      <HarderEntry className="mt-2" />
     </div>
   );
 }
