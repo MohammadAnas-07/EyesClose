@@ -75,7 +75,7 @@ export function siteFooter(pages: HelpPage[]): string {
   return `<footer class="site-footer bg-paper-dark px-5 pb-10 pt-16 text-surface sm:px-8 lg:pb-16 lg:pt-24">
       <div class="mx-auto flex w-full max-w-300 flex-col gap-12 lg:gap-16">
         <div class="flex flex-col gap-6 border-b border-line-dark pb-12 lg:flex-row lg:items-end lg:justify-between lg:gap-12 lg:pb-16">
-          <p class="max-w-2xl text-[clamp(1.75rem,1.2rem+2.4vw,3rem)] font-semibold leading-tight tracking-heading text-balance">Most of it can wait. Start with the steps for the first 7 days.</p>
+          <p class="max-w-2xl text-[clamp(1.75rem,1.2rem+2.4vw,3rem)] font-semibold leading-tight tracking-heading text-balance">Start with the steps for the first 7 days.</p>
           <a href="/start" class="footer-cta press inline-flex min-h-13 shrink-0 items-center justify-center gap-2 self-start rounded-pill bg-surface px-8 text-lg font-medium text-ink lg:self-auto">Start the checklist ${arrow}</a>
         </div>
         <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1.5fr_1.2fr] lg:gap-12">
