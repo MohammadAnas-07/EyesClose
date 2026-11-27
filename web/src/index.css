@@ -1,27 +1,66 @@
 @import 'tailwindcss';
 
 /*
-  Design tokens.
-  PLACEHOLDER VALUES: design.md (from the nixtio.com reference) was not in the
-  repo when this was set up. Replace these with the tokens from design.md
-  without changing design.md itself. Keep the body text rules below even then:
-  no negative letter-spacing on body text, for readability.
+  Design tokens, taken from design.md (nixtio.com reference). design.md is the
+  source; do not edit it. Where this file departs from design.md for
+  readability or calm motion, the reason is in docs/design-notes.md.
 */
 @theme {
-  --font-sans: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-heading: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  /* Fonts: Inter, self-hosted (no font CDN, so the CSP stays 'self' and it works offline). */
+  --font-sans: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
-  --color-paper: #fbfaf8;
-  --color-ink: #1c1b19;
-  --color-ink-soft: #4a4844;
-  --color-line: #e4e1dc;
-  --color-accent: #3f5a4c;
+  /* Colors (design.md: CSS custom properties) */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-ink: #0a0a0a; /* --color-text */
+  --color-ink-soft: rgb(10 10 10 / 0.6); /* --color-text-secondary */
+  --color-ink-on-dark-soft: rgb(255 255 255 / 0.6); /* --color-text-tertiary */
+  --color-paper: #f5f5f5; /* --color-background */
+  --color-paper-dark: #0a0a0a; /* --color-background-secondary */
+  --color-line: rgb(10 10 10 / 0.05);
+  --color-line-dark: #313131;
+  --color-tint: rgb(10 10 10 / 0.04); /* --color-gray-ultra-light */
+  --color-green: #40a53c; /* icons and fills only: fails contrast as text on white */
 
-  --radius-card: 1rem;
-  --radius-button: 9999px;
+  /* Type scale (design.md: --font-size-*) */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-section: 3.25rem; /* 52px section heading */
 
-  --ease-calm: cubic-bezier(0.25, 0.1, 0.25, 1);
-  --duration-calm: 200ms;
+  /* Heading tracking from design.md. Body text never uses these. */
+  --tracking-heading: -0.04em; /* 22px / -0.88px */
+  --tracking-section: -0.05em; /* 52px / -2.6px */
+
+  /* Radii (design.md: corner radii) */
+  --radius-card: 18px;
+  --radius-card-lg: 25px;
+  --radius-panel: 30px;
+  --radius-pill: 100px;
+
+  /* Shadows (design.md) */
+  --shadow-inset-light: inset 0 0 2px 0 rgb(255 255 255 / 0.5);
+  --shadow-inset-dark: inset 0 0 1px 0 rgb(0 0 0 / 0.15);
+
+  /* Motion (design.md). Only fast and base are used; slow is kept for reference. */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in-out: ease-in-out;
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 500ms;
+
+  /* Z-index (design.md) */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
 }
 
 @layer base {
@@ -29,7 +68,9 @@
     background: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
-    /* Body text stays at normal spacing and a generous line height. */
+    /* Body: normal tracking, regular weight, roomy line height. See docs/design-notes.md. */
+    font-size: 100%;
+    font-weight: 400;
     letter-spacing: normal;
     line-height: 1.6;
     -webkit-text-size-adjust: 100%;
@@ -38,9 +79,14 @@
   h1,
   h2,
   h3 {
-    /* Tight spacing is allowed on headings only. */
-    letter-spacing: -0.02em;
+    letter-spacing: var(--tracking-heading);
     line-height: 1.2;
+    font-weight: 600;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -52,5 +98,18 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+}
+
+/* Printed letters: no negative tracking, black on white, A4. */
+@media print {
+  html {
+    background: #fff;
+    color: #000;
+    letter-spacing: normal;
+  }
+  @page {
+    size: A4;
+    margin: 20mm;
   }
 }
