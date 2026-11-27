@@ -1,0 +1,20 @@
+# Local Postgres for development only.
+# It may only hold non-personal data plus the small waitlist and feedback tables.
+# It never holds case data (form answers, names, letters).
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: eyesclose
+      POSTGRES_PASSWORD: eyesclose_local_only
+      POSTGRES_DB: eyesclose
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - eyesclose-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U eyesclose"]
+      interval: 5s
+      retries: 10
+volumes:
+  eyesclose-db:

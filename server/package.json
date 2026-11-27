@@ -1,0 +1,20 @@
+{
+  "name": "@eyesclose/server",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Tiny backend for the waitlist, feedback and anonymous counters only. Never receives form answers.",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "migrate": "node-pg-migrate -m migrations -j sql"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.11",
+    "node-pg-migrate": "^9.0.0",
+    "pg": "^8.23.1",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.2"
+  }
+}
