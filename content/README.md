@@ -14,4 +14,22 @@ Every item must have these fields:
 While `verifiedBy` is `null`, the app must show "Not yet checked by a professional" on that item.
 Nothing may be shown as verified until a real reviewer fills that field.
 
-There are no items yet. `letters/` and `checklist/` are filled in later chunks.
+## Checklist items (`checklist/`)
+
+Each checklist file also has:
+
+- `title` and `text`: plain English shown on screen. One or two short sentences.
+- `group`: `first-7-days`, `weeks-2-4` or `later`.
+- `category`: decides the order inside a group (SIM, UPI and bank first, subscriptions last).
+  The full order is `CATEGORY_ORDER` in `web/src/features/form/checklist.ts`.
+- `contact`: who to contact, or `null` if not known.
+- `when`: the answers that make the item appear. The item shows when any one condition matches,
+  for example `{ "question": "banks", "anyOf": ["sbi"] }`.
+
+`source: null` means no official page was found yet. The app then shows "Source needed", and
+`lastChecked` must also be `null`. Never invent a rule, deadline, form name or phone number.
+
+The schema lives in `web/src/features/form/checklist.ts`. A unit test parses every file, so a broken or
+incomplete item fails CI.
+
+`letters/` is filled in a later chunk.
