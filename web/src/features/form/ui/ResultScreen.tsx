@@ -6,6 +6,7 @@ import type { FlowAction } from '../flow';
 import { notesFor } from '../notes';
 import { letterForItem, type LetterChoice } from '../../letters/content';
 import { todayIso } from '../../letters/details';
+import { helpPages, helpRowsFor } from '../../help/content';
 import { ChevronIcon, ExternalIcon, InfoIcon, LetterIcon, LockIcon } from './icons';
 
 interface Props {
@@ -95,13 +96,26 @@ export function ResultScreen({ answers, items, checked, dispatch }: Props) {
                   </summary>
                   <div className="flex flex-col gap-1 px-4 pb-4 pl-12">
                     <p>{n.text}</p>
-                    <button
-                      type="button"
-                      onClick={() => dispatch({ type: 'open-guide', guide: n.guide })}
-                      className="-ml-1 mt-1 min-h-11 cursor-pointer self-start rounded-md px-1 text-left font-medium underline decoration-note-ink/50 underline-offset-4 hover:decoration-note-ink"
-                    >
-                      Read more about this
-                    </button>
+                    {helpPages.some((p) => p.slug === n.guide) ? (
+                      <a
+                        href={`/help/${n.guide}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="-ml-1 mt-1 inline-flex min-h-11 items-center gap-1 self-start rounded-md px-1 font-medium underline decoration-note-ink/50 underline-offset-4 hover:decoration-note-ink"
+                      >
+                        Read more about this
+                        <ExternalIcon className="size-4" />
+                        <span className="sr-only">(opens in a new tab)</span>
+                      </a>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => dispatch({ type: 'open-guide', guide: n.guide })}
+                        className="-ml-1 mt-1 min-h-11 cursor-pointer self-start rounded-md px-1 text-left font-medium underline decoration-note-ink/50 underline-offset-4 hover:decoration-note-ink"
+                      >
+                        Read more about this
+                      </button>
+                    )}
                   </div>
                 </details>
               </li>
@@ -143,6 +157,33 @@ export function ResultScreen({ answers, items, checked, dispatch }: Props) {
           ))}
         </>
       )}
+
+      <section aria-labelledby="harder-heading" className="flex flex-col gap-3">
+        <h2 id="harder-heading" className="text-xl">
+          If your situation is harder
+        </h2>
+        <p className="text-ink-soft">What official sources say, and when a lawyer can help. Each page opens in a new tab, so this checklist stays open.</p>
+        <ul className="overflow-hidden rounded-card border border-line-strong bg-surface">
+          {helpRowsFor(answers).map(({ page, relevant }) => (
+            <li key={page.slug} className="border-line-strong [&+&]:border-t">
+              <a
+                href={`/help/${page.slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-13 items-start gap-3 px-4 py-3 hover:bg-tint"
+              >
+                <span className="flex min-w-0 flex-1 flex-col gap-1">
+                  <span className="font-medium underline decoration-ink/30 underline-offset-4">{page.title}</span>
+                  <span className="text-sm text-ink-soft">{page.description}</span>
+                  {relevant && <span className="self-start rounded-pill bg-note px-3 py-0.5 text-sm text-note-ink">Matches your answers</span>}
+                </span>
+                <ExternalIcon className="mt-1 size-4 shrink-0 text-ink-soft" />
+                <span className="sr-only">(opens in a new tab)</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <div className="flex flex-col gap-4 border-t border-line-strong pt-6">
         <Button variant="secondary" onClick={() => dispatch({ type: 'edit' })} className="w-full sm:w-auto sm:self-start">

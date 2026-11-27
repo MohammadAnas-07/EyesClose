@@ -38,6 +38,13 @@ export function FormFlow() {
         {state.screen === 'guide' && state.guide && <GuideScreen onBack={() => dispatch({ type: 'back' })} />}
         {state.screen === 'letter' && <LetterScreen state={state} dispatch={dispatch} />}
       </main>
+      <footer className="no-print mt-12 flex flex-wrap gap-x-6 gap-y-2 border-t border-line-strong pt-6 text-sm text-ink-soft">
+        {/* New tab: leaving this page would clear the answers, which live only in memory. */}
+        <a href="/help" target="_blank" rel="noopener noreferrer" className="footer-link">
+          Harder situations<span className="sr-only"> (opens in a new tab)</span>
+        </a>
+        <p>General information, not legal advice.</p>
+      </footer>
     </div>
   );
 }
