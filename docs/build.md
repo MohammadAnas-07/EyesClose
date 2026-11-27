@@ -51,7 +51,59 @@ npm run db:migrate
 `.github/workflows/ci.yml` runs on every push and pull request:
 `npm ci`, then lint, type check, tests and build on Node 22. It needs no secrets.
 
-## Deploy
+## Deploy (Vercel preview deployments)
 
-Vercel builds with `npm run build -w web` and serves `web/dist`. Security headers come from `vercel.json`.
-Deployment setup is not part of chunk 0.
+Vercel builds with `npm run build -w web` and serves `web/dist`. Both are set in `vercel.json`, so the
+dashboard settings below only need to not fight it. No keys or environment variables are needed yet:
+the app is static and makes no server calls.
+
+### One-time setup (in the Vercel dashboard)
+
+1. Sign in at vercel.com with the GitHub account that owns this repo.
+2. **Add New... > Project > Import Git Repository.** If the repo is not listed, choose
+   **Adjust GitHub App Permissions** and give the Vercel app access to this one repository only.
+3. On the **Configure Project** screen:
+   - **Project Name:** `eyesclose` (any name works).
+   - **Framework Preset:** `Other`. (`Vite` also works; `vercel.json` overrides the build settings either way.)
+   - **Root Directory:** leave it as `./` (the repo root). `vercel.json`, `package.json` and `package-lock.json`
+     live there, and the build uses npm workspaces. Do not point it at `web/`.
+   - **Build and Output Settings:** leave the overrides off. `vercel.json` sets
+     `buildCommand: npm run build -w web` and `outputDirectory: web/dist`. The install step runs `npm install`
+     from the root, which installs both workspaces.
+   - **Environment Variables:** leave empty for now.
+4. Click **Deploy**. The first deploy is a production deploy of `main`.
+5. **Settings > Build and Deployment > Node.js Version:** choose `22.x` to match CI.
+6. **Settings > Git:** check that **Production Branch** is `main`.
+7. **Settings > Deployment Protection:** keep **Vercel Authentication** on for preview deployments, so only
+   signed-in team members can open previews.
+
+### Preview deployments
+
+- Every push to a branch other than `main`, and every pull request, gets its own preview URL. The Vercel bot
+  posts the link on the pull request.
+- Merging into `main` makes a production deployment.
+- Nothing here changes CI. GitHub Actions still runs lint, type check, tests and build.
+
+### How the security headers are applied
+
+- The `headers` block in `vercel.json` (source `/(.*)`) is applied by Vercel to every response, on preview and
+  production. That is where the Content-Security-Policy and the other security headers come from.
+  No code or middleware is involved.
+- To check a deployment: open the preview URL, open the browser's developer tools, go to **Network**, reload,
+  click the first (document) request, and read the **Response Headers**. `Content-Security-Policy` must match
+  `vercel.json` exactly. (With Vercel Authentication on, `curl` sees Vercel's login page instead of the app,
+  so check in the browser after signing in.)
+- Locally, `npm run build && npm run preview -w web` sends the same headers, because `web/vite.config.ts`
+  reads them from `vercel.json`.
+
+### Later: keys for the waitlist and email
+
+When the waitlist chunk adds server functions, add these in **Settings > Environment Variables**, scoped to
+**Preview** and **Production** separately. They go only in the Vercel dashboard, never in `vercel.json` or
+the repo. The names match `.env.example`:
+
+- `DATABASE_URL`: the Supabase (Mumbai) Postgres connection string.
+- `RESEND_API_KEY`: the Resend API key, for the waitlist confirmation email only.
+- `WAITLIST_FROM_EMAIL`: the verified sender address in Resend.
+
+Use separate values for Preview and Production, so test sign-ups never reach the real list.
