@@ -37,6 +37,9 @@ describe('LetterScreen', () => {
     expect(screen.getByText('For State Bank of India')).toBeInTheDocument();
     expect(screen.getByLabelText('Name of the person who died')).toHaveValue('Test Name Markerone');
     expect(screen.getByText('Not yet checked by a professional')).toBeInTheDocument();
+    expect(screen.getByLabelText('Name of the person who died')).toHaveAccessibleDescription(
+      /Type the full name, as it appears on the death certificate./,
+    );
     type('Your full name', 'Writer Markertwo');
     expect(preview()).toContain('Subject: Death of account holder Test Name Markerone');
     expect(preview()).toContain('Name: Writer Markertwo');
