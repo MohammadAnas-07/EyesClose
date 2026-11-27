@@ -23,7 +23,10 @@ Deletion: a person can ask for their waitlist email or feedback to be deleted. W
 ## Where it runs
 
 - Local: Postgres 17 in Docker (`docker compose up -d db`).
-- Production (recommended, not decided): Supabase in Mumbai (ap-south-1), used only as plain Postgres.
+- Production (decided 2026-11-27): Supabase in Mumbai (ap-south-1), used only as plain Postgres.
+  Row Level Security is on for every table. The public role may only insert into `waitlist`. No reads,
+  updates or deletes from the browser. The `event_counts` endpoint accepts only allow-listed event names
+  and never stores IP addresses.
 
 ## Migrations
 

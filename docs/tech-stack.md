@@ -47,3 +47,23 @@ Plugins are installed at "local" scope for this project.
 | agent-browser | github.com/vercel-labs/agent-browser | Browser automation for the network test and small-screen checks. |
 | rtk | github.com/rtk-ai/rtk | Shortens command output for the agent. Global Bash hook. |
 | /security-review | Built into Claude Code | Security review of the current branch's changes. |
+
+### Turned off for now (2026-11-27)
+
+mattpocock-skills, design-taste-frontend, transitions-dev, unslop and hallmark are installed but off, to save
+context. plan.md says when and how to turn each back on. gstack and the caveman CLI are not used (decided).
+
+### Installed outside this repo, and how to remove each
+
+| What | Where | Remove with |
+| --- | --- | --- |
+| rtk binary | winget package `rtk-ai.rtk` | `winget uninstall rtk-ai.rtk` |
+| rtk Bash hook | `~/.claude/settings.json` (PreToolUse), `~/.claude/RTK.md`, `@RTK.md` line in `~/.claude/CLAUDE.md` | `rtk init -g --uninstall` (run before removing the binary) |
+| hallmark skill (global, now off) | `~/.claude/skills-disabled/hallmark` | `rm -rf ~/.claude/skills-disabled/hallmark` |
+| agent-browser CLI | global npm package | `npm uninstall -g agent-browser` |
+| agent-browser Chrome | `~/.agent-browser/browsers` | `rm -rf ~/.agent-browser` |
+| impeccable engine | `~/.impeccable/bin` | `rm -rf ~/.impeccable` |
+| Plugin marketplaces | user settings: heydamir, ponytail, trailofbits, caveman | `claude plugin marketplace remove <name>` |
+| Plugins (local scope, this project) | superpowers, mattpocock-skills, unslop, ponytail, caveman, 4 Trail of Bits | `claude plugin uninstall <name>@<marketplace> --scope local` |
+| Plugin hooks | caveman and superpowers add a SessionStart hook each | removed with their plugin |
+| Project skills | `.claude/skills/`, `.claude/skills-disabled/`, `.claude/agents/` (impeccable) | `npx skills remove <name>`, or delete the folder |

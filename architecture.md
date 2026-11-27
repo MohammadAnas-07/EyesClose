@@ -47,6 +47,11 @@ database can be dropped.
 - The library is loaded with a dynamic `import()` only when the user taps "Download", so the first page stays light.
 - Page size A4, margins 20mm, black text on white, normal letter spacing, 11 to 12pt body text.
 - Letters include blank lines (for example `Account number: ________________`) for details the user writes by hand.
+- **Latin letters only in name fields.** Helvetica (WinAnsi encoding) cannot draw Devanagari or other scripts,
+  and pdf-lib throws an error on characters it cannot encode. So name fields allow only `A-Z`, `a-z`, space,
+  `.`, `-` and `'` (pattern `^[A-Za-z .'-]+$`). Validation runs on input and again right before the PDF is built,
+  so the PDF step never sees an unsupported character. The friendly message is:
+  "Please type the name using English letters (A to Z) only. For example: Sunita Sharma." (See prd.md.)
 - Fallback: every letter is also a print-friendly HTML page (`@media print`), so a phone's own
   "Print / Save as PDF" works if pdf-lib fails.
 

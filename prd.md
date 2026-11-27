@@ -74,6 +74,22 @@ These are content pages, not features. Each one says it is general information, 
 
 English only, everywhere. Plain, simple words and short sentences. See rules.md.
 
+## Name fields accept Latin letters only
+
+Letters are made with pdf-lib and its built-in Helvetica font, which cannot draw Devanagari or other scripts.
+So any name field (for example the name of the person who died, or the user's own name) accepts only:
+
+- the letters A to Z and a to z,
+- spaces, full stops (.), hyphens (-) and apostrophes (').
+
+The check runs as the user types and again before the PDF is made. When something else is typed, the field
+shows this message, calmly, under the field (not in red capitals, and the typed text is kept so they can fix it):
+
+> Please type the name using English letters (A to Z) only. For example: Sunita Sharma.
+
+Other free-text fields that go into a letter follow the same rule, with digits also allowed where they make
+sense (for example a date). The user can always leave a field blank and write the detail by hand after printing.
+
 ## Money
 
 - Free: the checklist and 2 letters.
@@ -100,9 +116,9 @@ and feedback.
 - **Privacy of what we do collect.** Waitlist emails and feedback are personal data. Collected only with
   consent, stored minimally, and deletable on request.
 
-## Open questions
+## Open questions and decisions
 
-These are not decided. Each has a recommendation and the reason.
+Items marked "Decided" were settled by the project owner. The others are still open, with a recommendation.
 
 1. **Which institutions get a free-form letter, and which need an official form or support email?**
    Recommendation: start from this draft list and confirm each one against its official page before writing
@@ -122,25 +138,27 @@ These are not decided. Each has a recommendation and the reason.
 2. **Who reviews content for legal accuracy, and how do we show "not yet verified"?**
    Recommendation: one CA or lawyer reviews every item before launch. Until `verifiedBy` is filled, each item
    shows a small, calm label: "Not yet checked by a professional." Reason: honest, and easy to remove per item.
-3. **Should answers ever be saved on the device?** Recommendation: no by default. Later, an opt-in "save on
-   this device" with a clear "delete everything" button. Reason: family phones are often shared; this is the
-   safest default.
+3. **Should answers ever be saved on the device?** **Decided 2026-11-27: no save-on-device by default.**
+   Answers live in memory only. An opt-in "save on this device" with a "delete everything" button may come
+   later, as its own decision. Reason: family phones are often shared; this is the safest default.
 4. **Which PDF library?** Recommendation: pdf-lib, loaded only when the user taps "Download", using the
    built-in Helvetica font so no font file is downloaded. Fallback: a print stylesheet and the phone's own
    "Print / Save as PDF". Reason: no server needed, small, and plain text letters do not need a layout engine.
    Test on a real low-end Android phone and on A4 paper before deciding for good.
-5. **What analytics is safe?** Recommendation: no third-party analytics script. A small first-party counter
-   endpoint on our own server that receives only an event name (for example `letter_generated`), with no
-   answers, no IDs and no cookies. Reason: keeps the CSP strict and the promise checkable.
+5. **What analytics is safe?** **Decided 2026-11-27: a first-party counter with an allow-list of event names,
+   and no IPs.** No third-party analytics script. The endpoint accepts only event names from a fixed list in
+   the code (for example `checklist_downloaded`, `letter_generated`, `waitlist_joined`) and rejects anything
+   else. It stores no IP address, no user id, no cookie and no answers. Reason: keeps the CSP strict and the
+   promise checkable.
 6. **Does waitlist and feedback data need DPDP Act 2023 consent and deletion flows from day one?**
-   Recommendation: yes. A clear consent checkbox, a short privacy notice, a way to ask for deletion, and as
-   few fields as possible. Reason: it is personal data, and doing it from the start is cheap. Ask the lawyer
-   to confirm.
-7. **Is a backend needed for the MVP, and which database and region?** Recommendation: a very small backend
-   (Vercel serverless functions in Node and TypeScript) only for the waitlist, feedback and counters.
-   Database: Supabase in Mumbai (ap-south-1), used only as plain Postgres. Reason: Supabase offers Mumbai.
-   Neon's published region list did not include India on 2026-11-27 (nearest: Singapore). The MVP needs no
-   auth or file storage, so the overlap does not matter; we pick by region. Docker Postgres for local work.
-8. **Should the app work fully offline after the first visit (PWA)?** Recommendation: yes. A service worker
-   caches the app, the content and the PDF library. Reason: villages and bad networks. The waitlist and
-   feedback forms say "You are offline. Please try again later."
+   **Decided 2026-11-27: yes, from day one.** A clear consent checkbox (not pre-ticked), a short privacy
+   notice, a way to ask for deletion, and as few fields as possible. Ask the lawyer to confirm the wording.
+7. **Is a backend needed for the MVP, and which database and region?** **Decided 2026-11-27: Supabase in
+   Mumbai (ap-south-1), with Row Level Security on, and insert-only for the waitlist.** A very small backend
+   (Vercel serverless functions in Node and TypeScript) handles only the waitlist, feedback and counters.
+   RLS is enabled on every table. The public role may only insert into the waitlist; it cannot read, update
+   or delete rows. Reading and deleting (for deletion requests) happen only with the server-side key, never
+   from the browser. Docker Postgres for local work. (Neon had no India region on 2026-11-27.)
+8. **Should the app work fully offline after the first visit (PWA)?** **Decided 2026-11-27: yes.** A service
+   worker caches the app, the content and the PDF library. The waitlist and feedback forms say
+   "You are offline. Please try again later."

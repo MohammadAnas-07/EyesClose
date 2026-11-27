@@ -39,12 +39,21 @@ These tools are installed (or chosen) but their setup waits until the app has re
 
 - [ ] **impeccable design hook.** Installed without its edit hook. Turn it on and run `/impeccable init` once
       real screens exist.
-- [ ] **design-taste-frontend, transitions-dev, emil-design-eng, review-animations, animation-performance,
-      unslop, hallmark.** Use when building and reviewing screens. Keep motion calm (see docs/design-notes.md).
+- [ ] **emil-design-eng, review-animations, animation-performance.** Active. Use when building and reviewing
+      screens. Keep motion calm (see docs/design-notes.md).
+- [ ] **Turned off on 2026-11-27 to save context. Turn back on as below:**
+  - `design-taste-frontend`, `unslop`, `hallmark`: when the first real screen (the form or the checklist page)
+    is being designed, and for its design review.
+  - `transitions-dev`: when a chunk adds motion or transitions to a screen.
+  - `mattpocock-skills`: when the form state and letter-building logic (real TypeScript code) is written.
+  - How: `claude plugin enable mattpocock-skills@claude-plugins-official --scope local`,
+    `claude plugin enable unslop@heydamir --scope local`,
+    `mv .claude/skills-disabled/<name> .claude/skills/` for design-taste-frontend and transitions-dev, and
+    `mv ~/.claude/skills-disabled/hallmark ~/.claude/skills/` for hallmark.
 - [ ] **agent-browser.** Use for the end-to-end network test and for checking screens on a small viewport.
-- [ ] **gstack (design-review, cso).** Not installed. It installs about 60 skills, needs Bun, checks for updates
-      on every session start, and has a telemetry sync component. Decide whether to install it when screens
-      exist. If yes: install Bun from bun.sh, then follow the gstack README, and turn telemetry off.
+- **gstack (design-review, cso): decided not to install** (2026-11-27). It installs about 60 skills, needs Bun,
+  checks for updates on every session start, and has a telemetry sync component.
+- **caveman CLI: decided to stay skipped** (2026-11-27). Only the caveman Claude Code plugin is used.
 - [ ] **Sentry.** The official plugin (`sentry@claude-plugins-official`) exists. Not installed yet. Set it up
       only when an error monitoring chunk comes, with no capture of form values, inputs or session replays.
 - [ ] **Security reviews.** Run the built-in `/security-review` and the `security-audit` skill on every PR that
