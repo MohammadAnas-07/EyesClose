@@ -1,14 +1,14 @@
 // @vitest-environment node
 import { PDFDocument, PDFPage } from 'pdf-lib';
 import { COVER_FOOTER, LETTER_FOOTER, composeLetter } from './compose';
-import { letters } from './content';
+import { letterForItem, letters } from './content';
 import { renderPdf } from './pdf';
 
 const details = { deceasedName: 'Test Name Markerone', writerName: 'Writer Markertwo', date: '2026-11-27' };
 
 describe('renderPdf', () => {
   it.each(letters.map((l) => [l.id, l] as const))('%s is a valid A4 PDF: cover page plus one letter page', async (_, letter) => {
-    const bytes = await renderPdf(composeLetter(letter, details, letter.appliesTo[0]!.institution));
+    const bytes = await renderPdf(composeLetter(letter, details, letter.appliesTo[0]!.institution, null));
     expect(new TextDecoder().decode(bytes.slice(0, 5))).toBe('%PDF-');
     const pdf = await PDFDocument.load(bytes);
     expect(pdf.getPageCount()).toBe(2);
@@ -23,7 +23,7 @@ describe('renderPdf', () => {
     const drawText = vi.spyOn(PDFPage.prototype, 'drawText');
     try {
       const letter = letters[0]!;
-      await renderPdf(composeLetter(letter, details, letter.appliesTo[0]!.institution));
+      await renderPdf(composeLetter(letter, details, letter.appliesTo[0]!.institution, null));
       const pages = [...new Set(drawText.mock.contexts)];
       expect(pages).toHaveLength(2);
       const textOn = (page: unknown) =>
@@ -31,6 +31,26 @@ describe('renderPdf', () => {
       expect(textOn(pages[0])).toContain(COVER_FOOTER);
       expect(textOn(pages[1])).toContain(LETTER_FOOTER);
       expect(textOn(pages[1]).join(' ')).not.toMatch(/legal advice/i);
+    } finally {
+      drawText.mockRestore();
+    }
+  });
+});
+
+describe('long links in the PDF', () => {
+  it('keeps every line inside the margins, even the longest official link', async () => {
+    const drawText = vi.spyOn(PDFPage.prototype, 'drawText');
+    try {
+      const longest = letters
+        .flatMap((l) => l.appliesTo.map((a) => ({ l, a, url: letterForItem(a.item)!.formUrl ?? '' })))
+        .sort((x, y) => y.url.length - x.url.length)[0]!;
+      expect(longest.url.length).toBeGreaterThan(100);
+      await renderPdf(composeLetter(longest.l, details, longest.a.institution, longest.url));
+      const right = 595.28 - 56.69;
+      for (const [text, options] of drawText.mock.calls) {
+        const width = options!.font!.widthOfTextAtSize(text, options!.size!);
+        expect(options!.x! + width, text).toBeLessThanOrEqual(right + 0.01);
+      }
     } finally {
       drawText.mockRestore();
     }

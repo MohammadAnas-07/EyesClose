@@ -56,7 +56,7 @@ describe('letter content', () => {
 
 describe('composeLetter', () => {
   it('puts the names, date and bank in the letter and fills every placeholder', () => {
-    const doc = composeLetter(bank, details, 'State Bank of India');
+    const doc = composeLetter(bank, details, 'State Bank of India', null);
     const text = toPlainText(doc.letter);
     expect(text).toContain('Subject: Death of account holder Test Name Markerone');
     expect(text).toContain('Name: Writer Markertwo');
@@ -68,18 +68,18 @@ describe('composeLetter', () => {
   });
 
   it('leaves a blank line for the bank name when the bank is not known', () => {
-    expect(toPlainText(composeLetter(bank, details, null).letter)).toMatch(/^_{10,}$/m);
+    expect(toPlainText(composeLetter(bank, details, null, null).letter)).toMatch(/^_{10,}$/m);
   });
 
   it('never types account numbers, phone numbers or addresses', () => {
     for (const letter of [bank, vi]) {
-      const text = toPlainText(composeLetter(letter, details, 'X').letter);
+      const text = toPlainText(composeLetter(letter, details, 'X', null).letter);
       for (const label of ['Phone', 'Address', 'Date of death']) expect(text).toMatch(new RegExp(`^${label}: _+$`, 'm'));
     }
   });
 
   it('keeps the "not checked" label and the steps on the cover page only', () => {
-    const doc = composeLetter(vi, details, 'Vi (Vodafone Idea Limited)');
+    const doc = composeLetter(vi, details, 'Vi (Vodafone Idea Limited)', null);
     const cover = toPlainText(doc.cover);
     expect(cover).toContain('Before you print');
     expect(cover).toContain('Not yet checked by a professional.');
@@ -115,5 +115,36 @@ describe('letter details', () => {
   it('formats dates in plain English', () => {
     expect(formatDate('2026-01-05')).toBe('5 January 2026');
     expect(todayIso(new Date(2026, 10, 27))).toBe('2026-11-27');
+  });
+});
+
+describe('where to get the form', () => {
+  const coverFor = (itemId: string) => {
+    const choice = letterForItem(itemId)!;
+    return toPlainText(composeLetter(choice.letter, details, choice.institution, choice.formUrl).cover);
+  };
+  const sourceOf = (id: string) => checklistItems.find((i) => i.id === id)!.source!;
+
+  it('uses the official link from the checked checklist item', () => {
+    expect(coverFor('bank-sbi')).toContain(
+      `For the bank's own claim form, see the official page: ${sourceOf('bank-sbi')} or ask at the branch.`,
+    );
+    expect(coverFor('sim-vi')).toContain(
+      `For Vi's own Transfer of Ownership Request form, see the official page: ${sourceOf('sim-vi')} or ask at a Vi store.`,
+    );
+  });
+
+  it('says to ask at the branch when the bank is not known', () => {
+    const cover = coverFor('bank-other');
+    expect(cover).toContain("For the bank's own claim form, ask at the branch.");
+    expect(cover).not.toContain('http');
+  });
+
+  it('only ever links to the URL already in the checklist item', () => {
+    for (const letter of letters)
+      for (const { item } of letter.appliesTo) {
+        const url = letterForItem(item)!.formUrl;
+        if (url) expect(url).toBe(sourceOf(item));
+      }
   });
 });

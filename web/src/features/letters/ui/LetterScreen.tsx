@@ -31,10 +31,10 @@ export function LetterScreen({ state, dispatch }: Props) {
 
   const choice = state.letterItem ? letterForItem(state.letterItem) : null;
   if (!choice) return null;
-  const { letter, institution } = choice;
+  const { letter, institution, formUrl } = choice;
   const draft = state.letterDraft;
   const checked = validateLetterDetails(draft);
-  const printable: LetterDocument | null = checked.ok ? composeLetter(letter, checked.details, institution) : null;
+  const printable: LetterDocument | null = checked.ok ? composeLetter(letter, checked.details, institution, formUrl) : null;
 
   const set = (key: LetterDetailKey, value: string) => dispatch({ type: 'set-letter', key, value });
 
@@ -53,7 +53,7 @@ export function LetterScreen({ state, dispatch }: Props) {
     busy.current = true;
     setStatus('loading');
     try {
-      saveFile(await renderPdf(composeLetter(letter, details, institution)), letter.fileName);
+      saveFile(await renderPdf(composeLetter(letter, details, institution, formUrl)), letter.fileName);
       setStatus('done');
     } catch {
       // Keep everything the user typed; printing still works without the PDF library.
@@ -90,6 +90,7 @@ export function LetterScreen({ state, dispatch }: Props) {
           <NameField
             id="deceasedName"
             label="Name of the person who died"
+            hint="Type the full name, as it appears on the death certificate. English letters (A to Z) only."
             value={draft.deceasedName ?? ''}
             error={state.letterErrors.deceasedName}
             onChange={(v) => set('deceasedName', v)}
@@ -97,6 +98,7 @@ export function LetterScreen({ state, dispatch }: Props) {
           <NameField
             id="writerName"
             label="Your full name"
+            hint="Type your full name. English letters (A to Z) only."
             value={draft.writerName ?? ''}
             error={state.letterErrors.writerName}
             onChange={(v) => set('writerName', v)}
@@ -195,7 +197,14 @@ export function LetterScreen({ state, dispatch }: Props) {
   );
 }
 
-function NameField(props: { id: string; label: string; value: string; error?: string; onChange: (v: string) => void }) {
+function NameField(props: {
+  id: string;
+  label: string;
+  hint: string;
+  value: string;
+  error?: string;
+  onChange: (v: string) => void;
+}) {
   const errorId = `${props.id}-error`;
   const hintId = `${props.id}-hint`;
   return (
@@ -204,7 +213,7 @@ function NameField(props: { id: string; label: string; value: string; error?: st
         {props.label}
       </label>
       <p id={hintId} className="text-ink-soft">
-        English letters (A to Z) only.
+        {props.hint}
       </p>
       <input
         id={props.id}
