@@ -1,6 +1,6 @@
 {
   "slug": "police-case",
-  "version": 1,
+  "version": 2,
   "order": 6,
   "title": "If police or a post-mortem are involved",
   "description": "The death was an accident, a suicide, or not clear, and the police are involved.",
@@ -55,6 +55,8 @@
   "sourceNeeded": [
     "How a family gets copies of the post-mortem and inquest reports. The state police pages we tried did not load.",
     "Compensation claims after a road accident (Motor Accident Claims Tribunal).",
-    "What other insurers, apart from LIC's accident benefit, ask for after an unnatural death."
-  ]
+    "What other insurers, apart from LIC's accident benefit, ask for after an unnatural death.",
+    "The official text of section 194 of the Bharatiya Nagarik Suraksha Sanhita. India Code and the Home Ministry site did not load when we tried."
+  ],
+  "note": "The first four points come from section 194 of the Bharatiya Nagarik Suraksha Sanhita, 2023, as printed in a Delhi Police Academy handbook. We could not fetch the official text of the law itself."
 }

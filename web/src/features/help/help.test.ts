@@ -75,7 +75,34 @@ describe('help content', () => {
       expect(body).toContain('When to talk to a lawyer');
       expect(body).toContain('Our suggestion, not from an official page');
       expect(body).toContain('href="/start"');
+      expect(body).toContain('>Start a new checklist</a>');
+      expect(body).toContain('If you came from your checklist, close this tab to go back to it.');
+      expect(body).not.toMatch(/Back to your checklist|still open in the other tab/);
     }
+    const index = helpIndexBody(helpPages);
+    expect(index).toContain('>Start a new checklist</a>');
+    expect(index).not.toContain('Back to your checklist');
+  });
+
+  it('states late registration as section 13 now reads, and never "at any time"', () => {
+    const page = helpPages.find((p) => p.slug === 'no-death-certificate')!;
+    const all = page.official.map((c) => c.text).join(' ');
+    expect(all).not.toMatch(/at any time/i);
+    expect(all).toContain('within 30 days, it is registered on payment of a late fee');
+    expect(all).toContain('written permission from the District Registrar');
+    expect(all).toContain('From 1 October 2026');
+    expect(all).toContain('Judicial Magistrate of the first class');
+    for (const c of page.official.filter((c) => /late fee|District Registrar|Judicial Magistrate/.test(c.text)))
+      expect(c.source).toMatch(/egazette\.gov\.in|crsorgi\.gov\.in|censusindia\.gov\.in/);
+  });
+
+  it('says the legal heir order is one example, and where the police-case law text comes from', () => {
+    const heir = helpPageBody(helpPages.find((p) => p.slug === 'legal-heir-and-succession')!);
+    expect(heir).toContain('As one example only: in Puducherry');
+    expect(heir).toContain('The Puducherry order is one example from one place.');
+    const police = helpPageBody(helpPages.find((p) => p.slug === 'police-case')!);
+    expect(police).toContain('as printed in a Delhi Police Academy handbook');
+    expect(police).toContain('We could not fetch the official text of the law itself.');
   });
 
   it('keeps each page under about 400 words of main text', () => {

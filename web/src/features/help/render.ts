@@ -98,6 +98,7 @@ export function helpPageBody(page: HelpPage): string {
       <section aria-labelledby="official" class="flex flex-col gap-4">
         <h2 id="official" class="text-xl">What the official sources say</h2>
         <ul class="flex flex-col gap-3">${claims}</ul>
+        ${page.note ? `<p class="text-sm text-ink-soft">${esc(page.note)}</p>` : ''}
       </section>
 
       <section aria-labelledby="next" class="flex flex-col gap-3 rounded-card bg-tint p-5">
@@ -113,8 +114,8 @@ export function helpPageBody(page: HelpPage): string {
       </section>
 
       <div class="flex flex-col gap-3 border-t border-line-strong pt-6">
-        <a href="/start" class="inline-flex min-h-13 items-center justify-center rounded-pill bg-ink px-8 text-lg font-medium text-surface hover:bg-ink/85 sm:self-start">Back to your checklist</a>
-        <p class="text-sm text-ink-soft">If you opened this page from your checklist, your checklist is still open in the other tab.</p>
+        <a href="/start" class="inline-flex min-h-13 items-center justify-center rounded-pill bg-ink px-8 text-lg font-medium text-surface hover:bg-ink/85 sm:self-start">Start a new checklist</a>
+        <p class="text-sm text-ink-soft">If you came from your checklist, close this tab to go back to it.</p>
         <p class="text-sm text-ink-soft">This is general information, not legal advice.</p>
       </div>
     </main>
@@ -146,7 +147,8 @@ export function helpIndexBody(pages: HelpPage[]): string {
         }</p>
       </div>
       <ul class="flex flex-col gap-3">${rows}</ul>
-      <a href="/start" class="inline-flex min-h-13 items-center justify-center rounded-pill bg-ink px-8 text-lg font-medium text-surface hover:bg-ink/85 sm:self-start">Back to your checklist</a>
+      <a href="/start" class="inline-flex min-h-13 items-center justify-center rounded-pill bg-ink px-8 text-lg font-medium text-surface hover:bg-ink/85 sm:self-start">Start a new checklist</a>
+      <p class="-mt-4 text-sm text-ink-soft">If you came from your checklist, close this tab to go back to it.</p>
     </main>
     ${footer}`;
 }
