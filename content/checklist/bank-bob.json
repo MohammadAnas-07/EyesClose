@@ -1,8 +1,9 @@
 {
   "id": "bank-bob",
-  "version": 2,
+  "version": 3,
   "title": "Bank of Baroda accounts",
-  "text": "The papers needed depend on whether there is a nominee. With a nominee, the nominee signs the claim form (Annex I-A).",
+  "official": "The papers needed depend on whether there is a nominee. With a nominee, the nominee signs the claim form (Annex I-A).",
+  "suggestion": null,
   "group": "first-7-days",
   "category": "bank",
   "contact": "Their Bank of Baroda branch",

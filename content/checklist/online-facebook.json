@@ -1,8 +1,9 @@
 {
   "id": "online-facebook",
-  "version": 2,
+  "version": 3,
   "title": "Facebook",
-  "text": "You can ask Facebook to turn the profile into a memorial account. Facebook does this after it gets a valid request about the death.",
+  "official": "You can ask Facebook to turn the profile into a memorial account. Facebook does this after it gets a valid request about the death.",
+  "suggestion": null,
   "group": "later",
   "category": "online",
   "contact": "Facebook, through its help centre",

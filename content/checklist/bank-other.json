@@ -1,8 +1,9 @@
 {
   "id": "bank-other",
-  "version": 2,
+  "version": 3,
   "title": "Other bank accounts",
-  "text": "A claim can be lodged at any branch of the bank. Once a bank has all the papers, RBI directions say it should settle a deposit claim within 15 calendar days.",
+  "official": "A claim can be lodged at any branch of the bank. Once a bank has all the papers, RBI directions say it should settle a deposit claim within 15 calendar days.",
+  "suggestion": null,
   "group": "first-7-days",
   "category": "bank",
   "contact": "The branch of each bank",

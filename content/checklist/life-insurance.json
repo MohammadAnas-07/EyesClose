@@ -1,8 +1,9 @@
 {
   "id": "life-insurance",
-  "version": 2,
+  "version": 3,
   "title": "Life insurance",
-  "text": "Tell the insurance company as early as possible. It will then ask for a filled claim form, the death certificate and the policy document.",
+  "official": "Tell the insurance company as early as possible. It will then ask for a filled claim form, the death certificate and the policy document.",
+  "suggestion": null,
   "group": "weeks-2-4",
   "category": "insurance",
   "contact": "The insurance company, or their insurance agent",

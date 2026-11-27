@@ -1,5 +1,5 @@
 import type { Answers } from './answers';
-import { CATEGORY_ORDER, buildChecklist, type ChecklistGroup } from './checklist';
+import { CATEGORY_ORDER, buildChecklist, checklistItemSchema, type ChecklistGroup } from './checklist';
 import { checklistItems } from './content';
 import { notesFor } from './notes';
 
@@ -28,6 +28,7 @@ const build = (over: Partial<Answers>) => buildChecklist({ ...base, ...over }, c
 const ids = (groups: ChecklistGroup[]) => groups.flatMap((g) => g.items.map((i) => i.id));
 const group = (groups: ChecklistGroup[], id: string) => groups.find((g) => g.id === id)?.items.map((i) => i.id) ?? [];
 const noteIds = (over: Partial<Answers>) => notesFor({ ...base, ...over }).map((n) => n.id);
+const byIdRaw = (id: string) => checklistItems.find((i) => i.id === id)!;
 
 describe('content', () => {
   it('has unique ids and every item is unverified until a professional checks it', () => {
@@ -74,6 +75,25 @@ describe('buildChecklist', () => {
 
   it('every item with a source records what the page confirms', () => {
     for (const i of checklistItems) expect(i.source === null).toBe(i.confirms === null);
+  });
+
+  it('keeps official text and our suggestion apart', () => {
+    for (const i of checklistItems) {
+      expect(i.official === null).toBe(i.source === null);
+      expect(i.official ?? i.suggestion).not.toBeNull();
+    }
+    const byId = (id: string) => checklistItems.find((i) => i.id === id)!;
+    expect(byId('loans-cards').official).not.toMatch(/lender|ask/i);
+    expect(byId('loans-cards').suggestion).toMatch(/lender/);
+    expect(byId('health-insurance').official).not.toMatch(/tell the insurer/i);
+    expect(byId('health-insurance').suggestion).toMatch(/Tell the insurer/);
+  });
+
+  it('rejects official text without a source, and an item with neither text', () => {
+    const good = byIdRaw('sim-airtel');
+    expect(checklistItemSchema.safeParse(good).success).toBe(true);
+    expect(checklistItemSchema.safeParse({ ...good, official: 'Made up rule.' }).success).toBe(false);
+    expect(checklistItemSchema.safeParse({ ...good, suggestion: null }).success).toBe(false);
   });
 
   it('crypto yes: a later step and the crypto note', () => {

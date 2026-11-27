@@ -1,8 +1,9 @@
 {
   "id": "family-pension",
-  "version": 2,
+  "version": 3,
   "title": "Central government pension",
-  "text": "The family applies for family pension in Form 14 with a copy of the death certificate: to the bank that pays the pension if the amount is in the pension order, otherwise to the Head of Office. State pensions may differ, so contact the pension office.",
+  "official": "The family applies for family pension in Form 14 with a copy of the death certificate: to the bank that pays the pension if the amount is in the pension order, otherwise to the Head of Office.",
+  "suggestion": "State pensions may differ, so contact the pension office.",
   "group": "weeks-2-4",
   "category": "work",
   "contact": "The bank that pays the pension, or the Head of Office",

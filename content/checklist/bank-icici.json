@@ -1,8 +1,9 @@
 {
   "id": "bank-icici",
-  "version": 2,
+  "version": 3,
   "title": "ICICI Bank accounts",
-  "text": "ICICI Bank's page has the claim forms to download. The papers needed depend on whether there is a nominee, and, when there is none, on the amount.",
+  "official": "ICICI Bank's page has the claim forms to download. The papers needed depend on whether there is a nominee, and, when there is none, on the amount.",
+  "suggestion": null,
   "group": "first-7-days",
   "category": "bank",
   "contact": "Their ICICI Bank branch",

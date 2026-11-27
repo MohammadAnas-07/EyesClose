@@ -1,8 +1,9 @@
 {
   "id": "sim-vi",
-  "version": 2,
+  "version": 3,
   "title": "Vi mobile number",
-  "text": "A blood relative or legal heir can take over the number at a Vi store. Take the death certificate, proof of relationship or a legal heir certificate, your own ID and address proof, and Vi's transfer of ownership form.",
+  "official": "A blood relative or legal heir can take over the number at a Vi store. Take the death certificate, proof of relationship or a legal heir certificate, your own ID and address proof, and Vi's transfer of ownership form.",
+  "suggestion": null,
   "group": "first-7-days",
   "category": "sim",
   "contact": "A Vi store",

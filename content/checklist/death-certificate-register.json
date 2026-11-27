@@ -1,8 +1,9 @@
 {
   "id": "death-certificate-register",
-  "version": 2,
+  "version": 3,
   "title": "Get the death certificate",
-  "text": "A death should be reported to the local registrar for registration within 21 days. There is no fee if it is reported within 21 days.",
+  "official": "A death should be reported to the local registrar for registration within 21 days. There is no fee if it is reported within 21 days.",
+  "suggestion": "Most steps on this list need a copy of the death certificate.",
   "group": "first-7-days",
   "category": "documents",
   "contact": "The birth and death registrar of your local municipality or gram panchayat",

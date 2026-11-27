@@ -1,8 +1,9 @@
 {
   "id": "sim-jio",
-  "version": 2,
+  "version": 3,
   "title": "Jio mobile number",
-  "text": "Jio allows the number to move to a blood relative or legal heir, with the death certificate and a new customer form. Service may stop if the SIM is not used or not paid for 90 days in a row.",
+  "official": "Jio allows the number to move to a blood relative or legal heir, with the death certificate and a new customer form. Service may stop if the SIM is not used or not paid for 90 days in a row.",
+  "suggestion": null,
   "group": "first-7-days",
   "category": "sim",
   "contact": "A Jio store",

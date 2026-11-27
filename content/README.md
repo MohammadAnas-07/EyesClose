@@ -18,7 +18,10 @@ Nothing may be shown as verified until a real reviewer fills that field.
 
 Each checklist file also has:
 
-- `title` and `text`: plain English shown on screen. One or two short sentences.
+- `title`: plain English shown on screen.
+- `official`: only what the source page says, in plain words. Shown as "From the official page".
+  Must be `null` when there is no source.
+- `suggestion`: our own advice, or `null`. Shown as "Our suggestion". Never put advice in `official`.
 - `group`: `first-7-days`, `weeks-2-4` or `later`.
 - `category`: decides the order inside a group (SIM, UPI and bank first, subscriptions last).
   The full order is `CATEGORY_ORDER` in `web/src/features/form/checklist.ts`.

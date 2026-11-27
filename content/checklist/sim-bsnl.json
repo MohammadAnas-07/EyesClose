@@ -1,8 +1,9 @@
 {
   "id": "sim-bsnl",
-  "version": 1,
+  "version": 2,
   "title": "BSNL mobile number",
-  "text": "Ask at a BSNL customer service centre how to close the number or keep it in the family, and which papers to bring.",
+  "official": null,
+  "suggestion": "Ask at a BSNL customer service centre how to close the number or keep it in the family, and which papers to bring.",
   "group": "first-7-days",
   "category": "sim",
   "contact": "A BSNL customer service centre",

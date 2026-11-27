@@ -1,8 +1,9 @@
 {
   "id": "online-other",
-  "version": 1,
+  "version": 2,
   "title": "Other email and social accounts",
-  "text": "Each service has its own steps. Look in its help pages for what to do after a death.",
+  "official": null,
+  "suggestion": "Each service has its own steps. Look in its help pages for what to do after a death.",
   "group": "later",
   "category": "online",
   "contact": null,

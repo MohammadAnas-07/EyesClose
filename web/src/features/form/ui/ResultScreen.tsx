@@ -121,7 +121,9 @@ function Item({ item, checked, onToggle }: { item: ChecklistItem; checked: boole
           type="checkbox"
           checked={checked}
           onChange={onToggle}
-          aria-describedby={`${id}-text`}
+          aria-describedby={[item.official && `${id}-official`, item.suggestion && `${id}-suggestion`]
+            .filter(Boolean)
+            .join(' ')}
           className="tick mt-0.5 size-6 shrink-0 cursor-pointer appearance-none rounded-md border-2 border-ink/55 bg-surface transition-colors duration-150 checked:border-ink checked:bg-ink"
         />
         <div className="flex min-w-0 flex-col gap-2">
@@ -134,7 +136,18 @@ function Item({ item, checked, onToggle }: { item: ChecklistItem; checked: boole
               {item.title}
             </label>
           </h3>
-          <p id={`${id}-text`}>{item.text}</p>
+          {item.official && (
+            <div id={`${id}-official`}>
+              <p className="text-sm font-medium text-ink-soft">From the official page</p>
+              <p>{item.official}</p>
+            </div>
+          )}
+          {item.suggestion && (
+            <div id={`${id}-suggestion`}>
+              <p className="text-sm font-medium text-ink-soft">Our suggestion</p>
+              <p>{item.suggestion}</p>
+            </div>
+          )}
           {item.contact && (
             <p>
               <span className="text-ink-soft">Who to contact: </span>

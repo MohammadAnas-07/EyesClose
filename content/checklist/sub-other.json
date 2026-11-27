@@ -1,8 +1,9 @@
 {
   "id": "sub-other",
-  "version": 1,
+  "version": 2,
   "title": "Other subscriptions",
-  "text": "Look at bank and card statements for regular payments. Then cancel each one with the company.",
+  "official": null,
+  "suggestion": "Look at bank and card statements for regular payments. Then cancel each one with the company.",
   "group": "later",
   "category": "subscriptions",
   "contact": null,

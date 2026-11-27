@@ -1,8 +1,9 @@
 {
   "id": "bank-kotak",
-  "version": 2,
+  "version": 3,
   "title": "Kotak Mahindra Bank accounts",
-  "text": "Download the claim form from Kotak's page. When you hand in documents at the branch, collect the Service Request number so you can track the claim.",
+  "official": "Download the claim form from Kotak's page. When you hand in documents at the branch, collect the Service Request number so you can track the claim.",
+  "suggestion": null,
   "group": "first-7-days",
   "category": "bank",
   "contact": "Their Kotak Mahindra Bank branch",

@@ -1,8 +1,9 @@
 {
   "id": "bank-canara",
-  "version": 2,
+  "version": 3,
   "title": "Canara Bank accounts",
-  "text": "You can submit the claim on Canara Bank's online death claim portal, or give the documents to the branch, which enters them for you. The original documents go to the branch before the money is paid.",
+  "official": "You can submit the claim on Canara Bank's online death claim portal, or give the documents to the branch, which enters them for you. The original documents go to the branch before the money is paid.",
+  "suggestion": null,
   "group": "first-7-days",
   "category": "bank",
   "contact": "Their Canara Bank branch",

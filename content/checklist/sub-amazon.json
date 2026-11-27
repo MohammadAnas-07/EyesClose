@@ -1,8 +1,9 @@
 {
   "id": "sub-amazon",
-  "version": 2,
+  "version": 3,
   "title": "Amazon, if they had it",
-  "text": "Amazon acts only on a request from the authorised person of the estate, with a copy of the death certificate and a declaration form. Closing the account is permanent and deletes content like photos, music and books.",
+  "official": "Amazon acts only on a request from the authorised person of the estate, with a copy of the death certificate and a declaration form. Closing the account is permanent and deletes content like photos, music and books.",
+  "suggestion": "Save any photos or files you want to keep before asking for closure.",
   "group": "later",
   "category": "subscriptions",
   "contact": "Amazon customer service",

@@ -27,13 +27,15 @@ const date = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
 /**
  * Shape of one file in content/checklist/. A null source means "source needed".
  * confirms: one line of what the full source page itself says, recorded when it was last checked.
+ * official: only what the source page says. suggestion: our own advice. Never mix the two.
  */
 export const checklistItemSchema = z
   .object({
     id: z.string().regex(/^[a-z0-9-]+$/),
     version: z.number().int().positive(),
     title: z.string().min(1).max(80),
-    text: z.string().min(1).max(400),
+    official: z.string().min(1).max(400).nullable(),
+    suggestion: z.string().min(1).max(300).nullable(),
     group: z.enum(GROUPS.map((g) => g.id) as [string, ...string[]]),
     category: z.enum(CATEGORY_ORDER),
     contact: z.string().min(1).nullable(),
@@ -48,7 +50,11 @@ export const checklistItemSchema = z
   .strict()
   .refine((i) => [i.lastChecked, i.confirms].every((v) => (v === null) === (i.source === null)), {
     error: 'An item with a source needs lastChecked and confirms; an item without a source must have neither.',
-  });
+  })
+  .refine((i) => (i.official === null) === (i.source === null), {
+    error: 'Official text needs a source, and a sourced item needs official text. Unsourced advice goes in suggestion.',
+  })
+  .refine((i) => i.official !== null || i.suggestion !== null, { error: 'An item needs official text or a suggestion.' });
 
 export type ChecklistItem = z.infer<typeof checklistItemSchema>;
 

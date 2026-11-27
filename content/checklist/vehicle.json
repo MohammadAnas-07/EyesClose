@@ -1,8 +1,9 @@
 {
   "id": "vehicle",
-  "version": 2,
+  "version": 3,
   "title": "Vehicle and its insurance",
-  "text": "To keep using the vehicle, tell the RTO about the death within 30 days. Then apply with Form 31 within three months to move it into your name.",
+  "official": "To keep using the vehicle, tell the RTO about the death within 30 days. Then apply with Form 31 within three months to move it into your name.",
+  "suggestion": "Also tell the vehicle insurer.",
   "group": "weeks-2-4",
   "category": "vehicle",
   "contact": "The local RTO",

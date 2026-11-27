@@ -1,8 +1,9 @@
 {
   "id": "health-insurance",
-  "version": 2,
+  "version": 3,
   "title": "Health insurance",
-  "text": "If the policyholder dies, the claim money is paid to the nominee. In a family floater policy, all family members share one sum insured.",
+  "official": "If the policyholder dies, the claim money is paid to the nominee. In a family floater policy, all family members share one sum insured.",
+  "suggestion": "Tell the insurer about the death. If others in the family are on the same policy, ask how their cover continues.",
   "group": "weeks-2-4",
   "category": "insurance",
   "contact": "The insurance company",

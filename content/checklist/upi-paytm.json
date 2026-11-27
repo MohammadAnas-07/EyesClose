@@ -1,8 +1,9 @@
 {
   "id": "upi-paytm",
-  "version": 1,
+  "version": 2,
   "title": "Paytm",
-  "text": "Contact Paytm support, tell them about the death, and ask which papers they need. If they had money in a Paytm wallet, ask how the family can claim it.",
+  "official": null,
+  "suggestion": "Contact Paytm support, tell them about the death, and ask which papers they need. If they had money in a Paytm wallet, ask how the family can claim it.",
   "group": "first-7-days",
   "category": "upi",
   "contact": "Paytm support",

@@ -1,8 +1,9 @@
 {
   "id": "sim-other",
-  "version": 1,
+  "version": 2,
   "title": "Their other mobile number",
-  "text": "Check which company the number is with. Then ask at its store how to close the number or keep it in the family.",
+  "official": null,
+  "suggestion": "Check which company the number is with. Then ask at its store how to close the number or keep it in the family.",
   "group": "first-7-days",
   "category": "sim",
   "contact": null,

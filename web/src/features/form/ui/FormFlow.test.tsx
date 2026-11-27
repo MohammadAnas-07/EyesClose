@@ -73,6 +73,8 @@ describe('FormFlow', () => {
     const family = screen.getByText('If family members disagree').closest('details');
     expect(family).not.toBeNull();
     expect(family).not.toHaveAttribute('open');
+    expect(screen.getAllByText('From the official page').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Our suggestion').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Not yet checked by a professional').length).toBeGreaterThan(0);
 
     fireEvent.click(screen.getByLabelText('Jio mobile number'));

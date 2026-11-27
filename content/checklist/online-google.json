@@ -1,8 +1,9 @@
 {
   "id": "online-google",
-  "version": 2,
+  "version": 3,
   "title": "Google account and Gmail",
-  "text": "Google can work with immediate family to close the account of a person who died, and may share some of its data. Google cannot give out passwords.",
+  "official": "Google can work with immediate family to close the account of a person who died, and may share some of its data. Google cannot give out passwords.",
+  "suggestion": null,
   "group": "later",
   "category": "online",
   "contact": "Google, through its deceased user request form",

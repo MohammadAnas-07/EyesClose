@@ -1,8 +1,9 @@
 {
   "id": "sim-airtel",
-  "version": 1,
+  "version": 2,
   "title": "Airtel mobile number",
-  "text": "Ask at an Airtel store how to close the number or keep it in the family, and which papers to bring.",
+  "official": null,
+  "suggestion": "Ask at an Airtel store how to close the number or keep it in the family, and which papers to bring.",
   "group": "first-7-days",
   "category": "sim",
   "contact": "An Airtel store",

@@ -1,8 +1,9 @@
 {
   "id": "bank-axis",
-  "version": 2,
+  "version": 3,
   "title": "Axis Bank accounts",
-  "text": "Axis Bank asks for its death claim form, the death certificate and the nominee's or survivor's ID document. The papers are different when there is no nominee or joint holder, and above Rs. 15 lakh.",
+  "official": "Axis Bank asks for its death claim form, the death certificate and the nominee's or survivor's ID document. The papers are different when there is no nominee or joint holder, and above Rs. 15 lakh.",
+  "suggestion": null,
   "group": "first-7-days",
   "category": "bank",
   "contact": "Their Axis Bank branch",

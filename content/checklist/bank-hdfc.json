@@ -1,8 +1,9 @@
 {
   "id": "bank-hdfc",
-  "version": 2,
+  "version": 3,
   "title": "HDFC Bank accounts",
-  "text": "A nominee needs the claim form (Annex I-A), the death certificate and their own ID document. The papers are different when there is no nominee.",
+  "official": "A nominee needs the claim form (Annex I-A), the death certificate and their own ID document. The papers are different when there is no nominee.",
+  "suggestion": null,
   "group": "first-7-days",
   "category": "bank",
   "contact": "Their HDFC Bank branch",

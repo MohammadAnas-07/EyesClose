@@ -1,8 +1,9 @@
 {
   "id": "loans-cards",
-  "version": 2,
+  "version": 3,
   "title": "Loans and credit cards",
-  "text": "Card companies must state in their Most Important Terms how they recover dues after a cardholder dies. Ask each card company and lender how they handle this.",
+  "official": "Card companies must state in their Most Important Terms how they recover dues after a cardholder dies.",
+  "suggestion": "Tell each card company and lender about the death and ask how they handle the dues. We have not found an official page for loans yet.",
   "group": "weeks-2-4",
   "category": "loans",
   "contact": "Each bank or lender",
