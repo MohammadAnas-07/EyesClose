@@ -17,7 +17,7 @@ export function StartScreen({ onStart }: { onStart: () => void }) {
       <div className="flex gap-3 rounded-card bg-tint p-4">
         <LockIcon className="mt-0.5 size-5 shrink-0" />
         <div>
-          <p className="font-medium">Your answers stay on this phone and disappear when you close this page.</p>
+          <p className="font-medium">Your answers stay in this browser and disappear when you close this page.</p>
           <p className="mt-1 text-ink-soft">Nothing is sent to us. Refreshing the page also clears your answers.</p>
         </div>
       </div>

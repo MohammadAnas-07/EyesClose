@@ -207,7 +207,7 @@ export function LetterScreen({ state, dispatch }: Props) {
             )}
             {status === 'error' && (
               <p className="rounded-card border border-note-line bg-note p-4">
-                We could not make the PDF on this phone. Your details are still here. Please use Print instead; on the
+                We could not make the PDF on this device. Your details are still here. Please use Print instead; on the
                 print screen you can also choose Save as PDF.
               </p>
             )}
