@@ -38,4 +38,14 @@ Each checklist file also has:
 The schema lives in `web/src/features/form/checklist.ts`. A unit test parses every file, so a broken or
 incomplete item fails CI.
 
-`letters/` is filled in a later chunk.
+## Letters (`letters/`)
+
+Each letter file has `sources` (URL plus a one-line `confirms`), `lastChecked`, `verifiedBy`, `appliesTo` (the
+checklist items that offer it), `takeWith` (the institution's own form) and `letter`, a list of blocks:
+`text`, `field` (a blank line written by hand), `ticks`, `list`, `gap` and `signature`.
+
+- Text may use only these placeholders: `{{deceasedName}}`, `{{writerName}}`, `{{date}}`, `{{institution}}`.
+  Any other token fails the schema check.
+- The enclosure list names only papers an official page names.
+- Never type account numbers, Aadhaar, PAN, phone numbers or addresses into a letter. Use a `field`.
+- A letter goes with the institution's own form. Do not say it is a legal requirement.

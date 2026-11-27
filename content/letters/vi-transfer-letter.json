@@ -1,0 +1,44 @@
+{
+  "id": "vi-transfer-letter",
+  "version": 1,
+  "title": "Request letter for Vi",
+  "about": "A short letter to take to a Vi store with Vi's own Transfer of Ownership Request form and the papers Vi lists. Vi asks for its form; this letter is not a requirement.",
+  "fileName": "eyesclose-vi-letter.pdf",
+  "takeWith": "Vi's own Transfer of Ownership Request form",
+  "sources": [
+    {
+      "url": "https://www.myvi.in/help-support/faqs/how-to-change-sim-card-owner-name",
+      "confirms": "Vi FAQ: for a deceased customer, visit a Vi store with the request form, death certificate, relationship proof or legal heir certificate, and POI/POA."
+    }
+  ],
+  "lastChecked": "2026-11-27",
+  "verifiedBy": null,
+  "appliesTo": [{ "item": "sim-vi", "institution": "Vi (Vodafone Idea Limited)" }],
+  "letter": [
+    { "type": "text", "text": "To" },
+    { "type": "text", "text": "The Store Manager" },
+    { "type": "text", "text": "{{institution}}" },
+    { "type": "field", "label": "Store" },
+    { "type": "gap" },
+    { "type": "text", "text": "Date: {{date}}" },
+    { "type": "gap" },
+    { "type": "text", "text": "Subject: Transfer of ownership of the mobile number of {{deceasedName}}", "bold": true },
+    { "type": "gap" },
+    { "type": "text", "text": "Dear Sir or Madam," },
+    { "type": "gap" },
+    { "type": "text", "text": "I am writing to inform you that {{deceasedName}}, the customer for the mobile number below, has passed away." },
+    { "type": "gap" },
+    { "type": "field", "label": "Mobile number" },
+    { "type": "field", "label": "Date of death" },
+    { "type": "field", "label": "My relationship to them" },
+    { "type": "gap" },
+    { "type": "ticks", "label": "I am writing as the", "options": ["nominee", "legal heir", "other"] },
+    { "type": "gap" },
+    { "type": "text", "text": "Please transfer the ownership of this mobile number to me. I have enclosed the papers listed below." },
+    { "type": "gap" },
+    { "type": "list", "title": "Enclosed:", "items": ["Vi's Transfer of Ownership Request form, filled in", "A copy of the death certificate", "Proof of relationship, or a legal heir certificate", "My proof of identity and proof of address"] },
+    { "type": "gap" },
+    { "type": "text", "text": "Yours faithfully," },
+    { "type": "signature" }
+  ]
+}
