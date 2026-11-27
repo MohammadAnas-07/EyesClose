@@ -1,0 +1,22 @@
+{
+  "id": "bank-bob",
+  "version": 3,
+  "title": "Bank of Baroda accounts",
+  "official": "The papers needed depend on whether there is a nominee. With a nominee, the nominee signs the claim form (Annex I-A).",
+  "suggestion": null,
+  "group": "first-7-days",
+  "category": "bank",
+  "contact": "Their Bank of Baroda branch",
+  "source": "https://bankofbaroda.bank.in/personal-banking/other-services/settlement-of-claims",
+  "lastChecked": "2026-11-27",
+  "confirms": "BoB page: separate \"With Nomination\" and \"Without Nomination\" lists; nominee signs claim form in Annex I-A.",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "banks",
+      "anyOf": [
+        "bob"
+      ]
+    }
+  ]
+}

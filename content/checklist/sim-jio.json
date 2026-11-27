@@ -1,0 +1,22 @@
+{
+  "id": "sim-jio",
+  "version": 3,
+  "title": "Jio mobile number",
+  "official": "Jio allows the number to move to a blood relative or legal heir, with the death certificate and a new customer form. Service may stop if the SIM is not used or not paid for 90 days in a row.",
+  "suggestion": null,
+  "group": "first-7-days",
+  "category": "sim",
+  "contact": "A Jio store",
+  "source": "https://myjiostatic.cdn.jio.com/jio/regulatory/rjil-telecom-charter-2025.pdf",
+  "lastChecked": "2026-11-27",
+  "confirms": "Jio charter p.19: name change between blood relatives/legal heirs allowed with death certificate and new CAF; 90-day no-usage stop.",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "mobile",
+      "anyOf": [
+        "jio"
+      ]
+    }
+  ]
+}

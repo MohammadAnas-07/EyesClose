@@ -1,0 +1,23 @@
+{
+  "id": "family-pension",
+  "version": 3,
+  "title": "Central government pension",
+  "official": "The family applies for family pension in Form 14 with a copy of the death certificate: to the bank that pays the pension if the amount is in the pension order, otherwise to the Head of Office.",
+  "suggestion": "State pensions may differ, so contact the pension office.",
+  "group": "weeks-2-4",
+  "category": "work",
+  "contact": "The bank that pays the pension, or the Head of Office",
+  "source": "https://cpao.nic.in/FAQ.php",
+  "lastChecked": "2026-11-27",
+  "confirms": "CPAO FAQ 47: apply in Form 14 with death certificate, to the disbursing authority if in the PPO, else Head of Office.",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "work",
+      "anyOf": [
+        "pension",
+        "not-sure"
+      ]
+    }
+  ]
+}

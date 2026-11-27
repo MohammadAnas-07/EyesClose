@@ -1,0 +1,22 @@
+{
+  "id": "upi-phonepe",
+  "version": 2,
+  "title": "PhonePe",
+  "official": null,
+  "suggestion": "Contact PhonePe support, tell them about the death, and ask which papers they need. The money itself is in the linked bank account, so the bank step matters most.",
+  "group": "first-7-days",
+  "category": "upi",
+  "contact": "PhonePe support",
+  "source": null,
+  "lastChecked": null,
+  "confirms": null,
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "upi",
+      "anyOf": [
+        "phonepe"
+      ]
+    }
+  ]
+}

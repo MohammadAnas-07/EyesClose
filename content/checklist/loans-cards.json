@@ -1,0 +1,23 @@
+{
+  "id": "loans-cards",
+  "version": 3,
+  "title": "Loans and credit cards",
+  "official": "Card companies must state in their Most Important Terms how they recover dues after a cardholder dies.",
+  "suggestion": "Tell each card company and lender about the death and ask how they handle the dues. We have not found an official page for loans yet.",
+  "group": "weeks-2-4",
+  "category": "loans",
+  "contact": "Each bank or lender",
+  "source": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=12300",
+  "lastChecked": "2026-11-27",
+  "confirms": "RBI card directions: Most Important Terms must cover \"Recovery of dues in case of death\" of the cardholder.",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "loans",
+      "anyOf": [
+        "yes",
+        "not-sure"
+      ]
+    }
+  ]
+}

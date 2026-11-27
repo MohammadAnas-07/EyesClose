@@ -1,0 +1,22 @@
+{
+  "id": "bank-icici",
+  "version": 3,
+  "title": "ICICI Bank accounts",
+  "official": "ICICI Bank's page has the claim forms to download. The papers needed depend on whether there is a nominee, and, when there is none, on the amount.",
+  "suggestion": null,
+  "group": "first-7-days",
+  "category": "bank",
+  "contact": "Their ICICI Bank branch",
+  "source": "https://www.icici.bank.in/deceased-claim-policy-and-forms",
+  "lastChecked": "2026-11-27",
+  "confirms": "ICICI page: Annex 1 and Annex 2 claim forms; papers split by nominee status and, without one, by amount.",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "banks",
+      "anyOf": [
+        "icici"
+      ]
+    }
+  ]
+}

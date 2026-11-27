@@ -22,6 +22,16 @@
   --color-tint: rgb(10 10 10 / 0.04); /* --color-gray-ultra-light */
   --color-green: #40a53c; /* icons and fills only: fails contrast as text on white */
 
+  /* Added for EyesClose (design.md has none). See docs/design-notes.md items 6 and 8. */
+  --color-surface: #fbfbfa; /* soft near-white for cards, never a big pure-white block */
+  --color-line-strong: rgb(10 10 10 / 0.12);
+  --color-selected: rgb(10 10 10 / 0.06);
+  --color-error: #b3261e; /* 9.5:1 on paper */
+  --color-error-tint: #fbeceb;
+  --color-note: #fbf3e2; /* calm warning background */
+  --color-note-ink: #7a4b00; /* 6.7:1 on note */
+  --color-note-line: rgb(122 75 0 / 0.2);
+
   /* Type scale (design.md: --font-size-*) */
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -49,9 +59,11 @@
   /* Motion (design.md). Only fast and base are used; slow is kept for reference. */
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-in-out: ease-in-out;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --duration-fast: 150ms;
   --duration-base: 300ms;
   --duration-slow: 500ms;
+  --animate-fade-in: fade-in 220ms var(--ease-out-expo) both;
 
   /* Z-index (design.md) */
   --z-dropdown: 1000;
@@ -61,6 +73,12 @@
   --z-modal: 1050;
   --z-popover: 1060;
   --z-tooltip: 1070;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
 }
 
 @layer base {
@@ -89,6 +107,20 @@
     outline-offset: 2px;
   }
 
+  ::selection {
+    background: rgb(10 10 10 / 0.14);
+    color: var(--color-ink);
+  }
+
+  input {
+    caret-color: var(--color-ink);
+    accent-color: var(--color-ink);
+  }
+
+  a {
+    text-underline-offset: 0.2em;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -99,6 +131,14 @@
       scroll-behavior: auto !important;
     }
   }
+}
+
+/* Custom checkbox tick. data: is allowed by img-src in the CSP. */
+.tick:checked {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27none%27 stroke=%27%23fbfbfa%27 stroke-width=%272.2%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%27M3.5 8.5l3 3 6-7%27/%3E%3C/svg%3E");
+  background-position: center;
+  background-size: 80%;
+  background-repeat: no-repeat;
 }
 
 /* Printed letters: no negative tracking, black on white, A4. */

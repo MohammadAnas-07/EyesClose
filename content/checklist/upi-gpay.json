@@ -1,0 +1,22 @@
+{
+  "id": "upi-gpay",
+  "version": 3,
+  "title": "Google Pay",
+  "official": "Google can work with immediate family to close the Google account of a person who died. Its request page also has an option to ask about funds in the account.",
+  "suggestion": "UPI IDs stay linked to a bank account, so also tell the bank.",
+  "group": "first-7-days",
+  "category": "upi",
+  "contact": "Google, through its deceased user request form",
+  "source": "https://support.google.com/accounts/troubleshooter/6357590",
+  "lastChecked": "2026-11-27",
+  "confirms": "Google deceased-user request page: can close the account of a deceased person; option to request funds.",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "upi",
+      "anyOf": [
+        "gpay"
+      ]
+    }
+  ]
+}

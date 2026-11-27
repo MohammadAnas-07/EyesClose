@@ -1,0 +1,23 @@
+{
+  "id": "life-insurance",
+  "version": 3,
+  "title": "Life insurance",
+  "official": "Tell the insurance company as early as possible. It will then ask for a filled claim form, the death certificate and the policy document.",
+  "suggestion": null,
+  "group": "weeks-2-4",
+  "category": "insurance",
+  "contact": "The insurance company, or their insurance agent",
+  "source": "https://policyholder.gov.in/how-to-make-a-claim-life",
+  "lastChecked": "2026-11-27",
+  "confirms": "IRDAI policyholder page: send claim intimation as early as possible; insurer asks for claim form, death certificate, policy.",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "lifeInsurance",
+      "anyOf": [
+        "yes",
+        "not-sure"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "sim-vi",
+  "version": 3,
+  "title": "Vi mobile number",
+  "official": "A blood relative or legal heir can take over the number at a Vi store. Take the death certificate, proof of relationship or a legal heir certificate, your own ID and address proof, and Vi's transfer of ownership form.",
+  "suggestion": null,
+  "group": "first-7-days",
+  "category": "sim",
+  "contact": "A Vi store",
+  "source": "https://www.myvi.in/help-support/faqs/how-to-change-sim-card-owner-name",
+  "lastChecked": "2026-11-27",
+  "confirms": "Vi FAQ: transfer allowed to blood relatives and legal heirs; lists death certificate, relationship proof, POI/POA and request form.",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "mobile",
+      "anyOf": [
+        "vi"
+      ]
+    }
+  ]
+}

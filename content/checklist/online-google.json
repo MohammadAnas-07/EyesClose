@@ -1,0 +1,23 @@
+{
+  "id": "online-google",
+  "version": 3,
+  "title": "Google account and Gmail",
+  "official": "Google can work with immediate family to close the account of a person who died, and may share some of its data. Google cannot give out passwords.",
+  "suggestion": null,
+  "group": "later",
+  "category": "online",
+  "contact": "Google, through its deceased user request form",
+  "source": "https://support.google.com/accounts/troubleshooter/6357590",
+  "lastChecked": "2026-11-27",
+  "confirms": "Google deceased-user request page: close account, may provide content, \"We cannot provide passwords\".",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "emailSocial",
+      "anyOf": [
+        "yes",
+        "not-sure"
+      ]
+    }
+  ]
+}

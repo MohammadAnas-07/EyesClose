@@ -1,0 +1,22 @@
+{
+  "id": "bank-find",
+  "version": 2,
+  "title": "Find their bank accounts",
+  "official": null,
+  "suggestion": "Look for passbooks, cheque books, bank letters and bank messages on their phone. Then tell each bank about the death.",
+  "group": "first-7-days",
+  "category": "bank",
+  "contact": null,
+  "source": null,
+  "lastChecked": null,
+  "confirms": null,
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "banks",
+      "anyOf": [
+        "not-sure"
+      ]
+    }
+  ]
+}

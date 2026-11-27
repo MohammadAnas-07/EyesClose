@@ -1,0 +1,23 @@
+{
+  "id": "epfo-claim",
+  "version": 3,
+  "title": "Provident fund and EPS pension (EPFO)",
+  "official": "After a member dies, eligible nominees can claim from EPFO. The EPFO website has a \"File Death Claim\" option that leads to its member portal.",
+  "suggestion": "Their last employer's HR team may be able to help with the claim.",
+  "group": "weeks-2-4",
+  "category": "work",
+  "contact": "EPFO, or the HR team of their last employer",
+  "source": "https://www.epfo.gov.in/",
+  "lastChecked": "2026-11-27",
+  "confirms": "EPFO home page: \"File Death Claim - Eligible nominees can claim in case of employee's demise.\"",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "work",
+      "anyOf": [
+        "epfo",
+        "not-sure"
+      ]
+    }
+  ]
+}

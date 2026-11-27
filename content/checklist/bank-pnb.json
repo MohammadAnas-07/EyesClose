@@ -1,0 +1,22 @@
+{
+  "id": "bank-pnb",
+  "version": 3,
+  "title": "Punjab National Bank accounts",
+  "official": "You can start the claim on PNB's Death Claim Settlement Portal, or at any PNB branch. The claim forms are on the same page.",
+  "suggestion": null,
+  "group": "first-7-days",
+  "category": "bank",
+  "contact": "Their Punjab National Bank branch",
+  "source": "https://pnb.bank.in/Deceased-Claim-cases.html",
+  "lastChecked": "2026-11-27",
+  "confirms": "PNB page: claim online through Death Claim Settlement Portal, or lodge at any branch; claim form links.",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "banks",
+      "anyOf": [
+        "pnb"
+      ]
+    }
+  ]
+}

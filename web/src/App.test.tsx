@@ -2,9 +2,9 @@ import { render, screen } from '@testing-library/react';
 import { App } from './App';
 
 describe('App', () => {
-  it('shows the product name and the privacy promise', () => {
+  it('opens on the start screen with the privacy promise', () => {
     render(<App />);
-    expect(screen.getByRole('heading', { name: 'EyesClose' })).toBeInTheDocument();
-    expect(screen.getByText(/Nothing is sent to us/)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
+    expect(screen.getByText(/Your answers stay on this phone and disappear when you close this page/)).toBeInTheDocument();
   });
 });

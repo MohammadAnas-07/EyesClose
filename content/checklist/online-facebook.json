@@ -1,0 +1,23 @@
+{
+  "id": "online-facebook",
+  "version": 3,
+  "title": "Facebook",
+  "official": "You can ask Facebook to turn the profile into a memorial account. Facebook does this after it gets a valid request about the death.",
+  "suggestion": null,
+  "group": "later",
+  "category": "online",
+  "contact": "Facebook, through its help centre",
+  "source": "https://www.facebook.com/help/150486848354038",
+  "lastChecked": "2026-11-27",
+  "confirms": "Facebook help page (read in its Hindi version): profile is memorialised after a valid request about the death.",
+  "verifiedBy": null,
+  "when": [
+    {
+      "question": "emailSocial",
+      "anyOf": [
+        "yes",
+        "not-sure"
+      ]
+    }
+  ]
+}

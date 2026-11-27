@@ -4,17 +4,19 @@ This is a backlog, not an order of work. Chunks and their order are decided by t
 
 ## MVP features
 
-- [ ] **Smart form.** About 10 questions. Answers held in memory only. Answers decide which letters and
+- [x] **Smart form.** About 10 questions. Answers held in memory only. Answers decide which letters and
       checklist items appear.
 - [ ] **Letter generator.** Content-driven letters as A4 PDFs made in the browser. Official steps and links
       (not letters) for EPFO, insurance and UPI apps that need forms or support emails.
-- [ ] **Priority checklist.** Days 1 to 7, weeks 2 to 4, later. Who to contact for each step.
+      The name of the person who died is optional in the form for now. It becomes required where a letter is
+      generated (same English-letters rule, checked again before the PDF is made).
+- [x] **Priority checklist.** Days 1 to 7, weeks 2 to 4, later. Who to contact for each step.
 - [ ] **Share the checklist.** One tap to WhatsApp, with no personal details in the message.
 
 ## Supporting work
 
-- [ ] Content schema check in CI (source, lastChecked, verifiedBy required).
-- [ ] "Not yet checked by a professional" label for unverified items.
+- [x] Content schema check in CI (source, lastChecked, verifiedBy required).
+- [x] "Not yet checked by a professional" label for unverified items.
 - [ ] Waitlist button ("I want the full pack"): email and consent only, Resend confirmation, deletion on request.
 - [ ] Feedback form with consent.
 - [ ] First-party event counter (event names only).
@@ -37,13 +39,15 @@ This is a backlog, not an order of work. Chunks and their order are decided by t
 
 These tools are installed (or chosen) but their setup waits until the app has real screens or code.
 
-- [ ] **impeccable design hook.** Installed without its edit hook. Turn it on and run `/impeccable init` once
+- [x] **impeccable design hook.** Turned on in chunk 1. `/impeccable init` (PRODUCT.md) not run yet; run it once
       real screens exist.
 - [ ] **emil-design-eng, review-animations, animation-performance.** Active. Use when building and reviewing
       screens. Keep motion calm (see docs/design-notes.md).
 - [ ] **Turned off on 2026-11-27 to save context. Turn back on as below:**
   - `design-taste-frontend`, `unslop`, `hallmark`: when the first real screen (the form or the checklist page)
     is being designed, and for its design review.
+  - `design-taste-frontend` was turned on for chunk 1 and turned off again on 2026-11-27 in the chunk 1 review.
+    It targets marketing sites, not app screens, and was not used.
   - `transitions-dev`: when a chunk adds motion or transitions to a screen.
   - `mattpocock-skills`: when the form state and letter-building logic (real TypeScript code) is written.
   - How: `claude plugin enable mattpocock-skills@claude-plugins-official --scope local`,

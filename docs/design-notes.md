@@ -16,6 +16,9 @@ This file lists problems found in it for EyesClose, and how web/src/index.css ha
    Use it only for icons or fills, never for words.
 6. **No status colours.** There is no error or warning colour, and no focus style. We added a visible
    focus outline. Error and warning colours need to be chosen later (and must pass contrast).
+   **Chosen 2026-11-27 (chunk 1):** error text `#b3261e` (9.5:1 on the page background) on `#fbeceb`;
+   calm notes use `#fbf3e2` with `#7a4b00` for icons and labels (6.7:1). Cards use `#fbfbfa`, not pure white.
+   Checked with axe in a real browser at 360px (colour contrast on): no violations.
 7. **Desktop-only capture.** It was measured at 1536px wide. Sizes like 190px section padding and the
    52px section heading need smaller mobile values.
 8. **Stark black and white.** The palette is pure black, white and grey. It works, but may feel cold for

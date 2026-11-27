@@ -34,7 +34,9 @@ This is the most important test. It has three layers.
    - also fail if the page has any third-party script, or if localStorage, sessionStorage, IndexedDB or
      cookies contain a marker string.
 
-Layers 2 and 3 are added in the chunk that builds the form.
+Layer 2 is in `web/src/features/form/ui/FormFlow.test.tsx` (it also stubs `WebSocket` and `EventSource`).
+Test files may spy on these APIs, so they are left out of the ESLint rule; form source code is not.
+Layer 3 is still to come; it needs the letters and PDFs.
 
 ## CSP check (planned)
 
