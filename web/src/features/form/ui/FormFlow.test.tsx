@@ -17,7 +17,7 @@ describe('FormFlow', () => {
     expect(screen.getByRole('heading', { level: 1, name: 'Your checklist' })).toBeInTheDocument();
     expect(screen.getByText('For Test Name Markerone')).toBeInTheDocument();
     const headings = screen.getAllByRole('heading', { level: 2 }).map((h) => h.textContent);
-    expect(headings).toEqual(['Good to know', 'First 7 days', 'Weeks 2 to 4', 'Later']);
+    expect(headings).toEqual(['Your letters', 'Good to know', 'First 7 days', 'Weeks 2 to 4', 'Later']);
     const first = within(screen.getByRole('region', { name: 'First 7 days' })).getAllByRole('heading', { level: 3 });
     expect(first.map((h) => h.textContent)).toEqual([
       'Get the death certificate',
