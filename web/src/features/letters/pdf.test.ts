@@ -1,6 +1,6 @@
 // @vitest-environment node
-import { PDFDocument } from 'pdf-lib';
-import { composeLetter } from './compose';
+import { PDFDocument, PDFPage } from 'pdf-lib';
+import { COVER_FOOTER, LETTER_FOOTER, composeLetter } from './compose';
 import { letters } from './content';
 import { renderPdf } from './pdf';
 
@@ -17,5 +17,22 @@ describe('renderPdf', () => {
     // No names in the file metadata.
     expect(pdf.getTitle()).toBe('Letter prepared with EyesClose');
     expect(pdf.getAuthor()).toBeUndefined();
+  });
+
+  it('keeps "not legal advice" on the Before you print page and off the letter itself', async () => {
+    const drawText = vi.spyOn(PDFPage.prototype, 'drawText');
+    try {
+      const letter = letters[0]!;
+      await renderPdf(composeLetter(letter, details, letter.appliesTo[0]!.institution));
+      const pages = [...new Set(drawText.mock.contexts)];
+      expect(pages).toHaveLength(2);
+      const textOn = (page: unknown) =>
+        drawText.mock.calls.filter((_, i) => drawText.mock.contexts[i] === page).map(([text]) => text);
+      expect(textOn(pages[0])).toContain(COVER_FOOTER);
+      expect(textOn(pages[1])).toContain(LETTER_FOOTER);
+      expect(textOn(pages[1]).join(' ')).not.toMatch(/legal advice/i);
+    } finally {
+      drawText.mockRestore();
+    }
   });
 });

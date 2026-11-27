@@ -1,4 +1,4 @@
-import { FOOTER, type LetterDocument, type Line } from './compose';
+import { COVER_FOOTER, LETTER_FOOTER, type LetterDocument, type Line } from './compose';
 
 // A4 in points, 20mm margins (architecture.md), 12pt body text.
 const PAGE = { width: 595.28, height: 841.89 };
@@ -40,11 +40,11 @@ export async function renderPdf(doc: LetterDocument): Promise<Uint8Array> {
     return out;
   };
 
-  const drawPage = (lines: Line[]) => {
+  const drawPage = (lines: Line[], footerText: string) => {
     let page = pdf.addPage([PAGE.width, PAGE.height]);
     let y = PAGE.height - MARGIN;
     const footer = () =>
-      page.drawText(FOOTER, { x: MARGIN, y: MARGIN / 2, size: FOOTER_SIZE, font: regular, color: black });
+      page.drawText(footerText, { x: MARGIN, y: MARGIN / 2, size: FOOTER_SIZE, font: regular, color: black });
     footer();
     const need = (h: number) => {
       if (y - h < MARGIN) {
@@ -115,7 +115,7 @@ export async function renderPdf(doc: LetterDocument): Promise<Uint8Array> {
     }
   };
 
-  drawPage(doc.cover);
-  drawPage(doc.letter);
+  drawPage(doc.cover, COVER_FOOTER);
+  drawPage(doc.letter, LETTER_FOOTER);
   return pdf.save();
 }

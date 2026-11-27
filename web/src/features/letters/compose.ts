@@ -19,7 +19,9 @@ export interface LetterDocument {
 }
 
 export const NOT_CHECKED = 'Not yet checked by a professional.';
-export const FOOTER = 'Prepared with EyesClose. General information, not legal advice.';
+/** The disclaimer belongs on the user's own page; the letter handed in only says who prepared it. */
+export const COVER_FOOTER = 'Prepared with EyesClose. General information, not legal advice.';
+export const LETTER_FOOTER = 'Prepared with EyesClose';
 const BLANK_INSTITUTION = '______________________________';
 
 function coverPage(takeWith: string): Line[] {

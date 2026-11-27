@@ -3,7 +3,7 @@ import { Button } from '../../../shared/ui/Button';
 import type { FlowAction, FlowState } from '../../form/flow';
 import { ErrorText } from '../../form/ui/ErrorText';
 import { BackIcon, ExternalIcon, LockIcon } from '../../form/ui/icons';
-import { FOOTER, NOT_CHECKED, composeLetter, previewLetter, toPlainText, type LetterDocument, type Line } from '../compose';
+import { COVER_FOOTER, LETTER_FOOTER, NOT_CHECKED, composeLetter, previewLetter, toPlainText, type LetterDocument, type Line } from '../compose';
 import { letterForItem } from '../content';
 import { formatDate, validateLetterDetails, type LetterDetailKey } from '../details';
 import { saveFile } from '../download';
@@ -243,7 +243,7 @@ function PrintView({ doc }: { doc: LetterDocument }) {
           {lines.map((line, j) => (
             <PrintLine key={j} line={line} />
           ))}
-          <p className="print-footer">{FOOTER}</p>
+          <p className="print-footer">{i === 0 ? COVER_FOOTER : LETTER_FOOTER}</p>
         </section>
       ))}
     </div>
