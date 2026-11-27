@@ -19,7 +19,6 @@ CLAUDE.local.md
 .claude/settings.local.json
 .claude/skills/
 .agents/
-skills-lock.json
 
 # OS and editor
 .DS_Store
@@ -27,3 +26,4 @@ Thumbs.db
 .vscode/
 .idea/
 *.log
+.claude/agents/
