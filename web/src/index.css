@@ -164,6 +164,7 @@
   }
   .print-only {
     display: block;
+    overflow-wrap: anywhere;
     font-size: 12pt;
     line-height: 1.5;
   }

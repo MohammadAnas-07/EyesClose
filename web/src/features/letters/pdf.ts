@@ -29,7 +29,21 @@ export async function renderPdf(doc: LetterDocument): Promise<Uint8Array> {
   const wrap = (text: string, font: Font, size: number, width: number): string[] => {
     const out: string[] = [];
     let current = '';
-    for (const word of text.split(' ')) {
+    // A long link has no spaces, so it is broken by character to stay inside the margins.
+    const pieces = (word: string): string[] => {
+      if (font.widthOfTextAtSize(word, size) <= width) return [word];
+      const parts: string[] = [];
+      let part = '';
+      for (const ch of word) {
+        if (part && font.widthOfTextAtSize(part + ch, size) > width) {
+          parts.push(part);
+          part = '';
+        }
+        part += ch;
+      }
+      return [...parts, part];
+    };
+    for (const word of text.split(' ').flatMap(pieces)) {
       const next = current ? `${current} ${word}` : word;
       if (font.widthOfTextAtSize(next, size) > width && current) {
         out.push(current);

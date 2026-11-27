@@ -1,10 +1,11 @@
 {
   "id": "vi-transfer-letter",
-  "version": 1,
+  "version": 2,
   "title": "Request letter for Vi",
   "about": "A short letter to take to a Vi store with Vi's own Transfer of Ownership Request form and the papers Vi lists. Vi asks for its form; this letter is not a requirement.",
   "fileName": "eyesclose-vi-letter.pdf",
   "takeWith": "Vi's own Transfer of Ownership Request form",
+  "askAt": "a Vi store",
   "sources": [
     {
       "url": "https://www.myvi.in/help-support/faqs/how-to-change-sim-card-owner-name",

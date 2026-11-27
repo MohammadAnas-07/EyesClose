@@ -24,7 +24,8 @@ export const COVER_FOOTER = 'Prepared with EyesClose. General information, not l
 export const LETTER_FOOTER = 'Prepared with EyesClose';
 const BLANK_INSTITUTION = '______________________________';
 
-function coverPage(takeWith: string): Line[] {
+function coverPage(letter: Letter, formUrl: string | null): Line[] {
+  const { takeWith, askAt } = letter;
   const steps = [
     'Print the letter on the next page.',
     'Fill in the blank lines by hand.',
@@ -45,14 +46,26 @@ function coverPage(takeWith: string): Line[] {
     { kind: 'gap' },
     {
       kind: 'text',
+      text: formUrl
+        ? `For ${takeWith}, see the official page: ${formUrl} or ask at ${askAt}.`
+        : `For ${takeWith}, ask at ${askAt}.`,
+    },
+    { kind: 'gap' },
+    {
+      kind: 'text',
       text: 'Account numbers, phone numbers and addresses are not typed into the app. Write them by hand on the printed letter.',
     },
   ];
 }
 
 /** Turns letter content plus the checked details into the lines of both pages. */
-export function composeLetter(letter: Letter, details: LetterDetails, institution: string | null): LetterDocument {
-  return compose(letter, {
+export function composeLetter(
+  letter: Letter,
+  details: LetterDetails,
+  institution: string | null,
+  formUrl: string | null,
+): LetterDocument {
+  return compose(letter, formUrl, {
     deceasedName: details.deceasedName,
     writerName: details.writerName,
     date: formatDate(details.date),
@@ -68,7 +81,7 @@ export function previewLetter(
 ): LetterDocument {
   const ok = (key: keyof LetterDetails) => (draft[key] ?? '') !== '' && validateLetterField(key, draft[key]) === null;
   const blank = '____________';
-  return compose(letter, {
+  return compose(letter, null, {
     deceasedName: ok('deceasedName') ? draft.deceasedName!.trim() : blank,
     writerName: ok('writerName') ? draft.writerName!.trim() : blank,
     date: ok('date') ? formatDate(draft.date!) : blank,
@@ -76,7 +89,7 @@ export function previewLetter(
   });
 }
 
-function compose(letter: Letter, values: TokenValues): LetterDocument {
+function compose(letter: Letter, formUrl: string | null, values: TokenValues): LetterDocument {
   const lines: Line[] = [];
   for (const block of letter.letter) {
     switch (block.type) {
@@ -108,7 +121,7 @@ function compose(letter: Letter, values: TokenValues): LetterDocument {
         break;
     }
   }
-  return { fileName: letter.fileName, cover: coverPage(letter.takeWith), letter: lines };
+  return { fileName: letter.fileName, cover: coverPage(letter, formUrl), letter: lines };
 }
 
 /** Plain text of a page, for the on-screen preview and tests. Never HTML. */

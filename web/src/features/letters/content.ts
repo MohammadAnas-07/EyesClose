@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { checklistItems } from '../form/content';
 import { TOKENS, tokensIn } from './template';
 
 const text = z
@@ -27,6 +28,8 @@ export const letterSchema = z
     about: z.string().min(1).max(300),
     fileName: z.string().regex(/^eyesclose-[a-z0-9-]+\.pdf$/),
     takeWith: z.string().min(1).max(80),
+    /** Where to ask for the form in person, for example "the branch". */
+    askAt: z.string().min(1).max(40),
     sources: z.array(z.object({ url: z.url({ protocol: /^https$/ }), confirms: z.string().min(1).max(200) }).strict()).min(1),
     lastChecked: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
     verifiedBy: z.string().min(1).nullable(),
@@ -46,13 +49,18 @@ export const letters = z.array(letterSchema).parse(Object.values(files));
 export interface LetterChoice {
   letter: Letter;
   institution: string | null;
+  /** The official link from the checked checklist item, used to say where the form is. */
+  formUrl: string | null;
 }
 
 /** The letter offered for a checklist item, if any. */
 export function letterForItem(itemId: string): LetterChoice | null {
   for (const letter of letters) {
     const match = letter.appliesTo.find((a) => a.item === itemId);
-    if (match) return { letter, institution: match.institution };
+    if (!match) continue;
+    // When the bank is not known ("Another bank"), the item's link is general (RBI), not that bank's form page.
+    const formUrl = match.institution ? (checklistItems.find((i) => i.id === itemId)?.source ?? null) : null;
+    return { letter, institution: match.institution, formUrl };
   }
   return null;
 }
