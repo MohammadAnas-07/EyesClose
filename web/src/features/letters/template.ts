@@ -1,5 +1,5 @@
 /** The only placeholders a letter may use. Anything else in {{ }} is an error. */
-export const TOKENS = ['deceasedName', 'writerName', 'date', 'institution'] as const;
+export const TOKENS = ['deceasedName', 'writerName', 'date', 'institution', 'subject', 'reference'] as const;
 export type Token = (typeof TOKENS)[number];
 export type TokenValues = Readonly<Record<Token, string>>;
 

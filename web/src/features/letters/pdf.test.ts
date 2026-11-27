@@ -4,7 +4,13 @@ import { COVER_FOOTER, LETTER_FOOTER, composeLetter } from './compose';
 import { letterForItem, letters } from './content';
 import { renderPdf } from './pdf';
 
-const details = { deceasedName: 'Test Name Markerone', writerName: 'Writer Markertwo', date: '2026-11-27' };
+const details = {
+  deceasedName: 'Test Name Markerone',
+  writerName: 'Writer Markertwo',
+  date: '2026-11-27',
+  institution: 'Airtel',
+  subject: 'mobile' as const,
+};
 
 describe('renderPdf', () => {
   it.each(letters.map((l) => [l.id, l] as const))('%s is a valid A4 PDF: cover page plus one letter page', async (_, letter) => {

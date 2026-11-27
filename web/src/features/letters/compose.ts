@@ -1,5 +1,6 @@
 import type { Letter } from './content';
-import { formatDate, validateLetterField, type LetterDetails } from './details';
+import { formatDate, validateLetterField, type LetterDetails, type LetterDraft } from './details';
+import { SUBJECTS, type Subject } from './subjects';
 import { fillText, type TokenValues } from './template';
 
 /** One line of a printed page. The PDF, the print view and the preview all draw from these. */
@@ -24,7 +25,8 @@ export const COVER_FOOTER = 'Prepared with EyesClose. General information, not l
 export const LETTER_FOOTER = 'Prepared with EyesClose';
 const BLANK_INSTITUTION = '______________________________';
 
-function coverPage(letter: Letter, formUrl: string | null): Line[] {
+function coverPage(letter: Letter, formUrl: string | null, institution: string): Line[] {
+  if (letter.kind === 'intimation') return intimationCover(institution);
   const { takeWith, askAt } = letter;
   const steps = [
     'Print the letter on the next page.',
@@ -58,6 +60,40 @@ function coverPage(letter: Letter, formUrl: string | null): Line[] {
   ];
 }
 
+function intimationCover(institution: string): Line[] {
+  const steps = [
+    'Print the letter on the next page.',
+    'Fill in the blank lines by hand.',
+    'Tick the box that describes you.',
+    'Sign the letter.',
+    `Take or send it to the customer care of ${institution}.`,
+    'Ask for a stamped copy or a written acknowledgement that they received it.',
+    'Keep a copy for yourself.',
+  ];
+  return [
+    { kind: 'title', text: 'Before you print' },
+    { kind: 'text', text: 'This page is for you. Please do not hand it in.' },
+    { kind: 'gap' },
+    { kind: 'text', text: `${NOT_CHECKED} This letter is general information, not legal advice.`, bold: true },
+    { kind: 'gap' },
+    { kind: 'text', text: 'What to do:' },
+    ...steps.map((text, i): Line => ({ kind: 'item', number: i + 1, text })),
+    { kind: 'gap' },
+    {
+      kind: 'text',
+      text: 'This letter only tells them about the death and asks what they need. We did not find an official page that describes their process, so it does not name any form, rule or deadline.',
+    },
+    { kind: 'gap' },
+    {
+      kind: 'text',
+      text: 'Account numbers, phone numbers and addresses are not typed into the app. Write them by hand on the printed letter.',
+    },
+  ];
+}
+
+const subjectValues = (subject: Subject | undefined) =>
+  subject ? { subject: SUBJECTS[subject].phrase, reference: SUBJECTS[subject].reference } : { subject: '', reference: '' };
+
 /** Turns letter content plus the checked details into the lines of both pages. */
 export function composeLetter(
   letter: Letter,
@@ -65,18 +101,21 @@ export function composeLetter(
   institution: string | null,
   formUrl: string | null,
 ): LetterDocument {
+  // A general letter uses the name the user typed; other letters use the name from content.
+  const name = letter.kind === 'intimation' ? details.institution : institution;
   return compose(letter, formUrl, {
     deceasedName: details.deceasedName,
     writerName: details.writerName,
     date: formatDate(details.date),
-    institution: institution ?? BLANK_INSTITUTION,
+    institution: name ?? BLANK_INSTITUTION,
+    ...subjectValues(details.subject),
   });
 }
 
 /** For the on-screen preview only: anything not valid yet shows as a blank line. */
 export function previewLetter(
   letter: Letter,
-  draft: Partial<Record<keyof LetterDetails, string>>,
+  draft: LetterDraft,
   institution: string | null,
 ): LetterDocument {
   const ok = (key: keyof LetterDetails) => (draft[key] ?? '') !== '' && validateLetterField(key, draft[key]) === null;
@@ -85,7 +124,8 @@ export function previewLetter(
     deceasedName: ok('deceasedName') ? draft.deceasedName!.trim() : blank,
     writerName: ok('writerName') ? draft.writerName!.trim() : blank,
     date: ok('date') ? formatDate(draft.date!) : blank,
-    institution: institution ?? BLANK_INSTITUTION,
+    institution: letter.kind === 'intimation' ? (ok('institution') ? draft.institution!.trim() : blank) : (institution ?? BLANK_INSTITUTION),
+    ...subjectValues(ok('subject') ? (draft.subject as Subject) : undefined),
   });
 }
 
@@ -97,7 +137,7 @@ function compose(letter: Letter, formUrl: string | null, values: TokenValues): L
         lines.push({ kind: 'text', text: fillText(block.text, values), bold: block.bold });
         break;
       case 'field':
-        lines.push({ kind: 'field', label: block.label });
+        lines.push({ kind: 'field', label: fillText(block.label, values) });
         break;
       case 'ticks':
         lines.push({ kind: 'ticks', label: block.label, options: block.options });
@@ -121,7 +161,7 @@ function compose(letter: Letter, formUrl: string | null, values: TokenValues): L
         break;
     }
   }
-  return { fileName: letter.fileName, cover: coverPage(letter, formUrl), letter: lines };
+  return { fileName: letter.fileName, cover: coverPage(letter, formUrl, values.institution), letter: lines };
 }
 
 /** Plain text of a page, for the on-screen preview and tests. Never HTML. */

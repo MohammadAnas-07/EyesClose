@@ -1,6 +1,7 @@
 {
   "id": "bank-covering-letter",
-  "version": 2,
+  "version": 3,
+  "kind": "with-form",
   "title": "Covering letter for the bank",
   "about": "A short letter that goes with the bank's own claim form and a copy of the death certificate. Banks ask for their claim form; this letter is not a legal requirement.",
   "fileName": "eyesclose-bank-letter.pdf",
