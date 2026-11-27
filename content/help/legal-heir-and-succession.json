@@ -1,6 +1,6 @@
 {
   "slug": "legal-heir-and-succession",
-  "version": 1,
+  "version": 2,
   "order": 3,
   "title": "Legal heir and succession certificates",
   "description": "There is no will, or nobody can find it. What these two papers are, and who gives them.",
@@ -14,9 +14,9 @@
       "verifiedBy": null
     },
     {
-      "text": "In Puducherry, a government order names the Taluk Tahsildar as the officer who issues legal heir certificates. The order also says who they can be issued to.",
+      "text": "Which office issues it is different in each state. As one example only: in Puducherry, a government order names the Taluk Tahsildar as the officer who issues legal heir certificates.",
       "source": "https://revenue.py.gov.in/downloads/notification/GO-Ms-No.-17.pdf",
-      "confirms": "Puducherry G.O.Ms. No. 17 (Revenue): empowers the Taluk Tahsildar-cum-Executive Magistrate to issue legal heir certificates, to Class I heirs under the Hindu Succession Act.",
+      "confirms": "Puducherry G.O.Ms. No. 17 (Revenue): empowers the Taluk Tahsildar-cum-Executive Magistrate to issue legal heir certificates, to Class I heirs under the Hindu Succession Act. Used as an example from one Union Territory only.",
       "lastChecked": "2026-11-27",
       "verifiedBy": null
     },
@@ -57,5 +57,6 @@
     "Which office issues legal heir certificates in each state.",
     "How long each certificate takes and what it costs.",
     "A national official page on succession certificates. India Code did not load when we tried."
-  ]
+  ],
+  "note": "The Puducherry order is one example from one place. It does not show what happens in other states."
 }

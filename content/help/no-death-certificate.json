@@ -1,6 +1,6 @@
 {
   "slug": "no-death-certificate",
-  "version": 1,
+  "version": 2,
   "order": 1,
   "title": "If the death certificate is not ready",
   "description": "The death is not registered yet, or it was registered late.",
@@ -14,9 +14,23 @@
       "verifiedBy": null
     },
     {
-      "text": "If a death is not reported within 21 days, it can still be reported later, at any time. This is called delayed registration, and a fee is charged.",
-      "source": "https://dc.crsorgi.gov.in/assets/download/FAQ_of_CRS_Latest.pdf",
-      "confirms": "CRS FAQ 3: can be reported \"any time under the Delayed Registration provisions\" of Section 13 \"with payment of fee prescribed\".",
+      "text": "If a death is reported after 21 days but within 30 days, it is registered on payment of a late fee.",
+      "source": "https://censusindia.gov.in/nada/index.php/catalog/40408/download/44042/Act_03.pdf",
+      "confirms": "Registration of Births and Deaths Act, 1969, section 13(1): information given after the expiry of the period but within thirty days \"shall be registered on payment of such late fee as may be prescribed\". Sub-section (1) was not changed by the 2023 or 2026 amendments.",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "If it is reported after 30 days but within one year, it needs written permission from the District Registrar or another officer named in the rules, a fee, and a self-attested document.",
+      "source": "https://egazette.gov.in/WriteReadData/2023/248044.pdf",
+      "confirms": "Registration of Births and Deaths (Amendment) Act, 2023 (20 of 2023), section 11, new section 13(2): \"written permission of the District Registrar or such other authority\", fee, \"self-attested document\". In force from 1 October 2023 (S.O. 4058(E)).",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "From 1 October 2026: after one year but within two years, it needs an order from a District, Sub-Divisional or authorised Executive Magistrate. After two years, it needs an order from a Judicial Magistrate of the first class.",
+      "source": "https://dc.crsorgi.gov.in/assets/download/RBD_act_2026.pdf",
+      "confirms": "Registration of Births and Deaths (Amendment) Act, 2026 (12 of 2026), section 2, new section 13(3) and 13(3A); in force from 1 October 2026 by S.O. 5081(E) dated 16 September 2026, printed in the same file.",
       "lastChecked": "2026-11-27",
       "verifiedBy": null
     },
@@ -49,7 +63,7 @@
       "verifiedBy": null
     },
     {
-      "text": "In Delhi, delayed registration is handled at the office of the Sub-Divisional Magistrate for the area where the death took place. The papers listed include an affidavit giving the place, date and time of death.",
+      "text": "In Delhi, late registration is handled at the office of the Sub-Divisional Magistrate for the area of the death. The papers include an affidavit with the place, date and time of death.",
       "source": "https://revenue.delhi.gov.in/revenue/issue-orders-delayed-registration-birthdeath",
       "confirms": "Delhi Revenue Department page: go \"To the office of Sub-Divisional Magistrate in whose jurisdiction birth or death took place\"; documents include an \"Affidavit specifying place, date and time\".",
       "lastChecked": "2026-11-27",
@@ -57,7 +71,7 @@
     }
   ],
   "suggestions": [
-    "Ask the registrar's office what they need for a late registration, and what the fee is. Rules and fees can differ by state.",
+    "Ask the registrar which of these applies to you, what papers they need, and what the fee is. Fees can differ by state.",
     "You can start the steps on your checklist that do not need the certificate.",
     "When the certificate is ready, get a few copies. Many places want to keep one."
   ],
@@ -67,8 +81,8 @@
     "Family members disagree about the date, place or cause of death."
   ],
   "sourceNeeded": [
-    "What is needed when a death is reported more than one year late, and which officer gives the order. The national CRS FAQ we read does not say.",
     "The fee for delayed registration in each state.",
-    "How to correct a wrong entry on a death certificate."
+    "How to correct a wrong entry on a death certificate.",
+    "The fees for each stage of late registration. The Act leaves them to the rules, which we did not check state by state."
   ]
 }

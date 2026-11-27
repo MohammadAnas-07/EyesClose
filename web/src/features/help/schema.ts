@@ -31,6 +31,8 @@ export const helpPageSchema = z
     description: shown(120),
     opening: shown(200),
     official: z.array(helpClaimSchema).min(1),
+    // Shown under the official points when a source needs a caveat, for example where its text came from.
+    note: shown(300).optional(),
     suggestions: z.array(shown(200)).max(4),
     lawyer: z.array(shown(200)).min(1),
     // Claims we could not confirm from an official page. Not shown on the page; listed in the review packet.

@@ -29,17 +29,19 @@ checked that page. "What the source says" is our note of the source's own words.
 
 ## Factual claims
 
-### Harder situations pages (37 claims)
+### Harder situations pages (39 claims)
 
 | Where | Claim | Source | Checked | What the source says |
 | --- | --- | --- | --- | --- |
 | Help: If the death certificate is not ready (/help/no-death-certificate) | A death should be reported for registration within 21 days. There is no fee if it is reported within that time. | https://dc.crsorgi.gov.in/assets/download/FAQ_of_CRS_Latest.pdf | 2026-11-27 | CRS FAQ 1 and 2: "normal period of 21 days"; within it "no fee would be charged". |
-| Help: If the death certificate is not ready (/help/no-death-certificate) | If a death is not reported within 21 days, it can still be reported later, at any time. This is called delayed registration, and a fee is charged. | https://dc.crsorgi.gov.in/assets/download/FAQ_of_CRS_Latest.pdf | 2026-11-27 | CRS FAQ 3: can be reported "any time under the Delayed Registration provisions" of Section 13 "with payment of fee prescribed". |
+| Help: If the death certificate is not ready (/help/no-death-certificate) | If a death is reported after 21 days but within 30 days, it is registered on payment of a late fee. | https://censusindia.gov.in/nada/index.php/catalog/40408/download/44042/Act_03.pdf | 2026-11-27 | Registration of Births and Deaths Act, 1969, section 13(1): information given after the expiry of the period but within thirty days "shall be registered on payment of such late fee as may be prescribed". Sub-section (1) was not changed by the 2023 or 2026 amendments. |
+| Help: If the death certificate is not ready (/help/no-death-certificate) | If it is reported after 30 days but within one year, it needs written permission from the District Registrar or another officer named in the rules, a fee, and a self-attested document. | https://egazette.gov.in/WriteReadData/2023/248044.pdf | 2026-11-27 | Registration of Births and Deaths (Amendment) Act, 2023 (20 of 2023), section 11, new section 13(2): "written permission of the District Registrar or such other authority", fee, "self-attested document". In force from 1 October 2023 (S.O. 4058(E)). |
+| Help: If the death certificate is not ready (/help/no-death-certificate) | From 1 October 2026: after one year but within two years, it needs an order from a District, Sub-Divisional or authorised Executive Magistrate. After two years, it needs an order from a Judicial Magistrate of the first class. | https://dc.crsorgi.gov.in/assets/download/RBD_act_2026.pdf | 2026-11-27 | Registration of Births and Deaths (Amendment) Act, 2026 (12 of 2026), section 2, new section 13(3) and 13(3A); in force from 1 October 2026 by S.O. 5081(E) dated 16 September 2026, printed in the same file. |
 | Help: If the death certificate is not ready (/help/no-death-certificate) | A death is registered where it happened, with the registrar of births and deaths for that municipality, panchayat or local area. | https://dc.crsorgi.gov.in/assets/download/FAQ_of_CRS_Latest.pdf | 2026-11-27 | CRS FAQ 5: registered "at the place of occurrence of the event"; Registrars appointed for each Municipality, Panchayat or local authority. |
 | Help: If the death certificate is not ready (/help/no-death-certificate) | If the death happened at home, the head of the household or the nearest relative there reports it. If it happened in a hospital, the hospital reports it. | https://dc.crsorgi.gov.in/assets/download/FAQ_of_CRS_Latest.pdf | 2026-11-27 | CRS FAQ 4: house, head of household or nearest relative; hospital, the medical officer in charge. |
 | Help: If the death certificate is not ready (/help/no-death-certificate) | The person who reports the death gets one copy of the certificate free. More copies can be bought for a fee. | https://dc.crsorgi.gov.in/assets/download/FAQ_of_CRS_Latest.pdf | 2026-11-27 | CRS FAQ 6: "One free copy" to the informant; "any number of copies" after paying the prescribed fee. |
 | Help: If the death certificate is not ready (/help/no-death-certificate) | If you disagree with a decision of the registrar, you can appeal to the District Registrar within 30 days. | https://dc.crsorgi.gov.in/assets/download/FAQ_of_CRS_Latest.pdf | 2026-11-27 | CRS FAQ 12, Section 25A: appeal from the Registrar to the District Registrar "within a period of thirty days". |
-| Help: If the death certificate is not ready (/help/no-death-certificate) | In Delhi, delayed registration is handled at the office of the Sub-Divisional Magistrate for the area where the death took place. The papers listed include an affidavit giving the place, date and time of death. | https://revenue.delhi.gov.in/revenue/issue-orders-delayed-registration-birthdeath | 2026-11-27 | Delhi Revenue Department page: go "To the office of Sub-Divisional Magistrate in whose jurisdiction birth or death took place"; documents include an "Affidavit specifying place, date and time". |
+| Help: If the death certificate is not ready (/help/no-death-certificate) | In Delhi, late registration is handled at the office of the Sub-Divisional Magistrate for the area of the death. The papers include an affidavit with the place, date and time of death. | https://revenue.delhi.gov.in/revenue/issue-orders-delayed-registration-birthdeath | 2026-11-27 | Delhi Revenue Department page: go "To the office of Sub-Divisional Magistrate in whose jurisdiction birth or death took place"; documents include an "Affidavit specifying place, date and time". |
 | Help: If there is no nominee (/help/no-nominee) | When there is a nominee, the bank pays the nominee. The nominee receives the money as a trustee of the legal heirs, which means they hold it for the heirs. | https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0 | 2026-11-27 | RBI Directions 2025, para 8(iii): nominee or survivor receives payment "as a trustee of the legal heirs of the deceased depositor(s)". |
 | Help: If there is no nominee (/help/no-nominee) | When there is no nominee and no surviving joint holder, banks use a simpler process for smaller amounts. The limit is 15 lakh rupees at most banks, and 5 lakh rupees at a co-operative bank. | https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0 | 2026-11-27 | RBI Directions 2025, para 7(h) and 10: threshold "₹5 lakh in case of a co-operative bank and ₹15 lakh in case of any other bank". |
 | Help: If there is no nominee (/help/no-nominee) | Below that limit, the bank asks for its claim form, the death certificate, an identity document, a letter of indemnity, and either a legal heir certificate or a declaration from an independent person. | https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0 | 2026-11-27 | RBI Directions 2025, para 10(a): claim form, death certificate, OVD, bond of indemnity, and a Legal Heir Certificate or a declaration (Annex I-E) by an independent person. |
@@ -48,7 +50,7 @@ checked that page. "What the source says" is our note of the source's own words.
 | Help: If there is no nominee (/help/no-nominee) | Banks must put their claim forms, the list of papers and the steps on their website. | https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0 | 2026-11-27 | RBI Directions 2025, para 28: forms on the bank's website; the bank shall display the list of documents and the procedure. |
 | Help: If there is no nominee (/help/no-nominee) | For life insurance with no nominee, the insurer asks for legal proof of who is entitled to the money, as well as the usual claim papers. | https://policyholder.gov.in/how-to-make-a-claim-life | 2026-11-27 | IRDAI policyholder page: documents include "Legal evidence of title, if the policy is not assigned or nominated". |
 | Help: Legal heir and succession certificates (/help/legal-heir-and-succession) | When there is no nominee, a bank can accept a legal heir certificate issued by a competent authority. | https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0 | 2026-11-27 | RBI Directions 2025, para 10(a): "Legal Heir Certificate issued by a competent authority". |
-| Help: Legal heir and succession certificates (/help/legal-heir-and-succession) | In Puducherry, a government order names the Taluk Tahsildar as the officer who issues legal heir certificates. The order also says who they can be issued to. | https://revenue.py.gov.in/downloads/notification/GO-Ms-No.-17.pdf | 2026-11-27 | Puducherry G.O.Ms. No. 17 (Revenue): empowers the Taluk Tahsildar-cum-Executive Magistrate to issue legal heir certificates, to Class I heirs under the Hindu Succession Act. |
+| Help: Legal heir and succession certificates (/help/legal-heir-and-succession) | Which office issues it is different in each state. As one example only: in Puducherry, a government order names the Taluk Tahsildar as the officer who issues legal heir certificates. | https://revenue.py.gov.in/downloads/notification/GO-Ms-No.-17.pdf | 2026-11-27 | Puducherry G.O.Ms. No. 17 (Revenue): empowers the Taluk Tahsildar-cum-Executive Magistrate to issue legal heir certificates, to Class I heirs under the Hindu Succession Act. Used as an example from one Union Territory only. |
 | Help: Legal heir and succession certificates (/help/legal-heir-and-succession) | A succession certificate is given by a civil court. It is used to collect debts owed to the person who died. In Punjab and Haryana, the High Court's rules say these applications usually go to a Subordinate Judge. | https://highcourtchd.gov.in/sub_pages/left_menu/Rules_orders/high_court_rules/vol-II-pdf/chap6partBV2.pdf | 2026-11-27 | Punjab and Haryana High Court Rules Vol. II Ch. 6-B: certificates "for the collection of debts on succession"; applications under Part X of the Indian Succession Act "usually by dealt with by Subordinate Judges". |
 | Help: Legal heir and succession certificates (/help/legal-heir-and-succession) | For amounts above its limit, a bank may ask for a succession certificate, a legal heir certificate or a sworn affidavit. | https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0 | 2026-11-27 | RBI Directions 2025, para 10(b). |
 | Help: Legal heir and succession certificates (/help/legal-heir-and-succession) | If a claim is disputed, the bank settles it on the basis of court papers, such as a probate, letters of administration, a succession certificate or a court order. | https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0 | 2026-11-27 | RBI Directions 2025, para 11(b): "Probate of Will or Letter of Administration or Succession Certificate or Court order/ decree". |
@@ -106,13 +108,18 @@ checked that page. "What the source says" is our note of the source's own words.
 | Letter: Covering letter for the bank (bank-covering-letter) | A short letter that goes with the bank's own claim form and a copy of the death certificate. Banks ask for their claim form; this letter is not a legal requirement. | https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0 | 2026-11-27 | RBI Directions 2025: a nominee or survivor gives the claim form, the death certificate and an Officially Valid Document for identity and address. |
 | Letter: Request letter for Vi (vi-transfer-letter) | A short letter to take to a Vi store with Vi's own Transfer of Ownership Request form and the papers Vi lists. Vi asks for its form; this letter is not a requirement. | https://www.myvi.in/help-support/faqs/how-to-change-sim-card-owner-name | 2026-11-27 | Vi FAQ: for a deceased customer, visit a Vi store with the request form, death certificate, relationship proof or legal heir certificate, and POI/POA. |
 
+### Notes shown with the official points
+
+- Help: Legal heir and succession certificates. The Puducherry order is one example from one place. It does not show what happens in other states.
+- Help: If police or a post-mortem are involved. The first four points come from section 194 of the Bharatiya Nagarik Suraksha Sanhita, 2023, as printed in a Delhi Police Academy handbook. We could not fetch the official text of the law itself.
+
 ## Source needed
 
 These were not confirmed from an official page, so they are not stated as fact in the app.
 
-- Help: If the death certificate is not ready. What is needed when a death is reported more than one year late, and which officer gives the order. The national CRS FAQ we read does not say. (left out of the page)
 - Help: If the death certificate is not ready. The fee for delayed registration in each state. (left out of the page)
 - Help: If the death certificate is not ready. How to correct a wrong entry on a death certificate. (left out of the page)
+- Help: If the death certificate is not ready. The fees for each stage of late registration. The Act leaves them to the rules, which we did not check state by state. (left out of the page)
 - Help: If there is no nominee. What happens when the nominee has also died. The RBI directions we read do not say. (left out of the page)
 - Help: If there is no nominee. What happens to bank deposits when the nominee is a child. (left out of the page)
 - Help: If there is no nominee. What "legal evidence of title" means for each insurer. (left out of the page)
@@ -125,6 +132,7 @@ These were not confirmed from an official page, so they are not stated as fact i
 - Help: If police or a post-mortem are involved. How a family gets copies of the post-mortem and inquest reports. The state police pages we tried did not load. (left out of the page)
 - Help: If police or a post-mortem are involved. Compensation claims after a road accident (Motor Accident Claims Tribunal). (left out of the page)
 - Help: If police or a post-mortem are involved. What other insurers, apart from LIC's accident benefit, ask for after an unnatural death. (left out of the page)
+- Help: If police or a post-mortem are involved. The official text of section 194 of the Bharatiya Nagarik Suraksha Sanhita. India Code and the Home Ministry site did not load when we tried. (left out of the page)
 - Checklist: Find their bank accounts. No official page found yet; the app shows "Source needed".
 - Checklist: Crypto and online investments. No official page found yet; the app shows "Source needed".
 - Checklist: Other email and social accounts. No official page found yet; the app shows "Source needed".
@@ -141,7 +149,7 @@ These were not confirmed from an official page, so they are not stated as fact i
 
 These are marked in the app as our own suggestion, not from an official page.
 
-- Help: If the death certificate is not ready. Ask the registrar's office what they need for a late registration, and what the fee is. Rules and fees can differ by state.
+- Help: If the death certificate is not ready. Ask the registrar which of these applies to you, what papers they need, and what the fee is. Fees can differ by state.
 - Help: If the death certificate is not ready. You can start the steps on your checklist that do not need the certificate.
 - Help: If the death certificate is not ready. When the certificate is ready, get a few copies. Many places want to keep one.
 - Help: If there is no nominee. Ask the bank or insurer for its claim form and list of papers. Your checklist links to each bank's own page.
@@ -219,8 +227,11 @@ These are marked in the app as our own suggestion, not from an official page.
 ## Every official source used
 
 - https://bankofbaroda.bank.in/personal-banking/other-services/settlement-of-claims
+- https://censusindia.gov.in/nada/index.php/catalog/40408/download/44042/Act_03.pdf
 - https://cpao.nic.in/FAQ.php
 - https://dc.crsorgi.gov.in/assets/download/FAQ_of_CRS_Latest.pdf
+- https://dc.crsorgi.gov.in/assets/download/RBD_act_2026.pdf
+- https://egazette.gov.in/WriteReadData/2023/248044.pdf
 - https://help.netflix.com/en/node/110165
 - https://highcourtchd.gov.in/sub_pages/left_menu/Rules_orders/high_court_rules/vol-II-pdf/chap6partBV2.pdf
 - https://irdai.gov.in/health-dept

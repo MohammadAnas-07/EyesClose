@@ -41,6 +41,7 @@ export function buildPacket() {
     ...help.flatMap((p) => p.suggestions.map((s) => `- Help: ${p.title}. ${s}`)),
     ...checklist.filter((i) => i.suggestion).map((i) => `- Checklist: ${i.title}. ${i.suggestion}`),
   ];
+  const notes = help.filter((p) => p.note).map((p) => `- Help: ${p.title}. ${p.note}`);
   const lawyer = help.flatMap((p) => [`**${p.title}**`, '', ...p.lawyer.map((s) => `- ${s}`), '']);
   const urls = [...new Set([...help.flatMap((p) => p.official.map((c) => c.source)), ...checklist.map((i) => i.source), ...letters.flatMap((l) => (l.sources ?? []).map((s) => s.url))].filter(Boolean))].sort();
 
@@ -86,6 +87,10 @@ ${table(checklistRows)}
 ### Letters (${letters.length} letters)
 
 ${table(letterRows)}
+
+### Notes shown with the official points
+
+${notes.join('\n')}
 
 ## Source needed
 
