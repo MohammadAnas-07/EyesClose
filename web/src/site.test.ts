@@ -5,7 +5,7 @@ import type { AddressInfo } from 'node:net';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { build, preview, type PreviewServer } from 'vite';
+import { build, createServer, preview, type PreviewServer } from 'vite';
 import { PAGES } from '../vite.config';
 
 // Builds the site and serves it with `vite preview`, which uses the same headers and rewrites as vercel.json.
@@ -144,4 +144,27 @@ describe('the built site', () => {
       for (const link of new Set(links)) expect((await get(link)).status, `${path} -> ${link}`).toBe(200);
     }
   });
+});
+
+describe('the dev server (npm run dev)', () => {
+  it('serves /start, /data and the help pages without a trailing slash, like production', async () => {
+    const dev = await createServer({ root, configFile, logLevel: 'silent', server: { port: 0 } });
+    await dev.listen();
+    try {
+      const url = dev.resolvedUrls!.local[0]!.replace(/\/$/, '');
+      for (const [path, name] of [
+        ['/start', 'Start the checklist | EyesClose'],
+        ['/start/some/old/link', 'Start the checklist | EyesClose'],
+        ['/data', 'How we handle your data | EyesClose'],
+        ['/help', 'Harder situations | EyesClose'],
+        ['/help/no-nominee', 'If there is no nominee | EyesClose'],
+      ]) {
+        const res = await fetch(url + path);
+        expect(res.status, path).toBe(200);
+        expect(title(await res.text()), path).toBe(name);
+      }
+    } finally {
+      await dev.close();
+    }
+  }, 60_000);
 });

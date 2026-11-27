@@ -83,10 +83,21 @@ function rewriteFor(url: string): string | null {
   return null;
 }
 
-/** `vite preview` routes like Vercel: the same rewrites, and 404.html for anything else. */
+/**
+ * `vite preview` routes like Vercel: the same rewrites, and 404.html for anything else.
+ * The dev server gets the same rewrites (not the CSP, which would block Vite's dev scripts), so /start, /data
+ * and /help work in `npm run dev` too.
+ */
 function vercelRouting(): Plugin {
   return {
     name: 'eyesclose-vercel-routing',
+    configureServer(server) {
+      server.middlewares.use((req, _res, next) => {
+        const target = rewriteFor(req.url ?? '/');
+        if (target) req.url = target;
+        next();
+      });
+    },
     configurePreviewServer(server) {
       server.middlewares.use((req, res, next) => {
         for (const [key, value] of Object.entries(productionHeaders)) res.setHeader(key, value);
