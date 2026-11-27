@@ -20,6 +20,8 @@ export default tseslint.config(
   {
     // Privacy rule: form and letter code must never make network calls.
     files: ['web/src/features/form/**', 'web/src/features/letters/**'],
+    // Tests only spy on these APIs to prove the form never calls them.
+    ignores: ['**/*.test.{ts,tsx}'],
     rules: {
       'no-restricted-globals': [
         'error',
