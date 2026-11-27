@@ -5,6 +5,7 @@ import { LetterScreen } from '../../letters/ui/LetterScreen';
 import { GuideScreen } from './GuideScreen';
 import { QuestionScreen } from './QuestionScreen';
 import { ResultScreen } from './ResultScreen';
+import { HarderEntry } from './HarderEntry';
 import { StartScreen } from './StartScreen';
 
 export function FormFlow() {
@@ -23,28 +24,35 @@ export function FormFlow() {
   }, [state.screen, state.step]);
 
   return (
-    <div className="mx-auto flex min-h-dvh w-full max-w-xl flex-col px-5 pb-12 pt-5 sm:px-8">
-      <header className="no-print mb-8">
-        <a href="/" className="rounded-md text-base font-semibold tracking-heading">
-          EyesClose
-        </a>
-      </header>
-      <main ref={main} key={`${state.screen}-${state.step}`} className="flex flex-1 animate-fade-in flex-col">
-        {state.screen === 'start' && <StartScreen onStart={() => dispatch({ type: 'start' })} />}
-        {state.screen === 'question' && <QuestionScreen state={state} dispatch={dispatch} />}
-        {state.screen === 'result' && state.answers && (
-          <ResultScreen answers={state.answers} items={checklistItems} checked={state.checked} dispatch={dispatch} />
-        )}
-        {state.screen === 'guide' && state.guide && <GuideScreen onBack={() => dispatch({ type: 'back' })} />}
-        {state.screen === 'letter' && <LetterScreen state={state} dispatch={dispatch} />}
-      </main>
-      <footer className="no-print mt-12 flex flex-wrap gap-x-6 gap-y-2 border-t border-line-strong pt-6 text-sm text-ink-soft">
-        {/* New tab: leaving this page would clear the answers, which live only in memory. */}
-        <a href="/help" target="_blank" rel="noopener noreferrer" className="footer-link">
-          Harder situations<span className="sr-only"> (opens in a new tab)</span>
-        </a>
-        <p>General information, not legal advice.</p>
+    <>
+      <div className="mx-auto flex min-h-dvh w-full max-w-xl flex-col px-5 pb-12 pt-5 sm:px-8">
+        <header className="no-print mb-8">
+          <a href="/" className="inline-flex min-h-11 items-center rounded-md text-base font-semibold tracking-heading">
+            EyesClose
+          </a>
+        </header>
+        <main ref={main} key={`${state.screen}-${state.step}`} className="flex flex-1 animate-fade-in flex-col">
+          {state.screen === 'start' && <StartScreen onStart={() => dispatch({ type: 'start' })} />}
+          {state.screen === 'question' && <QuestionScreen state={state} dispatch={dispatch} />}
+          {state.screen === 'result' && state.answers && (
+            <ResultScreen answers={state.answers} items={checklistItems} checked={state.checked} dispatch={dispatch} />
+          )}
+          {state.screen === 'guide' && state.guide && <GuideScreen onBack={() => dispatch({ type: 'back' })} />}
+          {state.screen === 'letter' && <LetterScreen state={state} dispatch={dispatch} />}
+        </main>
+      </div>
+      {/* Slim footer, so the form stays the focus. Links open in a new tab: leaving would clear the answers. */}
+      <footer className="app-footer no-print bg-paper-dark px-5 py-10 text-sm text-surface sm:px-8">
+        <div className="mx-auto flex w-full max-w-xl flex-col gap-6">
+          <HarderEntry dark newTab />
+          <div className="flex flex-col gap-1 text-ink-on-dark-soft sm:flex-row sm:items-center sm:justify-between">
+            <a href="/data" target="_blank" rel="noopener noreferrer" className="footer-dark-link self-start">
+              How we handle your data<span className="sr-only"> (opens in a new tab)</span>
+            </a>
+            <p>General information, not legal advice.</p>
+          </div>
+        </div>
       </footer>
-    </div>
+    </>
   );
 }

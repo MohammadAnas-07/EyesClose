@@ -37,33 +37,70 @@ function head(title: string, description: string, path: string): string {
     <meta name="twitter:image" content="%SITE_URL%/og-image.png" />`;
 }
 
-const header = `<a href="#main" class="skip-link">Skip to the main content</a>
-    <header class="border-b border-line-strong bg-paper">
-      <div class="mx-auto flex h-16 w-full max-w-300 items-center justify-between gap-3 px-5 sm:px-8">
-        <a href="/" class="rounded-md text-base font-semibold tracking-heading">EyesClose</a>
-        <a href="/start" class="inline-flex min-h-11 items-center justify-center rounded-pill bg-ink px-4 text-sm font-medium text-surface hover:bg-ink/85 sm:px-6">Start the checklist</a>
+const arrow = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="arrow size-5 shrink-0"><path d="M5 12h14M13 6l6 6-6 6" /></svg>`;
+
+/** The header of the plain pages other than home: name and the main action. */
+export const siteHeader = `<a href="#main" class="skip-link">Skip to the main content</a>
+    <header class="border-b border-line-strong bg-paper px-5 sm:px-8">
+      <div class="mx-auto flex h-16 w-full max-w-300 items-center justify-between gap-3">
+        <a href="/" class="inline-flex min-h-11 items-center rounded-md text-base font-semibold tracking-heading">EyesClose</a>
+        <a href="/start" class="press inline-flex min-h-11 items-center justify-center rounded-pill bg-ink px-4 text-sm font-medium text-surface hover:bg-ink/85 sm:px-6">Start the checklist</a>
       </div>
     </header>`;
 
-const footer = `<footer class="border-t border-line-strong bg-surface px-5 py-12 text-sm sm:px-8">
-      <div class="mx-auto grid w-full max-w-300 gap-8 md:grid-cols-[2fr_1fr_1fr]">
-        <div class="flex flex-col gap-2">
-          <p class="text-base font-semibold tracking-heading">EyesClose</p>
-          <p class="max-w-sm text-ink-soft">A free checklist of what to close after a family member dies in India, and who to contact.</p>
+// Placeholders the build replaces on every plain page (see helpFiles() in vite.config.ts).
+export const FOOTER_MARK = '<!--site-footer-->';
+export const CARDS_MARK = '<!--help-cards-->';
+
+/** One card per help page, for the home page. The whole card is the link. */
+export function helpCards(pages: HelpPage[]): string {
+  return pages
+    .map(
+      (p) => `<li>
+            <a href="/help/${p.slug}" class="card-link press group flex h-full min-h-13 items-start gap-4 rounded-card border border-line-strong bg-paper p-5 sm:p-6">
+              <span class="flex flex-1 flex-col gap-2">
+                <span class="text-lg font-medium leading-snug">${esc(p.title)}</span>
+                <span class="text-ink-soft">${esc(p.description)}</span>
+              </span>
+              ${arrow}
+            </a>
+          </li>`,
+    )
+    .join('');
+}
+
+/** The tall black footer of the plain pages, with every help page by name. */
+export function siteFooter(pages: HelpPage[]): string {
+  const link = (href: string, text: string) => `<li><a href="${href}" class="footer-dark-link">${esc(text)}</a></li>`;
+  return `<footer class="site-footer bg-paper-dark px-5 pb-10 pt-16 text-surface sm:px-8 lg:pb-16 lg:pt-24">
+      <div class="mx-auto flex w-full max-w-300 flex-col gap-12 lg:gap-16">
+        <div class="flex flex-col gap-6 border-b border-line-dark pb-12 lg:flex-row lg:items-end lg:justify-between lg:gap-12 lg:pb-16">
+          <p class="max-w-2xl text-[clamp(1.75rem,1.2rem+2.4vw,3rem)] font-semibold leading-tight tracking-heading text-balance">Most of it can wait. Start with the steps for the first 7 days.</p>
+          <a href="/start" class="footer-cta press inline-flex min-h-13 shrink-0 items-center justify-center gap-2 self-start rounded-pill bg-surface px-8 text-lg font-medium text-ink lg:self-auto">Start the checklist ${arrow}</a>
         </div>
-        <nav aria-label="Footer">
-          <ul class="flex flex-col gap-2">
-            <li><a href="/" class="footer-link">Home</a></li>
-            <li><a href="/help" class="footer-link">Harder situations</a></li>
-            <li><a href="/data" class="footer-link">How we handle your data</a></li>
-          </ul>
-        </nav>
-        <div class="flex flex-col gap-2 text-ink-soft">
-          <p>This is general information, not legal advice.</p>
-          <p>&copy; %YEAR% EyesClose</p>
+        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1.5fr_1.2fr] lg:gap-12">
+          <div class="flex flex-col gap-3">
+            <p class="text-xl font-semibold tracking-heading">EyesClose</p>
+            <p class="max-w-xs text-ink-on-dark-soft">A free checklist of what to close after a family member dies in India, and who to contact.</p>
+          </div>
+          <nav aria-labelledby="footer-product" class="flex flex-col gap-3">
+            <h2 id="footer-product" class="text-sm font-medium tracking-normal text-ink-on-dark-soft">Product</h2>
+            <ul class="footer-list">${link('/#how', 'How it works')}${link('/#today', 'What you get')}${link('/#faq', 'FAQ')}</ul>
+          </nav>
+          <nav aria-labelledby="footer-help" class="flex flex-col gap-3">
+            <h2 id="footer-help" class="text-sm font-medium tracking-normal text-ink-on-dark-soft">Help</h2>
+            <ul class="footer-list">${link('/help', 'Harder situations')}${pages.map((p) => link(`/help/${p.slug}`, p.title)).join('')}</ul>
+          </nav>
+          <div class="flex flex-col gap-3">
+            <h2 class="text-sm font-medium tracking-normal text-ink-on-dark-soft">About</h2>
+            <ul class="footer-list">${link('/data', 'How we handle your data')}</ul>
+            <p class="max-w-xs text-sm text-ink-on-dark-soft">This is general information, not legal advice.</p>
+          </div>
         </div>
+        <p class="border-t border-line-dark pt-8 text-sm text-ink-on-dark-soft">&copy; %YEAR% EyesClose</p>
       </div>
     </footer>`;
+}
 
 const list = (items: string[]) =>
   `<ul class="flex list-disc flex-col gap-3 pl-5 marker:text-ink-soft">${items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>`;
@@ -78,15 +115,15 @@ export function helpPageBody(page: HelpPage): string {
     .map(
       (c) => `<li class="flex flex-col gap-1 rounded-card border border-line-strong bg-surface p-4">
             <p>${esc(c.text)}</p>
-            <a href="${esc(c.source)}" rel="noopener noreferrer" class="self-start rounded-md text-sm font-medium text-ink-soft underline decoration-ink/30 underline-offset-4 hover:text-ink">Source: ${esc(host(c.source))}</a>
+            <a href="${esc(c.source)}" rel="noopener noreferrer" class="inline-flex min-h-11 items-center self-start rounded-md text-sm font-medium text-ink-soft underline decoration-ink/30 underline-offset-4 hover:text-ink hover:decoration-ink">Source: ${esc(host(c.source))}</a>
           </li>`,
     )
     .join('');
   const verified = page.official.every((c) => c.verifiedBy !== null);
-  return `${header}
+  return `${siteHeader}
     <main id="main" class="mx-auto flex w-full max-w-2xl flex-col gap-10 px-5 pb-16 pt-8 sm:px-8 sm:pt-12">
       <div class="flex flex-col gap-4">
-        <a href="/help" class="self-start rounded-md text-sm text-ink-soft underline decoration-ink/30 underline-offset-4 hover:text-ink">All harder situations</a>
+        <a href="/help" class="inline-flex min-h-11 items-center self-start rounded-md text-sm text-ink-soft underline decoration-ink/30 underline-offset-4 hover:text-ink hover:decoration-ink">All harder situations</a>
         <h1 class="text-[clamp(1.75rem,1.4rem+1.6vw,2.5rem)] text-balance">${esc(page.title)}</h1>
         <p class="text-lg">${esc(page.opening)}</p>
         <p class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
@@ -114,12 +151,12 @@ export function helpPageBody(page: HelpPage): string {
       </section>
 
       <div class="flex flex-col gap-3 border-t border-line-strong pt-6">
-        <a href="/start" class="inline-flex min-h-13 items-center justify-center rounded-pill bg-ink px-8 text-lg font-medium text-surface hover:bg-ink/85 sm:self-start">Start a new checklist</a>
+        <a href="/start" class="press inline-flex min-h-13 items-center justify-center rounded-pill bg-ink px-8 text-lg font-medium text-surface hover:bg-ink/85 sm:self-start">Start a new checklist</a>
         <p class="text-sm text-ink-soft">If you came from your checklist, close this tab to go back to it.</p>
         <p class="text-sm text-ink-soft">This is general information, not legal advice.</p>
       </div>
     </main>
-    ${footer}`;
+    ${FOOTER_MARK}`;
 }
 
 export function helpIndexHead(): string {
@@ -130,14 +167,14 @@ export function helpIndexBody(pages: HelpPage[]): string {
   const rows = pages
     .map(
       (p) => `<li>
-            <a href="/help/${p.slug}" class="flex min-h-13 flex-col gap-1 rounded-card border border-line-strong bg-surface p-4 hover:bg-tint">
+            <a href="/help/${p.slug}" class="card-link press flex min-h-13 flex-col gap-1 rounded-card border border-line-strong bg-surface p-4">
               <span class="font-medium underline decoration-ink/30 underline-offset-4">${esc(p.title)}</span>
               <span class="text-sm text-ink-soft">${esc(p.description)}</span>
             </a>
           </li>`,
     )
     .join('');
-  return `${header}
+  return `${siteHeader}
     <main id="main" class="mx-auto flex w-full max-w-2xl flex-col gap-8 px-5 pb-16 pt-8 sm:px-8 sm:pt-12">
       <div class="flex flex-col gap-4">
         <h1 class="text-[clamp(1.75rem,1.4rem+1.6vw,2.5rem)] text-balance">Harder situations</h1>
@@ -147,8 +184,8 @@ export function helpIndexBody(pages: HelpPage[]): string {
         }</p>
       </div>
       <ul class="flex flex-col gap-3">${rows}</ul>
-      <a href="/start" class="inline-flex min-h-13 items-center justify-center rounded-pill bg-ink px-8 text-lg font-medium text-surface hover:bg-ink/85 sm:self-start">Start a new checklist</a>
+      <a href="/start" class="press inline-flex min-h-13 items-center justify-center rounded-pill bg-ink px-8 text-lg font-medium text-surface hover:bg-ink/85 sm:self-start">Start a new checklist</a>
       <p class="-mt-4 text-sm text-ink-soft">If you came from your checklist, close this tab to go back to it.</p>
     </main>
-    ${footer}`;
+    ${FOOTER_MARK}`;
 }
