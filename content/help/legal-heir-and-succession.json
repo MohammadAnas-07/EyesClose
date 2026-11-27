@@ -1,0 +1,61 @@
+{
+  "slug": "legal-heir-and-succession",
+  "version": 1,
+  "order": 3,
+  "title": "Legal heir and succession certificates",
+  "description": "There is no will, or nobody can find it. What these two papers are, and who gives them.",
+  "opening": "When there is no will, a bank or insurer may ask for a paper that shows who the legal heirs are.",
+  "official": [
+    {
+      "text": "When there is no nominee, a bank can accept a legal heir certificate issued by a competent authority.",
+      "source": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0",
+      "confirms": "RBI Directions 2025, para 10(a): \"Legal Heir Certificate issued by a competent authority\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "In Puducherry, a government order names the Taluk Tahsildar as the officer who issues legal heir certificates. The order also says who they can be issued to.",
+      "source": "https://revenue.py.gov.in/downloads/notification/GO-Ms-No.-17.pdf",
+      "confirms": "Puducherry G.O.Ms. No. 17 (Revenue): empowers the Taluk Tahsildar-cum-Executive Magistrate to issue legal heir certificates, to Class I heirs under the Hindu Succession Act.",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "A succession certificate is given by a civil court. It is used to collect debts owed to the person who died. In Punjab and Haryana, the High Court's rules say these applications usually go to a Subordinate Judge.",
+      "source": "https://highcourtchd.gov.in/sub_pages/left_menu/Rules_orders/high_court_rules/vol-II-pdf/chap6partBV2.pdf",
+      "confirms": "Punjab and Haryana High Court Rules Vol. II Ch. 6-B: certificates \"for the collection of debts on succession\"; applications under Part X of the Indian Succession Act \"usually by dealt with by Subordinate Judges\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "For amounts above its limit, a bank may ask for a succession certificate, a legal heir certificate or a sworn affidavit.",
+      "source": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0",
+      "confirms": "RBI Directions 2025, para 10(b).",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "If a claim is disputed, the bank settles it on the basis of court papers, such as a probate, letters of administration, a succession certificate or a court order.",
+      "source": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0",
+      "confirms": "RBI Directions 2025, para 11(b): \"Probate of Will or Letter of Administration or Succession Certificate or Court order/ decree\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    }
+  ],
+  "suggestions": [
+    "Ask each bank or insurer which paper they will accept before you apply for one.",
+    "Ask your taluk, tahsil or revenue office who issues legal heir certificates where you live. This differs from place to place.",
+    "Keep looking for a will in their papers, and ask any lawyer they used."
+  ],
+  "lawyer": [
+    "Who inherits can depend on religion, on the state, and on whether there is a will. A lawyer can tell you what applies to your family.",
+    "Heirs disagree, or someone says there is a will that others have not seen.",
+    "A child under 18 is one of the heirs.",
+    "There is land or a house, or property in more than one state."
+  ],
+  "sourceNeeded": [
+    "Which office issues legal heir certificates in each state.",
+    "How long each certificate takes and what it costs.",
+    "A national official page on succession certificates. India Code did not load when we tried."
+  ]
+}

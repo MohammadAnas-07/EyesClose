@@ -38,6 +38,23 @@ Each checklist file also has:
 The schema lives in `web/src/features/form/checklist.ts`. A unit test parses every file, so a broken or
 incomplete item fails CI.
 
+## Harder situations pages (`help/`)
+
+One file per page at `/help/<slug>`. Each file has `slug`, `version`, `order`, `title`, `description` (one line,
+used in lists and share tags), `opening` (one calm sentence), and:
+
+- `official`: a list of claims. Each one has `text` (what the source says, in plain words), `source` (an https
+  URL), `confirms` (the source's own words, for the review packet), `lastChecked` and `verifiedBy`.
+- `suggestions`: our own advice, shown as "Our suggestion, not from an official page". Keep them few.
+- `lawyer`: concrete cases for "When to talk to a lawyer". No legal conclusions.
+- `sourceNeeded`: what we could not confirm and so left out. Listed in the review packet only.
+
+On-screen text must be plain English in Latin letters. Do not say who inherits what. No deadline, fee or section
+number unless the source page states it. The schema is `web/src/features/help/schema.ts`. Each page also needs a
+shell file at `web/help/<slug>/index.html` and a rewrite in `vercel.json`; tests check both.
+
+After any content change, run `npm run review-packet`.
+
 ## Letters (`letters/`)
 
 Each letter file has `sources` (URL plus a one-line `confirms`), `lastChecked`, `verifiedBy`, `appliesTo` (the

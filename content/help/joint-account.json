@@ -1,0 +1,58 @@
+{
+  "slug": "joint-account",
+  "version": 1,
+  "order": 4,
+  "title": "If the account was joint",
+  "description": "The person who died shared a bank account with someone, or was the only holder.",
+  "opening": "A joint account is shared by two or more people. What happens after a death depends on how the account was opened.",
+  "official": [
+    {
+      "text": "For joint accounts opened as \"either or survivor\" or \"anyone or survivor\", the bank can pay the surviving holder.",
+      "source": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0",
+      "confirms": "RBI Directions 2025, para 7(a) and 8: \"either or survivor\" and \"anyone or survivor\" accounts; payment to the survivor(s) is a valid discharge.",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "The survivor receives the money as a trustee of the legal heirs, which means they hold it for the heirs.",
+      "source": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0",
+      "confirms": "RBI Directions 2025, para 8(iii): \"as a trustee of the legal heirs of the deceased depositor(s)\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "In a joint account, the nominee's right starts only after all the account holders have died.",
+      "source": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0",
+      "confirms": "RBI Directions 2025, para 8: \"the nominee's right arises only after the death of all the depositors\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "To close a joint fixed deposit early, the bank needs the consent of the surviving holders and of the legal heirs of the person who died.",
+      "source": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0",
+      "confirms": "RBI Directions 2025, para 14: premature termination \"shall require the consent of the surviving depositors and the legal heir(s) of the deceased joint holder\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "If the person was the only holder and named a nominee, the bank should not insist on a succession certificate, whatever the amount.",
+      "source": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0",
+      "confirms": "RBI Directions 2025, para 9: \"the bank shall not insist on production of legal documents such as Succession Certificate\", \"irrespective of the amount\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    }
+  ],
+  "suggestions": [
+    "Look at the passbook or the account opening form for words like \"either or survivor\". Ask the bank if you are not sure.",
+    "Tell the bank about the death before anyone uses the account.",
+    "If the account had only one holder and no nominee, read the page \"If there is no nominee\"."
+  ],
+  "lawyer": [
+    "The surviving holder and the legal heirs do not agree about the money.",
+    "The way the account was opened is unclear, and the bank asks for court papers.",
+    "A child under 18 is a holder or an heir."
+  ],
+  "sourceNeeded": [
+    "Who the bank pays when a joint account has no survivor clause. The RBI directions we read do not say it directly."
+  ]
+}

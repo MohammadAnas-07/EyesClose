@@ -1,0 +1,74 @@
+{
+  "slug": "no-death-certificate",
+  "version": 1,
+  "order": 1,
+  "title": "If the death certificate is not ready",
+  "description": "The death is not registered yet, or it was registered late.",
+  "opening": "A death certificate is given after the death is registered. If that has not happened yet, it can still be done.",
+  "official": [
+    {
+      "text": "A death should be reported for registration within 21 days. There is no fee if it is reported within that time.",
+      "source": "https://dc.crsorgi.gov.in/assets/download/FAQ_of_CRS_Latest.pdf",
+      "confirms": "CRS FAQ 1 and 2: \"normal period of 21 days\"; within it \"no fee would be charged\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "If a death is not reported within 21 days, it can still be reported later, at any time. This is called delayed registration, and a fee is charged.",
+      "source": "https://dc.crsorgi.gov.in/assets/download/FAQ_of_CRS_Latest.pdf",
+      "confirms": "CRS FAQ 3: can be reported \"any time under the Delayed Registration provisions\" of Section 13 \"with payment of fee prescribed\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "A death is registered where it happened, with the registrar of births and deaths for that municipality, panchayat or local area.",
+      "source": "https://dc.crsorgi.gov.in/assets/download/FAQ_of_CRS_Latest.pdf",
+      "confirms": "CRS FAQ 5: registered \"at the place of occurrence of the event\"; Registrars appointed for each Municipality, Panchayat or local authority.",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "If the death happened at home, the head of the household or the nearest relative there reports it. If it happened in a hospital, the hospital reports it.",
+      "source": "https://dc.crsorgi.gov.in/assets/download/FAQ_of_CRS_Latest.pdf",
+      "confirms": "CRS FAQ 4: house, head of household or nearest relative; hospital, the medical officer in charge.",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "The person who reports the death gets one copy of the certificate free. More copies can be bought for a fee.",
+      "source": "https://dc.crsorgi.gov.in/assets/download/FAQ_of_CRS_Latest.pdf",
+      "confirms": "CRS FAQ 6: \"One free copy\" to the informant; \"any number of copies\" after paying the prescribed fee.",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "If you disagree with a decision of the registrar, you can appeal to the District Registrar within 30 days.",
+      "source": "https://dc.crsorgi.gov.in/assets/download/FAQ_of_CRS_Latest.pdf",
+      "confirms": "CRS FAQ 12, Section 25A: appeal from the Registrar to the District Registrar \"within a period of thirty days\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "In Delhi, delayed registration is handled at the office of the Sub-Divisional Magistrate for the area where the death took place. The papers listed include an affidavit giving the place, date and time of death.",
+      "source": "https://revenue.delhi.gov.in/revenue/issue-orders-delayed-registration-birthdeath",
+      "confirms": "Delhi Revenue Department page: go \"To the office of Sub-Divisional Magistrate in whose jurisdiction birth or death took place\"; documents include an \"Affidavit specifying place, date and time\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    }
+  ],
+  "suggestions": [
+    "Ask the registrar's office what they need for a late registration, and what the fee is. Rules and fees can differ by state.",
+    "You can start the steps on your checklist that do not need the certificate.",
+    "When the certificate is ready, get a few copies. Many places want to keep one."
+  ],
+  "lawyer": [
+    "The registrar will not register the death, or asks for a magistrate's or court order.",
+    "Details on the certificate are wrong, and the office will not correct them.",
+    "Family members disagree about the date, place or cause of death."
+  ],
+  "sourceNeeded": [
+    "What is needed when a death is reported more than one year late, and which officer gives the order. The national CRS FAQ we read does not say.",
+    "The fee for delayed registration in each state.",
+    "How to correct a wrong entry on a death certificate."
+  ]
+}
