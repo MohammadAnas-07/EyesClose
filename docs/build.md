@@ -26,6 +26,26 @@ cp .env.example .env   # only needed for database or email work
 | `npm run db:up` / `npm run db:down` | Start or stop local Postgres |
 | `npm run db:migrate` | Apply migrations to `DATABASE_URL` |
 
+## Migrations and DATABASE_URL
+
+`npm run db:migrate` runs `server/scripts/migrate.mjs`. It finds `DATABASE_URL` in this order:
+
+1. An exported environment variable, for example `DATABASE_URL=postgres://... npm run db:migrate`.
+2. The `.env` file in the repo root (copy it from `.env.example`).
+
+It uses Node's built-in env parser, so no dotenv package is needed. If neither is set, it stops with:
+"DATABASE_URL is not set. Copy .env.example to .env in the repo root, or export DATABASE_URL, then try again."
+Other arguments pass through to node-pg-migrate, for example `npm run db:migrate -- down`.
+A unit test (`server/scripts/migrate.test.ts`) covers both sources and the missing case.
+
+Local steps:
+
+```sh
+cp .env.example .env
+npm run db:up        # needs Docker Desktop running
+npm run db:migrate
+```
+
 ## CI
 
 `.github/workflows/ci.yml` runs on every push and pull request:
