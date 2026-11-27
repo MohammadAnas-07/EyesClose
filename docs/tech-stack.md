@@ -14,7 +14,9 @@ Last updated 2026-11-27.
 | dialkit (dev only) | A tuning panel to adjust motion values while building. Dev dependency only; never shipped. |
 | pdf-lib (planned) | Makes PDFs in the browser. Built-in Helvetica, so no font download. Lazy loaded. See prd.md open question 4. |
 | Vitest + Testing Library | Unit and component tests, same config as Vite. |
-| ESLint (typescript-eslint, react-hooks) | Lint. Also enforces "no network calls" in form and letter code. |
+| ESLint (typescript-eslint, react-hooks) | Lint. Also enforces "no network calls" in form, letter and help code, and in `web/public/menu.js`. |
+| `web/public/menu.js` (our own, about 20 lines) | The only script on the plain HTML pages. Closes the home page's phone menu after a link is tapped, or on Escape. It reads nothing and sends nothing. The menu is a `<details>`, so it still works if the file does not load. Served from our own origin, so the CSP stays `script-src 'self'`. |
+| `scripts/review-packet.mjs` | Builds `docs/REVIEW_PACKET.md` from `content/` (`npm run review-packet`). A test fails if the packet is out of date. |
 | Node.js + TypeScript (`server/`) | Only for the waitlist, feedback and counters. Plain functions, deployed as Vercel functions. |
 | node-pg-migrate | Plain SQL migrations for the small database. |
 | Postgres 17 in Docker | Local database. Mirrors production. |
@@ -32,7 +34,7 @@ Plugins are installed at "local" scope for this project.
 | Tool | Source | What it is for here |
 | --- | --- | --- |
 | transitions-dev skill | github.com/Jakubantalik/transitions.dev | Ready CSS transitions. Use only calm ones. |
-| impeccable | github.com/pbakaus/impeccable | Design quality skill and agents. Edit hook is off for now. |
+| impeccable | github.com/pbakaus/impeccable | Design quality skill and agents. The design hook is on (`.impeccable/config.json`): it checks UI files after each edit. |
 | superpowers | github.com/obra/superpowers (via claude-plugins-official) | Planning, TDD and debugging workflow skills. |
 | diagram-design skill | github.com/cathrynlavery/diagram-design | Architecture and flow diagrams for docs. |
 | design-taste-frontend skill | github.com/Leonxlnx/taste-skill | Frontend design review. |

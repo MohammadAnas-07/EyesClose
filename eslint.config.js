@@ -14,12 +14,16 @@ export default tseslint.config(
     rules: { ...reactHooks.configs.recommended.rules },
   },
   {
-    files: ['server/**/*.{ts,mjs}', '*.js', '*.config.{js,ts}'],
+    files: ['web/public/**/*.js'],
+    languageOptions: { globals: globals.browser, sourceType: 'script' },
+  },
+  {
+    files: ['server/**/*.{ts,mjs}', '*.js', '*.config.{js,ts}', 'scripts/**/*.mjs'],
     languageOptions: { globals: globals.node },
   },
   {
-    // Privacy rule: form and letter code must never make network calls.
-    files: ['web/src/features/form/**', 'web/src/features/letters/**'],
+    // Privacy rule: form, letter and help code, and the menu script, must never make network calls.
+    files: ['web/src/features/form/**', 'web/src/features/letters/**', 'web/src/features/help/**', 'web/public/**/*.js'],
     // Tests only spy on these APIs to prove the form never calls them.
     ignores: ['**/*.test.{ts,tsx}'],
     rules: {
