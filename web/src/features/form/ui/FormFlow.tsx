@@ -5,7 +5,6 @@ import { LetterScreen } from '../../letters/ui/LetterScreen';
 import { GuideScreen } from './GuideScreen';
 import { QuestionScreen } from './QuestionScreen';
 import { ResultScreen } from './ResultScreen';
-import { HarderEntry } from './HarderEntry';
 import { StartScreen } from './StartScreen';
 
 export function FormFlow() {
@@ -44,7 +43,6 @@ export function FormFlow() {
       {/* Slim footer, so the form stays the focus. Links open in a new tab: leaving would clear the answers. */}
       <footer className="app-footer no-print bg-paper-dark px-5 py-10 text-sm text-surface sm:px-8">
         <div className="mx-auto flex w-full max-w-xl flex-col gap-6">
-          <HarderEntry dark newTab />
           <div className="flex flex-col gap-1 text-ink-on-dark-soft sm:flex-row sm:items-center sm:justify-between">
             <a href="/data" target="_blank" rel="noopener noreferrer" className="footer-dark-link self-start">
               How we handle your data<span className="sr-only"> (opens in a new tab)</span>

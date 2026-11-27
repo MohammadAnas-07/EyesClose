@@ -72,12 +72,12 @@ describe('If your situation is harder', () => {
     expect(start.compareDocumentPosition(entry) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
-  it('the slim app footer has the same entry, opening in a new tab so answers are kept', () => {
+  it('shows "My situation is harder" once; the slim footer keeps only the data link and the legal line', () => {
     render(<FormFlow />);
+    expect(screen.getAllByRole('link', { name: /^My situation is harder/ })).toHaveLength(1);
     const footer = screen.getByRole('contentinfo');
-    const entry = within(footer).getByRole('link', { name: /^My situation is harder/ });
-    expect(entry).toHaveAttribute('href', '/help');
-    expect(entry).toHaveAttribute('target', '_blank');
+    expect(within(footer).getAllByRole('link')).toHaveLength(1);
     expect(within(footer).getByRole('link', { name: /^How we handle your data/ })).toHaveAttribute('href', '/data');
+    expect(footer).toHaveTextContent('General information, not legal advice.');
   });
 });

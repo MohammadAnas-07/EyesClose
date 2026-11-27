@@ -105,6 +105,18 @@ describe('the built site', () => {
     for (const id of anchors) expect(body, id).toContain(`id="${id}"`);
   });
 
+  it('never says things can wait, and does not tie answers to a phone', async () => {
+    for (const path of ['/', '/help', '/help/no-nominee', '/data']) {
+      const body = (await get(path)).body;
+      expect(body, path).not.toMatch(/can wait|no hurry|go slowly/i);
+      expect(body, path).not.toMatch(/(stay|stays|made|saved) (on|in) (your|this) phone|on your phone/i);
+    }
+    const home = (await get('/')).body;
+    expect(home).not.toContain('a locked phone');
+    expect(home).toContain('such as no death certificate yet, no nominee, a joint account, or a death abroad.');
+    expect(home).toContain('Start with the steps for the first 7 days.');
+  });
+
   it('shows six harder-situation cards on the home page, one per help page, each a real page', async () => {
     const body = (await get('/')).body;
     const section = /<section aria-labelledby="harder"[\s\S]*?<\/section>/.exec(body)![0];
