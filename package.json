@@ -17,6 +17,7 @@
     "test": "npm run test --workspaces",
     "build": "npm run build --workspaces",
     "check": "npm run lint && npm run typecheck && npm run test && npm run build",
+    "review-packet": "node scripts/review-packet.mjs",
     "db:up": "docker compose up -d db",
     "db:down": "docker compose down",
     "db:migrate": "npm run migrate -w server -- up"

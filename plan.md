@@ -36,6 +36,9 @@ This is a backlog, not an order of work. Chunks and their order are decided by t
 
 ## Guidance pages
 
+Done in chunk 5 at `/help`: no death certificate, no nominee, legal heir and succession, joint account, death abroad,
+police case. The list below is the older plan; open items stay open.
+
 - [ ] Death certificate not made yet.
 - [ ] Phone is locked and OTPs cannot be received.
 - [ ] Joint account, a different nominee, and a will that says something else.
