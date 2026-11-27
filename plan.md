@@ -10,6 +10,8 @@ This is a backlog, not an order of work. Chunks and their order are decided by t
       (not letters) for EPFO, insurance and UPI apps that need forms or support emails.
       The name of the person who died is optional in the form for now. It becomes required where a letter is
       generated (same English-letters rule, checked again before the PDF is made).
+      Chunk 2 built the engine and two letters: a covering letter for any bank, and a request letter for Vi.
+      More letters come in later chunks.
 - [x] **Priority checklist.** Days 1 to 7, weeks 2 to 4, later. Who to contact for each step.
 - [ ] **Share the checklist.** One tap to WhatsApp, with no personal details in the message.
 

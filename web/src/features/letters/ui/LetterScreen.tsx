@@ -5,7 +5,7 @@ import { ErrorText } from '../../form/ui/ErrorText';
 import { BackIcon, ExternalIcon, LockIcon } from '../../form/ui/icons';
 import { FOOTER, NOT_CHECKED, composeLetter, previewLetter, toPlainText, type LetterDocument, type Line } from '../compose';
 import { letterForItem } from '../content';
-import { validateLetterDetails, type LetterDetailKey } from '../details';
+import { formatDate, validateLetterDetails, type LetterDetailKey } from '../details';
 import { saveFile } from '../download';
 import { renderPdf } from '../pdf';
 
@@ -184,7 +184,7 @@ export function LetterScreen({ state, dispatch }: Props) {
                 <ExternalIcon className="size-4" />
                 <span className="sr-only">(opens in a new tab)</span>
               </a>
-              <span className="block text-ink-soft">Checked on {letter.lastChecked}.</span>
+              <span className="block text-ink-soft">Checked on {formatDate(letter.lastChecked)}.</span>
             </p>
           ))}
         </section>
