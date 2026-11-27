@@ -23,7 +23,11 @@ React app (web/)                                Vercel functions (server/)
 
 ### Pages
 
-- `/`: the landing page. Plain HTML and CSS (`web/index.html`), no JavaScript.
+- `/`: the landing page. Plain HTML and CSS (`web/index.html`). Its only script is our own `/menu.js`, which closes the
+  phone menu after a link is tapped. It reads and sends nothing, and the menu works without it.
+- `/help` and `/help/<slug>`: the harder situations pages. Plain HTML and CSS, no script. Built at build time from
+  `content/help/*.json` into the shells in `web/help/`. A help file with a claim that lacks a source, a date or
+  `verifiedBy` fails the build. Unknown `/help/...` paths get the 404 page.
 - `/start` and anything under it: the app (`web/start/index.html`, React).
 - `/data`: how we handle data. Plain HTML (`web/data/index.html`). Draft until a professional reviews it.
 - Anything else: `web/404.html`, with a 404 status.

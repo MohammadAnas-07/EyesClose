@@ -14,6 +14,34 @@
     {
       "source": "/data",
       "destination": "/data/index.html"
+    },
+    {
+      "source": "/help",
+      "destination": "/help/index.html"
+    },
+    {
+      "source": "/help/no-death-certificate",
+      "destination": "/help/no-death-certificate/index.html"
+    },
+    {
+      "source": "/help/no-nominee",
+      "destination": "/help/no-nominee/index.html"
+    },
+    {
+      "source": "/help/legal-heir-and-succession",
+      "destination": "/help/legal-heir-and-succession/index.html"
+    },
+    {
+      "source": "/help/joint-account",
+      "destination": "/help/joint-account/index.html"
+    },
+    {
+      "source": "/help/death-abroad",
+      "destination": "/help/death-abroad/index.html"
+    },
+    {
+      "source": "/help/police-case",
+      "destination": "/help/police-case/index.html"
     }
   ],
   "headers": [
