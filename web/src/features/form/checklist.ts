@@ -7,12 +7,12 @@ export const GROUPS = [
   { id: 'later', title: 'Later' },
 ] as const;
 
-/** Order inside each group: SIM, UPI and bank first, subscriptions last. */
+/** Order inside each group: the death certificate, then SIM, UPI and bank, and subscriptions last. */
 export const CATEGORY_ORDER = [
+  'documents',
   'sim',
   'upi',
   'bank',
-  'documents',
   'work',
   'insurance',
   'vehicle',
@@ -24,7 +24,10 @@ export const CATEGORY_ORDER = [
 
 const date = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
 
-/** Shape of one file in content/checklist/. A null source means "source needed". */
+/**
+ * Shape of one file in content/checklist/. A null source means "source needed".
+ * confirms: one line of what the full source page itself says, recorded when it was last checked.
+ */
 export const checklistItemSchema = z
   .object({
     id: z.string().regex(/^[a-z0-9-]+$/),
@@ -36,14 +39,15 @@ export const checklistItemSchema = z
     contact: z.string().min(1).nullable(),
     source: z.url({ protocol: /^https$/ }).nullable(),
     lastChecked: date.nullable(),
+    confirms: z.string().min(1).max(200).nullable(),
     verifiedBy: z.string().min(1).nullable(),
     when: z
       .array(z.object({ question: z.enum(ANSWER_KEYS as [AnswerKey, ...AnswerKey[]]), anyOf: z.array(z.string()).min(1) }))
       .min(1),
   })
   .strict()
-  .refine((i) => (i.source === null) === (i.lastChecked === null), {
-    error: 'An item with a source needs a lastChecked date, and one without a source must not have one.',
+  .refine((i) => [i.lastChecked, i.confirms].every((v) => (v === null) === (i.source === null)), {
+    error: 'An item with a source needs lastChecked and confirms; an item without a source must have neither.',
   });
 
 export type ChecklistItem = z.infer<typeof checklistItemSchema>;

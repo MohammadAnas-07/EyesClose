@@ -26,8 +26,11 @@ Each checklist file also has:
 - `when`: the answers that make the item appear. The item shows when any one condition matches,
   for example `{ "question": "banks", "anyOf": ["sbi"] }`.
 
+- `confirms`: one line saying what the full source page itself says, written when the page was read
+  in full on the `lastChecked` date. Item text must not claim more than the page says.
+
 `source: null` means no official page was found yet. The app then shows "Source needed", and
-`lastChecked` must also be `null`. Never invent a rule, deadline, form name or phone number.
+`lastChecked` and `confirms` must also be `null`. Never invent a rule, deadline, form name or phone number.
 
 The schema lives in `web/src/features/form/checklist.ts`. A unit test parses every file, so a broken or
 incomplete item fails CI.

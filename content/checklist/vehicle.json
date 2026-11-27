@@ -1,13 +1,14 @@
 {
   "id": "vehicle",
-  "version": 1,
+  "version": 2,
   "title": "Vehicle and its insurance",
-  "text": "The person who now has the vehicle can apply to the RTO with Form 31 to move it into their name, within three months of the death. Also tell the vehicle insurer.",
+  "text": "To keep using the vehicle, tell the RTO about the death within 30 days. Then apply with Form 31 within three months to move it into your name.",
   "group": "weeks-2-4",
   "category": "vehicle",
-  "contact": "The local RTO and the vehicle insurer",
+  "contact": "The local RTO",
   "source": "https://parivahan.gov.in/en/content/ownership-transfer",
   "lastChecked": "2026-11-27",
+  "confirms": "Parivahan page: inform the registering authority within 30 days of death; apply in Form 31 within three months.",
   "verifiedBy": null,
   "when": [
     {

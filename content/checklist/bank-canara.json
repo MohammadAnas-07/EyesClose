@@ -1,13 +1,14 @@
 {
   "id": "bank-canara",
-  "version": 1,
+  "version": 2,
   "title": "Canara Bank accounts",
-  "text": "Tell the bank about the death and ask for its deceased claim form. Canara Bank handles these claims through its online death claim portal, and a branch can help you register.",
+  "text": "You can submit the claim on Canara Bank's online death claim portal, or give the documents to the branch, which enters them for you. The original documents go to the branch before the money is paid.",
   "group": "first-7-days",
   "category": "bank",
   "contact": "Their Canara Bank branch",
   "source": "https://www.canarabank.bank.in/documents/d/guest/5-death-claim-settlement-policy",
   "lastChecked": "2026-11-27",
+  "confirms": "Canara policy PDF: claim online through the death claim portal, or documents at branch updated in the portal by staff.",
   "verifiedBy": null,
   "when": [
     {

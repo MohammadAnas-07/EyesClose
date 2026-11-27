@@ -1,13 +1,14 @@
 {
   "id": "epfo-claim",
-  "version": 1,
+  "version": 2,
   "title": "Provident fund and EPS pension (EPFO)",
-  "text": "Family members claim PF, EDLI insurance and EPS pension with EPFO's own claim forms, not a letter. A paper claim may need to be signed by their last employer.",
+  "text": "After a member dies, eligible nominees can claim from EPFO. The EPFO website has a \"File Death Claim\" option that leads to its member portal.",
   "group": "weeks-2-4",
   "category": "work",
   "contact": "EPFO, or the HR team of their last employer",
-  "source": "https://www.epfindia.gov.in/site_en/WhichClaimForm.php",
+  "source": "https://www.epfo.gov.in/",
   "lastChecked": "2026-11-27",
+  "confirms": "EPFO home page: \"File Death Claim - Eligible nominees can claim in case of employee's demise.\"",
   "verifiedBy": null,
   "when": [
     {

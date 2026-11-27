@@ -1,13 +1,14 @@
 {
   "id": "health-insurance",
-  "version": 1,
+  "version": 2,
   "title": "Health insurance",
-  "text": "Tell the insurer about the death. If other family members are on the same policy, ask how their cover continues.",
+  "text": "If the policyholder dies, the claim money is paid to the nominee. In a family floater policy, all family members share one sum insured.",
   "group": "weeks-2-4",
   "category": "insurance",
   "contact": "The insurance company",
   "source": "https://irdai.gov.in/health-dept",
   "lastChecked": "2026-11-27",
+  "confirms": "IRDAI health FAQ: on death of policyholder, claim proceeds go to the nominee; floater members share one sum insured.",
   "verifiedBy": null,
   "when": [
     {

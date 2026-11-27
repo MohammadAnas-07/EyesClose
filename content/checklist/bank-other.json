@@ -1,13 +1,14 @@
 {
   "id": "bank-other",
-  "version": 1,
+  "version": 2,
   "title": "Other bank accounts",
-  "text": "Tell each bank about the death and ask for its deceased claim form. Once a bank has all the papers, RBI rules say it should settle the claim within 15 calendar days.",
+  "text": "A claim can be lodged at any branch of the bank. Once a bank has all the papers, RBI directions say it should settle a deposit claim within 15 calendar days.",
   "group": "first-7-days",
   "category": "bank",
   "contact": "The branch of each bank",
   "source": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0",
   "lastChecked": "2026-11-27",
+  "confirms": "RBI Directions 2025: claim may be lodged at any branch (para 29); settle within 15 calendar days of all documents (para 31).",
   "verifiedBy": null,
   "when": [
     {

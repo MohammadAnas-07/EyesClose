@@ -1,13 +1,14 @@
 {
   "id": "bank-sbi",
-  "version": 1,
+  "version": 2,
   "title": "SBI accounts",
-  "text": "Tell the bank about the death and ask for its deceased claim form. You can also start the claim on SBI's Deceased Claim Settlement portal.",
+  "text": "You can lodge the claim at any SBI branch or online, and get an acknowledgment. SBI's deceased settlement page has the claim forms.",
   "group": "first-7-days",
   "category": "bank",
   "contact": "Their SBI branch",
   "source": "https://sbi.bank.in/web/personal-banking/information-services/deceased-settlement",
   "lastChecked": "2026-11-27",
+  "confirms": "SBI page: claim can be lodged at any branch or by \"Online Mode\"; links \"Revised Deceased Claim Forms\".",
   "verifiedBy": null,
   "when": [
     {

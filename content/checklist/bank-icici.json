@@ -1,13 +1,14 @@
 {
   "id": "bank-icici",
-  "version": 1,
+  "version": 2,
   "title": "ICICI Bank accounts",
-  "text": "Tell the bank about the death and ask for its deceased claim form. The papers needed depend on whether there is a nominee and on the amount in the account.",
+  "text": "ICICI Bank's page has the claim forms to download. The papers needed depend on whether there is a nominee, and, when there is none, on the amount.",
   "group": "first-7-days",
   "category": "bank",
   "contact": "Their ICICI Bank branch",
   "source": "https://www.icici.bank.in/deceased-claim-policy-and-forms",
   "lastChecked": "2026-11-27",
+  "confirms": "ICICI page: Annex 1 and Annex 2 claim forms; papers split by nominee status and, without one, by amount.",
   "verifiedBy": null,
   "when": [
     {

@@ -1,13 +1,14 @@
 {
   "id": "sub-netflix",
-  "version": 1,
+  "version": 2,
   "title": "Netflix, if they had it",
-  "text": "If you can sign in, cancel from the Account page. If you cannot, contact Netflix with the account email or phone number and the payment details on the account.",
+  "text": "If you have access to the account, use the Cancel Membership link on the Account page. If not, contact Netflix with the account email or phone number and the full payment details.",
   "group": "later",
   "category": "subscriptions",
   "contact": "Netflix help centre",
   "source": "https://help.netflix.com/en/node/110165",
   "lastChecked": "2026-11-27",
+  "confirms": "Netflix help: cancel from the Account page if you have access; otherwise contact them with email/phone and payment info.",
   "verifiedBy": null,
   "when": [
     {

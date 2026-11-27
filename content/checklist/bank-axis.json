@@ -1,13 +1,14 @@
 {
   "id": "bank-axis",
-  "version": 1,
+  "version": 2,
   "title": "Axis Bank accounts",
-  "text": "Tell the bank about the death and ask for its deceased claim form. The papers needed depend on whether there is a nominee or a joint holder.",
+  "text": "Axis Bank asks for its death claim form, the death certificate and the nominee's or survivor's ID document. The papers are different when there is no nominee or joint holder, and above Rs. 15 lakh.",
   "group": "first-7-days",
   "category": "bank",
   "contact": "Their Axis Bank branch",
   "source": "https://www.axis.bank.in/docs/default-source/default-document-library/documents-required-for-settlement-of-deceased-accounts-bank-deposits.pdf",
   "lastChecked": "2026-11-27",
+  "confirms": "Axis PDF: claim form, death certificate, OVD of nominee/survivor; separate lists without nomination up to and above 15 lakh.",
   "verifiedBy": null,
   "when": [
     {

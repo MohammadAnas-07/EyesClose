@@ -1,13 +1,14 @@
 {
   "id": "family-pension",
-  "version": 1,
-  "title": "Government pension",
-  "text": "For a central government pension, tell the bank that pays it within one month of the death. The family member named in the pension order can then apply for family pension.",
+  "version": 2,
+  "title": "Central government pension",
+  "text": "The family applies for family pension in Form 14 with a copy of the death certificate: to the bank that pays the pension if the amount is in the pension order, otherwise to the Head of Office. State pensions may differ, so contact the pension office.",
   "group": "weeks-2-4",
   "category": "work",
-  "contact": "The bank branch that pays the pension",
+  "contact": "The bank that pays the pension, or the Head of Office",
   "source": "https://cpao.nic.in/FAQ.php",
   "lastChecked": "2026-11-27",
+  "confirms": "CPAO FAQ 47: apply in Form 14 with death certificate, to the disbursing authority if in the PPO, else Head of Office.",
   "verifiedBy": null,
   "when": [
     {
