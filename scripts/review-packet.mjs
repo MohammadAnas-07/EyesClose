@@ -112,7 +112,7 @@ ${urls.map((u) => `- ${u}`).join('\n')}
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const text = buildPacket();
   if (process.argv.includes('--check')) {
-    if (readFileSync(out, 'utf8') !== text) {
+    if (readFileSync(out, 'utf8').replaceAll('\r\n', '\n') !== text) {
       console.error('docs/REVIEW_PACKET.md is out of date. Run: npm run review-packet');
       process.exit(1);
     }
