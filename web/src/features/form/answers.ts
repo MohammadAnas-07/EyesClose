@@ -14,6 +14,7 @@ export const NAME_PATTERN = /^[A-Za-z .'-]+$/;
 export const NAME_MAX = 80;
 export const NAME_ERROR = 'Please type the name using English letters (A to Z) only. For example: Sunita Sharma.';
 export const NAME_TOO_LONG = `Please keep the name to ${NAME_MAX} letters or fewer.`;
+export const NAME_REQUIRED = 'Please type the name. The letter needs it.';
 export const CHOOSE_ERROR = 'Please choose an answer. If you do not know, choose "Not sure".';
 
 const tri = z.enum(TRI, { error: CHOOSE_ERROR });
@@ -24,7 +25,10 @@ export const nameSchema = z
   .string()
   .trim()
   .max(NAME_MAX, { error: NAME_TOO_LONG })
-  .refine((v) => v === '' || NAME_PATTERN.test(v), { error: NAME_ERROR });
+  .refine((v) => v === '' || (NAME_PATTERN.test(v) && /[A-Za-z]/.test(v)), { error: NAME_ERROR });
+
+/** Where a letter is made, the name cannot be left blank. */
+export const requiredNameSchema = nameSchema.refine((v) => v !== '', { error: NAME_REQUIRED });
 
 export const answersSchema = z.object({
   name: nameSchema,
