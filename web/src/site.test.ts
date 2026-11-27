@@ -53,6 +53,24 @@ describe('the built site', () => {
     expect(page.csp).toContain("default-src 'none'");
   });
 
+  it('has a main nav, a CSS-only phone menu, and a footer with the year and the legal line', async () => {
+    const body = (await get('/')).body;
+    expect(body).toMatch(/<nav aria-label="Main"[\s\S]*href="\/start"[\s\S]*<details class="nav-menu/);
+    expect(body).not.toMatch(/\son[a-z]+=|style=/i);
+    const footer = /<footer[\s\S]*<\/footer>/.exec(body)![0];
+    expect(footer).toContain('This is general information, not legal advice.');
+    expect(footer).toContain(`&copy; ${new Date().getFullYear()} EyesClose`);
+    expect(footer).toContain('href="/data"');
+    expect(footer).not.toMatch(/@|mailto:|tel:/);
+  });
+
+  it('points every in-page link at a section that exists', async () => {
+    const body = (await get('/')).body;
+    const anchors = new Set([...body.matchAll(/href="#([\w-]+)"/g)].map((m) => m[1]!));
+    expect(anchors).toEqual(new Set(['main', 'how', 'today', 'faq']));
+    for (const id of anchors) expect(body, id).toContain(`id="${id}"`);
+  });
+
   it('makes the landing page load only files from our own origin', async () => {
     for (const path of ['/', '/data', '/does-not-exist']) {
       const urls = await loadedUrls((await get(path)).body);
