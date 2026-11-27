@@ -1,0 +1,83 @@
+/* Styles for the plain HTML pages (landing, data, 404). They load no JavaScript. */
+@layer components {
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    z-index: var(--z-tooltip);
+    border-radius: var(--radius-pill);
+    background: var(--color-ink);
+    color: var(--color-surface);
+    padding: 0.75rem 1.25rem;
+  }
+  .skip-link:focus {
+    top: 1rem;
+  }
+
+  .step-number {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--color-line-strong);
+    border-radius: 999px;
+    background: var(--color-surface);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .tick-item {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .tick-item::before {
+    content: '';
+    position: absolute;
+    top: 0.3rem;
+    left: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 999px;
+    /* data: images are allowed by img-src in the CSP. */
+    background: var(--color-ink)
+      url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27none%27 stroke=%27%23fbfbfa%27 stroke-width=%272.2%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%27M4 8.5l2.5 2.5 5.5-6%27/%3E%3C/svg%3E")
+      center / 70% no-repeat;
+  }
+
+  .faq details + details {
+    border-top: 1px solid var(--color-line-strong);
+  }
+  .faq summary {
+    display: flex;
+    min-height: 3.25rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 1.25rem;
+    font-weight: 500;
+    list-style: none;
+    transition: background-color var(--duration-fast) var(--ease-out-expo);
+  }
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq summary::after {
+    content: '+';
+    flex-shrink: 0;
+    font-size: 1.25rem;
+    line-height: 1;
+    color: var(--color-ink-soft);
+  }
+  .faq details[open] summary::after {
+    content: '\2212';
+  }
+  .faq summary:hover {
+    background: var(--color-tint);
+  }
+  .faq details p {
+    padding: 0 1.25rem 1.25rem;
+  }
+}
