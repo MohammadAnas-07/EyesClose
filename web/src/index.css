@@ -1,0 +1,56 @@
+@import 'tailwindcss';
+
+/*
+  Design tokens.
+  PLACEHOLDER VALUES: design.md (from the nixtio.com reference) was not in the
+  repo when this was set up. Replace these with the tokens from design.md
+  without changing design.md itself. Keep the body text rules below even then:
+  no negative letter-spacing on body text, for readability.
+*/
+@theme {
+  --font-sans: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --color-paper: #fbfaf8;
+  --color-ink: #1c1b19;
+  --color-ink-soft: #4a4844;
+  --color-line: #e4e1dc;
+  --color-accent: #3f5a4c;
+
+  --radius-card: 1rem;
+  --radius-button: 9999px;
+
+  --ease-calm: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --duration-calm: 200ms;
+}
+
+@layer base {
+  html {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    /* Body text stays at normal spacing and a generous line height. */
+    letter-spacing: normal;
+    line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  h1,
+  h2,
+  h3 {
+    /* Tight spacing is allowed on headings only. */
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
