@@ -1,0 +1,53 @@
+{
+  "id": "bank-covering-letter",
+  "version": 1,
+  "title": "Covering letter for the bank",
+  "about": "A short letter that goes with the bank's own claim form and a copy of the death certificate. Banks ask for their claim form; this letter is not a legal requirement.",
+  "fileName": "eyesclose-bank-letter.pdf",
+  "takeWith": "the bank's own claim form",
+  "sources": [
+    {
+      "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0",
+      "confirms": "RBI Directions 2025: a nominee or survivor gives the claim form, the death certificate and an Officially Valid Document for identity and address."
+    }
+  ],
+  "lastChecked": "2026-11-27",
+  "verifiedBy": null,
+  "appliesTo": [
+    { "item": "bank-sbi", "institution": "State Bank of India" },
+    { "item": "bank-hdfc", "institution": "HDFC Bank" },
+    { "item": "bank-icici", "institution": "ICICI Bank" },
+    { "item": "bank-axis", "institution": "Axis Bank" },
+    { "item": "bank-pnb", "institution": "Punjab National Bank" },
+    { "item": "bank-bob", "institution": "Bank of Baroda" },
+    { "item": "bank-kotak", "institution": "Kotak Mahindra Bank" },
+    { "item": "bank-canara", "institution": "Canara Bank" },
+    { "item": "bank-other", "institution": null }
+  ],
+  "letter": [
+    { "type": "text", "text": "To" },
+    { "type": "text", "text": "The Branch Manager" },
+    { "type": "text", "text": "{{institution}}" },
+    { "type": "field", "label": "Branch" },
+    { "type": "gap" },
+    { "type": "text", "text": "Date: {{date}}" },
+    { "type": "gap" },
+    { "type": "text", "text": "Subject: Death of account holder {{deceasedName}}", "bold": true },
+    { "type": "gap" },
+    { "type": "text", "text": "Dear Sir or Madam," },
+    { "type": "gap" },
+    { "type": "text", "text": "I am writing to inform you that {{deceasedName}}, who held an account with your bank, has passed away." },
+    { "type": "gap" },
+    { "type": "field", "label": "Date of death" },
+    { "type": "field", "label": "Account number(s)" },
+    { "type": "gap" },
+    { "type": "ticks", "label": "I am writing as the", "options": ["nominee", "legal heir", "other"] },
+    { "type": "gap" },
+    { "type": "text", "text": "Please accept the enclosed claim form and papers, and let me know if you need anything else to settle the claim." },
+    { "type": "gap" },
+    { "type": "list", "title": "Enclosed:", "items": ["Your bank's claim form, filled in and signed", "A copy of the death certificate", "A copy of my identity and address document"] },
+    { "type": "gap" },
+    { "type": "text", "text": "Yours faithfully," },
+    { "type": "signature" }
+  ]
+}
