@@ -12,6 +12,10 @@ This is a backlog, not an order of work. Chunks and their order are decided by t
       generated (same English-letters rule, checked again before the PDF is made).
       Chunk 2 built the engine and two letters: a covering letter for any bank, and a request letter for Vi.
       More letters come in later chunks.
+      More than one bank: each bank item on the checklist has its own "Make this letter" button, so the user
+      makes one letter per bank, each with that bank's name filled in. The names and date typed once are kept
+      for the next letter. "Another bank" gives one letter with a blank line for the bank name, to print once
+      per bank. To decide later: a single "make all bank letters" button, or one PDF with all of them.
 - [x] **Priority checklist.** Days 1 to 7, weeks 2 to 4, later. Who to contact for each step.
 - [ ] **Share the checklist.** One tap to WhatsApp, with no personal details in the message.
 
