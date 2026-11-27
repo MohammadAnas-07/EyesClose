@@ -1,9 +1,11 @@
 /// <reference types="vitest/config" />
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
+import { parseHelpPages } from './src/features/help/schema';
+import { helpIndexBody, helpIndexHead, helpPageBody, helpPageHead } from './src/features/help/render';
 
 interface VercelConfig {
   headers: { headers: { key: string; value: string }[] }[];
@@ -21,8 +23,35 @@ const SITE_URL = (
   (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : 'http://localhost:4173')
 ).replace(/\/$/, '');
 
+/** The help pages, read and checked at build time. A file with a missing source, date or reviewer fails the build. */
+const helpDir = new URL('../content/help/', import.meta.url);
+export const helpPages = parseHelpPages(
+  readdirSync(helpDir)
+    .filter((f) => f.endsWith('.json'))
+    .map((f) => JSON.parse(readFileSync(new URL(f, helpDir), 'utf8')) as unknown),
+);
+
 /** The real pages, for the sitemap. The 404 page is left out on purpose. */
-export const PAGES = ['/', '/start', '/data'];
+export const PAGES = ['/', '/start', '/data', '/help', ...helpPages.map((p) => `/help/${p.slug}`)];
+
+/** Fills the /help page shells (web/help/index.html and web/help/<slug>/index.html) from content/help. */
+function helpFiles(): Plugin {
+  return {
+    name: 'eyesclose-help-pages',
+    transformIndexHtml: {
+      order: 'pre',
+      handler(html, ctx) {
+        const match = /^\/help\/(?:([a-z0-9-]+)\/)?index\.html$/.exec(ctx.path);
+        if (!match) return html;
+        const page = match[1] ? helpPages.find((p) => p.slug === match[1]) : null;
+        if (match[1] && !page) throw new Error(`No content/help file for ${ctx.path}`);
+        return html
+          .replace('<!--help-head-->', page ? helpPageHead(page) : helpIndexHead())
+          .replace('<!--help-body-->', page ? helpPageBody(page) : helpIndexBody(helpPages));
+      },
+    },
+  };
+}
 
 function siteFiles(): Plugin {
   return {
@@ -54,10 +83,21 @@ function rewriteFor(url: string): string | null {
   return null;
 }
 
-/** `vite preview` routes like Vercel: the same rewrites, and 404.html for anything else. */
+/**
+ * `vite preview` routes like Vercel: the same rewrites, and 404.html for anything else.
+ * The dev server gets the same rewrites (not the CSP, which would block Vite's dev scripts), so /start, /data
+ * and /help work in `npm run dev` too.
+ */
 function vercelRouting(): Plugin {
   return {
     name: 'eyesclose-vercel-routing',
+    configureServer(server) {
+      server.middlewares.use((req, _res, next) => {
+        const target = rewriteFor(req.url ?? '/');
+        if (target) req.url = target;
+        next();
+      });
+    },
     configurePreviewServer(server) {
       server.middlewares.use((req, res, next) => {
         for (const [key, value] of Object.entries(productionHeaders)) res.setHeader(key, value);
@@ -81,18 +121,20 @@ function vercelRouting(): Plugin {
 }
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), siteFiles(), vercelRouting()],
+  plugins: [react(), tailwindcss(), helpFiles(), siteFiles(), vercelRouting()],
   appType: 'mpa',
   build: {
     target: 'es2020',
     sourcemap: false,
     rollupOptions: {
-      // The landing, data and 404 pages are plain HTML and CSS. Only /start loads the app's JavaScript.
+      // The landing, data, help and 404 pages are plain HTML and CSS. Only /start loads the app's JavaScript.
       input: {
         landing: resolve(import.meta.dirname, 'index.html'),
         start: resolve(import.meta.dirname, 'start/index.html'),
         data: resolve(import.meta.dirname, 'data/index.html'),
         notFound: resolve(import.meta.dirname, '404.html'),
+        help: resolve(import.meta.dirname, 'help/index.html'),
+        ...Object.fromEntries(helpPages.map((p) => [`help-${p.slug}`, resolve(import.meta.dirname, 'help', p.slug, 'index.html')])),
       },
     },
   },

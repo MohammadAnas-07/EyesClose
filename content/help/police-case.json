@@ -1,0 +1,60 @@
+{
+  "slug": "police-case",
+  "version": 1,
+  "order": 6,
+  "title": "If police or a post-mortem are involved",
+  "description": "The death was an accident, a suicide, or not clear, and the police are involved.",
+  "opening": "After an accident, a suicide or a death that is not clear, the law asks the police to make an enquiry.",
+  "official": [
+    {
+      "text": "When police learn of a suicide, a death caused by another person, an animal, a machine or an accident, or a death that raises suspicion, they tell the nearest Executive Magistrate and go to where the body is.",
+      "source": "https://training.delhipolice.gov.in/PDF/PublicData/NOTICE_20240614145643825.pdf",
+      "confirms": "Delhi Police Academy BNSS Handbook, Section 194(1) BNSS (old CrPC 174), quoted in full.",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "There, with two or more local people present, the police write a report on the apparent cause of death. The report goes to the District or Sub-divisional Magistrate within 24 hours.",
+      "source": "https://training.delhipolice.gov.in/PDF/PublicData/NOTICE_20240614145643825.pdf",
+      "confirms": "BNSS Section 194(1) and 194(2): investigation \"in the presence of two or more respectable inhabitants\"; report forwarded \"within twenty-four hours\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "If there is any doubt about the cause of death, the police can send the body to a government doctor for a medical examination, also called a post-mortem.",
+      "source": "https://training.delhipolice.gov.in/PDF/PublicData/NOTICE_20240614145643825.pdf",
+      "confirms": "BNSS Section 194(3)(iv) and (v): where \"there is any doubt regarding the cause of death\", forward the body \"to the nearest Civil Surgeon, or other qualified medical person\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "When a woman dies within seven years of her marriage, a relative can ask for this medical examination.",
+      "source": "https://training.delhipolice.gov.in/PDF/PublicData/NOTICE_20240614145643825.pdf",
+      "confirms": "BNSS Section 194(3)(iii): death of a woman within seven years of marriage \"and any relative of the woman has made a request in this behalf\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "For LIC's accident benefit, papers like the FIR and the post-mortem report are normally asked for.",
+      "source": "https://licindia.in/web/guest/claims-settlement-requirements",
+      "confirms": "LIC claims requirements, Double Accident Benefit Claims: \"documents like FIR, Post-mortem Report are insisted upon\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    }
+  ],
+  "suggestions": [
+    "Ask the police station handling the case how to get copies of the FIR, the inquest report and the post-mortem report. Insurers and banks may ask for them.",
+    "Make sure the death is registered. The page \"If the death certificate is not ready\" explains how.",
+    "It is fine to ask a friend or relative to go to the police station with you."
+  ],
+  "lawyer": [
+    "You think someone caused the death, or you disagree with the police report.",
+    "There is a claim for compensation after a road accident.",
+    "An insurer refuses a claim because of how the death happened."
+  ],
+  "sourceNeeded": [
+    "How a family gets copies of the post-mortem and inquest reports. The state police pages we tried did not load.",
+    "Compensation claims after a road accident (Motor Accident Claims Tribunal).",
+    "What other insurers, apart from LIC's accident benefit, ask for after an unnatural death."
+  ]
+}

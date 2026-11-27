@@ -1,0 +1,74 @@
+{
+  "slug": "no-nominee",
+  "version": 1,
+  "order": 2,
+  "title": "If there is no nominee",
+  "description": "An account, deposit or policy has no nominee, or the nominee has also died.",
+  "opening": "A nominee is the person named to receive the money. When no one was named, the bank or insurer asks for other papers instead.",
+  "official": [
+    {
+      "text": "When there is a nominee, the bank pays the nominee. The nominee receives the money as a trustee of the legal heirs, which means they hold it for the heirs.",
+      "source": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0",
+      "confirms": "RBI Directions 2025, para 8(iii): nominee or survivor receives payment \"as a trustee of the legal heirs of the deceased depositor(s)\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "When there is no nominee and no surviving joint holder, banks use a simpler process for smaller amounts. The limit is 15 lakh rupees at most banks, and 5 lakh rupees at a co-operative bank.",
+      "source": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0",
+      "confirms": "RBI Directions 2025, para 7(h) and 10: threshold \"₹5 lakh in case of a co-operative bank and ₹15 lakh in case of any other bank\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "Below that limit, the bank asks for its claim form, the death certificate, an identity document, a letter of indemnity, and either a legal heir certificate or a declaration from an independent person.",
+      "source": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0",
+      "confirms": "RBI Directions 2025, para 10(a): claim form, death certificate, OVD, bond of indemnity, and a Legal Heir Certificate or a declaration (Annex I-E) by an independent person.",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "Above that limit, the bank may ask for a succession certificate, a legal heir certificate, or a sworn affidavit, and may also ask for a surety.",
+      "source": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0",
+      "confirms": "RBI Directions 2025, para 10(b): Succession Certificate, or legal heir certificate, or affidavit sworn before a Notary or Magistrate; \"may also call for a bond of surety\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "The bank should settle the claim within 15 calendar days of getting all the papers it needs.",
+      "source": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0",
+      "confirms": "RBI Directions 2025, para 31: \"within a period not exceeding 15 calendar days from the date of receipt of all the required documents\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "Banks must put their claim forms, the list of papers and the steps on their website.",
+      "source": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=12901&Mode=0",
+      "confirms": "RBI Directions 2025, para 28: forms on the bank's website; the bank shall display the list of documents and the procedure.",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "For life insurance with no nominee, the insurer asks for legal proof of who is entitled to the money, as well as the usual claim papers.",
+      "source": "https://policyholder.gov.in/how-to-make-a-claim-life",
+      "confirms": "IRDAI policyholder page: documents include \"Legal evidence of title, if the policy is not assigned or nominated\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    }
+  ],
+  "suggestions": [
+    "Ask the bank or insurer for its claim form and list of papers. Your checklist links to each bank's own page.",
+    "If the nominee has also died, tell the bank or insurer and ask in writing what they need from you."
+  ],
+  "lawyer": [
+    "More than one person claims the money, or the heirs do not agree.",
+    "The amount is above the bank's limit and you are asked for a succession certificate.",
+    "One of the heirs is a child under 18.",
+    "There is money or property in more than one state."
+  ],
+  "sourceNeeded": [
+    "What happens when the nominee has also died. The RBI directions we read do not say.",
+    "What happens to bank deposits when the nominee is a child.",
+    "What \"legal evidence of title\" means for each insurer."
+  ]
+}

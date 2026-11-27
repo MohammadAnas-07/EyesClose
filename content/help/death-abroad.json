@@ -1,0 +1,79 @@
+{
+  "slug": "death-abroad",
+  "version": 1,
+  "order": 5,
+  "title": "If the death happened outside India",
+  "description": "The person died in another country.",
+  "opening": "When an Indian citizen dies in another country, the Indian embassy or consulate there works with the family.",
+  "official": [
+    {
+      "text": "The death must be registered at the Indian embassy or consulate in that country before the body can be brought back to India.",
+      "source": "https://www.mea.gov.in/transfer-of-mortal-remains.htm",
+      "confirms": "MEA: \"For the purpose of bringing back the mortal remains of an Indian national\", \"registration of death at the concerned Indian Mission/Post is necessary\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "For registration, the papers usually asked for include a hospital death certificate, a police report if the death was an accident or unnatural, a consent letter from the next of kin, and copies of the passport and visa.",
+      "source": "https://www.mea.gov.in/transfer-of-mortal-remains.htm",
+      "confirms": "MEA: medical report or death certificate from a hospital; police report \"in case of accidental or unnatural death\"; notarised consent letter from next of kin; passport and visa copies.",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "To bring the body back, the papers include a death certificate, an embalming certificate, a certificate that the death was not from a communicable disease, the passport for cancellation, and a no-objection certificate from the embassy.",
+      "source": "https://www.mea.gov.in/transfer-of-mortal-remains.htm",
+      "confirms": "MEA: clinical death certificate, embalming certificate, non-communicable disease certificate, passport for cancellation, NOC from the Indian Embassy.",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "These steps can differ from country to country.",
+      "source": "https://www.mea.gov.in/transfer-of-mortal-remains.htm",
+      "confirms": "MEA: \"These procedures may differ from country to country.\"",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "If no one from the family can go, you can authorise the embassy or consulate to arrange the transport.",
+      "source": "https://www.mea.gov.in/transfer-of-mortal-remains.htm",
+      "confirms": "MEA: \"you may authorize the Indian Embassy/ Consulate to make arrangements for transport of the mortal remains\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "If the person had insurance that covers it, the insurer normally arranges the transport. The embassy may also ask the employer to pay.",
+      "source": "https://www.mea.gov.in/faq-bringing-back-mortal.htm",
+      "confirms": "MEA FAQ: transported \"by the insurance agency, if the person has an insurance policy which provides for the same\"; they \"pursue with the employer to bear the cost\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "If the family needs help with the cost, the embassy can consider a request, based on need.",
+      "source": "https://www.mea.gov.in/transfer-of-mortal-remains.htm",
+      "confirms": "MEA transfer page: \"the Indian Embassy can consider your request on a 'means tested' basis\".",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    },
+    {
+      "text": "Families can apply online to bring the body back, and track the request with the ID they are given.",
+      "source": "https://www.mea.gov.in/faq-bringing-back-mortal.htm",
+      "confirms": "MEA FAQ: \"you can register for bringing back the deadbody in the website provided\"; an ID is given to track the application.",
+      "lastChecked": "2026-11-27",
+      "verifiedBy": null
+    }
+  ],
+  "suggestions": [
+    "Contact the Indian embassy or consulate in that country first. Its website lists who to call.",
+    "Ask for several copies of the death certificate from that country, with an English translation if it is in another language. Banks and insurers in India ask for proof of death."
+  ],
+  "lawyer": [
+    "Police in that country are investigating the death.",
+    "There is money or property in that country as well as in India.",
+    "The family does not agree about burial, cremation or bringing the body home."
+  ],
+  "sourceNeeded": [
+    "How a death certificate from another country is used for bank and insurance claims in India.",
+    "What to do when the family lives abroad and the death happened in India. We did not find an official page, so this part was left out."
+  ]
+}
