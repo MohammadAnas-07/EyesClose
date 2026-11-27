@@ -1,5 +1,5 @@
 import type { Letter } from './content';
-import { formatDate, type LetterDetails } from './details';
+import { formatDate, validateLetterField, type LetterDetails } from './details';
 import { fillText, type TokenValues } from './template';
 
 /** One line of a printed page. The PDF, the print view and the preview all draw from these. */
@@ -48,14 +48,33 @@ function coverPage(takeWith: string): Line[] {
   ];
 }
 
-/** Turns letter content plus the typed details into the lines of both pages. */
+/** Turns letter content plus the checked details into the lines of both pages. */
 export function composeLetter(letter: Letter, details: LetterDetails, institution: string | null): LetterDocument {
-  const values: TokenValues = {
+  return compose(letter, {
     deceasedName: details.deceasedName,
     writerName: details.writerName,
     date: formatDate(details.date),
     institution: institution ?? BLANK_INSTITUTION,
-  };
+  });
+}
+
+/** For the on-screen preview only: anything not valid yet shows as a blank line. */
+export function previewLetter(
+  letter: Letter,
+  draft: Partial<Record<keyof LetterDetails, string>>,
+  institution: string | null,
+): LetterDocument {
+  const ok = (key: keyof LetterDetails) => (draft[key] ?? '') !== '' && validateLetterField(key, draft[key]) === null;
+  const blank = '____________';
+  return compose(letter, {
+    deceasedName: ok('deceasedName') ? draft.deceasedName!.trim() : blank,
+    writerName: ok('writerName') ? draft.writerName!.trim() : blank,
+    date: ok('date') ? formatDate(draft.date!) : blank,
+    institution: institution ?? BLANK_INSTITUTION,
+  });
+}
+
+function compose(letter: Letter, values: TokenValues): LetterDocument {
   const lines: Line[] = [];
   for (const block of letter.letter) {
     switch (block.type) {

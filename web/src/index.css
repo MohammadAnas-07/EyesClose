@@ -141,6 +141,11 @@
   background-repeat: no-repeat;
 }
 
+/* The print view of a letter is hidden on screen; when printing, only it shows. */
+.print-only {
+  display: none;
+}
+
 /* Printed letters: no negative tracking, black on white, A4. */
 @media print {
   html {
@@ -151,5 +156,26 @@
   @page {
     size: A4;
     margin: 20mm;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+  .print-page {
+    position: relative;
+    min-height: 250mm;
+    break-after: page;
+  }
+  .print-page:last-child {
+    break-after: auto;
+  }
+  .print-footer {
+    position: absolute;
+    bottom: 0;
+    font-size: 9pt;
   }
 }

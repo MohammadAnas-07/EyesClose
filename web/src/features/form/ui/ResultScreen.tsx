@@ -4,6 +4,8 @@ import type { Answers } from '../answers';
 import { buildChecklist, type ChecklistItem } from '../checklist';
 import type { FlowAction } from '../flow';
 import { notesFor } from '../notes';
+import { letterForItem } from '../../letters/content';
+import { todayIso } from '../../letters/details';
 import { ChevronIcon, ExternalIcon, InfoIcon, LockIcon } from './icons';
 
 interface Props {
@@ -86,6 +88,11 @@ export function ResultScreen({ answers, items, checked, dispatch }: Props) {
                     item={item}
                     checked={checked.includes(item.id)}
                     onToggle={() => dispatch({ type: 'toggle-item', id: item.id })}
+                    onLetter={
+                      letterForItem(item.id)
+                        ? () => dispatch({ type: 'open-letter', itemId: item.id, today: todayIso() })
+                        : undefined
+                    }
                   />
                 ))}
               </ol>
@@ -107,7 +114,17 @@ export function ResultScreen({ answers, items, checked, dispatch }: Props) {
   );
 }
 
-function Item({ item, checked, onToggle }: { item: ChecklistItem; checked: boolean; onToggle: () => void }) {
+function Item({
+  item,
+  checked,
+  onToggle,
+  onLetter,
+}: {
+  item: ChecklistItem;
+  checked: boolean;
+  onToggle: () => void;
+  onLetter?: () => void;
+}) {
   const id = `item-${item.id}`;
   return (
     <li
@@ -153,6 +170,11 @@ function Item({ item, checked, onToggle }: { item: ChecklistItem; checked: boole
               <span className="text-ink-soft">Who to contact: </span>
               {item.contact}
             </p>
+          )}
+          {onLetter && (
+            <Button variant="secondary" onClick={onLetter} className="mt-1 self-start">
+              Make this letter
+            </Button>
           )}
           <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
             {item.verifiedBy === null && <span className="rounded-pill bg-tint px-3 py-1">Not yet checked by a professional</span>}

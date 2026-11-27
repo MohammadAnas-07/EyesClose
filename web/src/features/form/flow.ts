@@ -1,7 +1,8 @@
 import { answersSchema, validateField, type AnswerKey, type Answers, type Draft } from './answers';
+import { validateLetterField, type LetterDetailKey, type LetterDraft } from '../letters/details';
 import { QUESTIONS, keysOf } from './questions';
 
-export type Screen = 'start' | 'question' | 'result' | 'guide';
+export type Screen = 'start' | 'question' | 'result' | 'guide' | 'letter';
 
 /** Everything the user has done, held in memory only. Nothing here is saved anywhere. */
 export interface FlowState {
@@ -12,6 +13,11 @@ export interface FlowState {
   answers: Answers | null;
   checked: string[];
   guide: string | null;
+  /** The checklist item whose letter is open. */
+  letterItem: string | null;
+  /** Letter details are kept while the page is open, so Back never loses them. */
+  letterDraft: LetterDraft;
+  letterErrors: Partial<Record<LetterDetailKey, string>>;
 }
 
 export type FlowAction =
@@ -21,7 +27,10 @@ export type FlowAction =
   | { type: 'back' }
   | { type: 'edit' }
   | { type: 'toggle-item'; id: string }
-  | { type: 'open-guide'; guide: string };
+  | { type: 'open-guide'; guide: string }
+  | { type: 'open-letter'; itemId: string; today: string }
+  | { type: 'set-letter'; key: LetterDetailKey; value: string }
+  | { type: 'letter-errors'; errors: FlowState['letterErrors'] };
 
 export const initialState: FlowState = {
   screen: 'start',
@@ -31,6 +40,9 @@ export const initialState: FlowState = {
   answers: null,
   checked: [],
   guide: null,
+  letterItem: null,
+  letterDraft: {},
+  letterErrors: {},
 };
 
 export function flowReducer(state: FlowState, action: FlowAction): FlowState {
@@ -62,6 +74,7 @@ export function flowReducer(state: FlowState, action: FlowAction): FlowState {
 
     case 'back':
       if (state.screen === 'guide') return { ...state, screen: 'result', guide: null };
+      if (state.screen === 'letter') return { ...state, screen: 'result', letterErrors: {} };
       if (state.screen === 'result') return { ...state, screen: 'question', step: QUESTIONS.length - 1 };
       if (state.screen === 'question' && state.step === 0) return { ...state, screen: 'start', errors: {} };
       return { ...state, step: Math.max(0, state.step - 1), errors: {} };
@@ -79,5 +92,32 @@ export function flowReducer(state: FlowState, action: FlowAction): FlowState {
 
     case 'open-guide':
       return { ...state, screen: 'guide', guide: action.guide };
+
+    case 'open-letter':
+      return {
+        ...state,
+        screen: 'letter',
+        letterItem: action.itemId,
+        letterErrors: {},
+        letterDraft: {
+          // The name from the questions is used, but can be changed here.
+          deceasedName: state.letterDraft.deceasedName ?? state.answers?.name ?? '',
+          writerName: state.letterDraft.writerName ?? '',
+          date: state.letterDraft.date ?? action.today,
+        },
+      };
+
+    case 'set-letter': {
+      // Names are checked as the user types; an empty field only shows its error after Download.
+      const error = action.key !== 'date' && action.value !== '' ? validateLetterField(action.key, action.value) : null;
+      return {
+        ...state,
+        letterDraft: { ...state.letterDraft, [action.key]: action.value },
+        letterErrors: { ...state.letterErrors, [action.key]: error ?? undefined },
+      };
+    }
+
+    case 'letter-errors':
+      return { ...state, letterErrors: action.errors };
   }
 }
