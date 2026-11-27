@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EyesClose: what to close after someone dies, and in what order</title>
-    <meta name="description" content="Answer about ten questions and get a checklist of what to close after a family member dies in India, with links to official pages and two letters to print. Your answers stay on your phone." />
+    <meta name="description" content="Answer about ten questions and get a checklist of what to close after a family member dies in India, with links to official pages and letters to print. Your answers stay on your phone." />
     <meta name="referrer" content="no-referrer" />
     <meta name="theme-color" content="#f5f5f5" />
     <link rel="canonical" href="%SITE_URL%/" />
@@ -26,47 +26,85 @@
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to the main content</a>
-    <div class="mx-auto flex min-h-dvh w-full max-w-2xl flex-col px-5 sm:px-8">
-      <header class="flex items-center justify-between py-5">
-        <a href="/" class="rounded-md text-base font-semibold tracking-heading">EyesClose</a>
-        <a href="/data" class="rounded-md py-2 text-sm text-ink-soft underline decoration-ink/30 underline-offset-4 hover:text-ink">How we handle your data</a>
-      </header>
 
-      <main id="main" class="flex flex-col gap-16 pb-16 pt-8 sm:gap-20 sm:pt-14">
-        <section aria-labelledby="top" class="flex flex-col gap-6">
-          <h1 id="top" class="text-[clamp(2rem,1.4rem+3vw,3.25rem)] text-balance">
-            When someone is gone, make everything easier for the people they leave behind.
-          </h1>
-          <p class="text-lg sm:text-xl">
-            After a death in the family, every bank, phone company, pension office and payment app has its own way of
-            doing things. Answer about ten questions and you get a list of what to close first, who to contact, and a
-            link to each official page.
-          </p>
-          <div class="flex flex-col gap-3">
-            <a href="/start" class="inline-flex min-h-13 items-center justify-center rounded-pill bg-ink px-8 text-lg font-medium text-surface hover:bg-ink/85 sm:self-start">
-              Start the checklist
-            </a>
-            <p class="text-sm text-ink-soft">Free, and there is no sign-up.</p>
-          </div>
-          <div class="flex gap-3 rounded-card bg-tint p-5">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="mt-0.5 size-5 shrink-0">
-              <rect x="5" y="11" width="14" height="9" rx="2" />
-              <path d="M8 11V8a4 4 0 0 1 8 0v3" />
-            </svg>
-            <div class="flex flex-col gap-1">
-              <p class="font-medium">Your answers stay on your phone. We do not collect them.</p>
-              <p class="text-ink-soft">
-                Nothing you type is sent to us or saved. Close the page and the answers are gone. Letters are made on
-                your phone as well.
-              </p>
+    <header class="site-header sticky top-0 z-(--z-sticky) bg-paper">
+      <nav aria-label="Main" class="mx-auto flex h-16 w-full max-w-300 items-center justify-between gap-3 px-5 sm:px-8">
+        <a href="/" class="rounded-md text-base font-semibold tracking-heading">EyesClose</a>
+        <ul class="hidden items-center gap-8 text-sm md:flex">
+          <li><a href="#how" class="nav-link">How it works</a></li>
+          <li><a href="#today" class="nav-link">What you get</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+        </ul>
+        <div class="flex items-center gap-2">
+          <a href="/start" class="inline-flex min-h-11 items-center justify-center rounded-pill bg-ink px-4 text-sm font-medium text-surface hover:bg-ink/85 sm:px-6">
+            Start the checklist
+          </a>
+          <details class="nav-menu md:hidden">
+            <summary class="inline-flex size-11 items-center justify-center rounded-pill border border-line-strong bg-surface">
+              <span class="sr-only">Menu</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false" class="size-5">
+                <path d="M5 8h14M5 16h14" />
+              </svg>
+            </summary>
+            <ul class="nav-menu-panel">
+              <li><a href="#how">How it works</a></li>
+              <li><a href="#today">What you get</a></li>
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="/data">How we handle your data</a></li>
+            </ul>
+          </details>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section aria-labelledby="top" class="px-5 pb-16 pt-10 sm:px-8 sm:pt-16 lg:pb-24 lg:pt-20">
+        <div class="mx-auto grid w-full max-w-300 gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+          <div class="flex flex-col gap-6">
+            <h1 id="top" class="text-[clamp(2rem,1.4rem+3vw,3.25rem)] text-balance">
+              When someone is gone, make everything easier for the people they leave behind.
+            </h1>
+            <p class="max-w-prose text-lg sm:text-xl">
+              After a death in the family, every bank, phone company, pension office and payment app has its own way of
+              doing things. Answer about ten questions and you get a list of what to close first, who to contact, and a
+              link to each official page.
+            </p>
+            <div class="flex flex-col gap-3">
+              <a href="/start" class="inline-flex min-h-13 items-center justify-center rounded-pill bg-ink px-8 text-lg font-medium text-surface hover:bg-ink/85 sm:self-start">
+                Start the checklist
+              </a>
+              <p class="text-sm text-ink-soft">Free, and there is no sign-up. Your answers stay on your phone.</p>
             </div>
           </div>
-        </section>
 
-        <section aria-labelledby="how" class="flex flex-col gap-6">
+          <figure class="flex flex-col gap-3">
+            <div class="rounded-panel border border-line-strong bg-surface p-5 sm:p-7" aria-hidden="true">
+              <div class="flex items-center justify-between gap-4 border-b border-line-strong pb-4">
+                <p class="font-semibold tracking-heading">Your checklist</p>
+                <p class="text-sm text-ink-soft">1 of 5 done</p>
+              </div>
+              <p class="mt-5 text-sm font-medium text-ink-soft">First 7 days</p>
+              <ul class="mt-3 flex flex-col gap-2">
+                <li class="preview-row is-done"><span class="preview-box"></span>Get the death certificate</li>
+                <li class="preview-row"><span class="preview-box"></span>SBI accounts<span class="preview-tag">Letter</span></li>
+                <li class="preview-row"><span class="preview-box"></span>Jio mobile number<span class="preview-tag">Letter</span></li>
+              </ul>
+              <p class="mt-6 text-sm font-medium text-ink-soft">Weeks 2 to 4</p>
+              <ul class="mt-3 flex flex-col gap-2">
+                <li class="preview-row"><span class="preview-box"></span>Provident fund and EPS pension (EPFO)</li>
+                <li class="preview-row"><span class="preview-box"></span>Life insurance<span class="preview-tag">Letter</span></li>
+              </ul>
+            </div>
+            <figcaption class="text-sm text-ink-soft">An example. Your list depends on your answers.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section aria-labelledby="how" class="scroll-mt-16 bg-surface px-5 py-16 sm:px-8 lg:py-24">
+        <div class="mx-auto flex w-full max-w-300 flex-col gap-10">
           <h2 id="how" class="text-2xl sm:text-3xl">How it works</h2>
-          <ol class="flex flex-col gap-5">
-            <li class="flex gap-4">
+          <ol class="grid gap-4 lg:grid-cols-3 lg:gap-6">
+            <li class="flex flex-col gap-4 rounded-card bg-paper p-6">
               <span class="step-number" aria-hidden="true">1</span>
               <p>
                 <span class="font-medium">Answer about ten short questions.</span>
@@ -74,65 +112,92 @@
                 "Not sure".
               </p>
             </li>
-            <li class="flex gap-4">
+            <li class="flex flex-col gap-4 rounded-card bg-paper p-6">
               <span class="step-number" aria-hidden="true">2</span>
               <p>
                 <span class="font-medium">Get your checklist.</span>
                 Steps are grouped into the first 7 days, weeks 2 to 4, and later. Each one says who to contact.
               </p>
             </li>
-            <li class="flex gap-4">
+            <li class="flex flex-col gap-4 rounded-card bg-paper p-6">
               <span class="step-number" aria-hidden="true">3</span>
               <p>
                 <span class="font-medium">Print a letter where it helps.</span>
-                For a bank or Vi, fill in two names and a date, then print it. Write account and phone numbers by hand,
-                sign it, and take it with their own form.
+                Fill in two names and a date, then print it. Write account and phone numbers by hand, sign it, and take
+                it with their own form if they have one.
               </p>
             </li>
           </ol>
-        </section>
+        </div>
+      </section>
 
-        <section aria-labelledby="today" class="flex flex-col gap-6">
-          <h2 id="today" class="text-2xl sm:text-3xl">What you get today</h2>
-          <ul class="flex flex-col gap-4">
-            <li class="tick-item">A checklist built from 33 possible steps. You only see the ones that match your answers.</li>
-            <li class="tick-item">
-              23 of those steps link to the official page they come from, such as the RBI, EPFO, a bank or a phone
-              company. For the other 10 we have not found an official page yet, and the step says so.
-            </li>
-            <li class="tick-item">Two letters you can print: a covering letter for a bank, and a request letter for Vi.</li>
-            <li class="tick-item">Short notes for harder cases, such as no death certificate yet, a locked phone, or a joint account.</li>
-          </ul>
-        </section>
+      <section aria-labelledby="today" class="scroll-mt-16 px-5 py-16 sm:px-8 lg:py-24">
+        <div class="mx-auto grid w-full max-w-300 gap-10 lg:grid-cols-[3fr_2fr] lg:gap-16">
+          <div class="flex flex-col gap-8">
+            <h2 id="today" class="text-2xl sm:text-3xl">What you get today</h2>
+            <ul class="flex flex-col gap-4">
+              <li class="tick-item">A checklist built from 33 possible steps. You only see the ones that match your answers.</li>
+              <li class="tick-item">
+                23 of those steps link to the official page they come from, such as the RBI, EPFO, a bank or a phone
+                company. For the other 10 we have not found an official page yet, and the step says so.
+              </li>
+              <li class="tick-item">
+                Letters you can print: a covering letter for a bank, a request letter for Vi, and a short letter that
+                tells other places about the death.
+              </li>
+              <li class="tick-item">Short notes for harder cases, such as no death certificate yet, a locked phone, or a joint account.</li>
+            </ul>
+          </div>
+          <div class="flex flex-col gap-4 self-start rounded-panel bg-ink p-6 text-surface sm:p-8">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="size-7">
+              <rect x="5" y="11" width="14" height="9" rx="2" />
+              <path d="M8 11V8a4 4 0 0 1 8 0v3" />
+            </svg>
+            <p class="text-xl font-semibold tracking-heading">Your answers stay on your phone. We do not collect them.</p>
+            <p class="text-ink-on-dark-soft">
+              Nothing you type is sent to us or saved. Close the page and the answers are gone. Letters are made on
+              your phone as well.
+            </p>
+            <a href="/data" class="self-start rounded-md underline decoration-surface/40 underline-offset-4 hover:decoration-surface">How we handle your data</a>
+          </div>
+        </div>
+      </section>
 
-        <section aria-labelledby="who" class="flex flex-col gap-4">
-          <h2 id="who" class="text-2xl sm:text-3xl">Who this is for</h2>
-          <p>
-            Anyone in India who is sorting out a family member's accounts after they have died. That is often a son,
-            daughter, wife or husband doing it for the first time. The app is in English, in short sentences.
-          </p>
-        </section>
+      <section aria-labelledby="who" class="bg-surface px-5 py-16 sm:px-8 lg:py-24">
+        <div class="mx-auto grid w-full max-w-300 gap-12 md:grid-cols-2 md:gap-16">
+          <div class="flex flex-col gap-4">
+            <h2 id="who" class="text-2xl sm:text-3xl">Who this is for</h2>
+            <p>
+              Anyone in India who is sorting out a family member's accounts after they have died. That is often a son,
+              daughter, wife or husband doing it for the first time. The app is in English, in short sentences.
+            </p>
+          </div>
+          <div class="flex flex-col gap-4">
+            <h2 id="limits" class="text-2xl sm:text-3xl">What it does not do</h2>
+            <ul class="flex list-disc flex-col gap-3 pl-5 marker:text-ink-soft">
+              <li>This is general information, not legal advice.</li>
+              <li>Each step links to the official page it comes from, or says that we are still looking for one.</li>
+              <li>
+                No lawyer or chartered accountant has checked our content yet. We are working on it, and each step is
+                marked "Not yet checked by a professional" until then.
+              </li>
+              <li>A letter goes with the bank's or company's own form. It does not replace it.</li>
+              <li>We do not contact anyone or file anything for you.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-        <section aria-labelledby="limits" class="flex flex-col gap-4">
-          <h2 id="limits" class="text-2xl sm:text-3xl">What it does not do</h2>
-          <ul class="flex list-disc flex-col gap-3 pl-5 marker:text-ink-soft">
-            <li>This is general information, not legal advice.</li>
-            <li>Each step links to the official page it comes from, or says that we are still looking for one.</li>
-            <li>
-              No lawyer or chartered accountant has checked our content yet. We are working on it, and each step is
-              marked "Not yet checked by a professional" until then.
-            </li>
-            <li>A letter goes with the bank's or company's own form. It does not replace it.</li>
-            <li>We do not contact anyone or file anything for you.</li>
-          </ul>
-        </section>
-
-        <section aria-labelledby="faq" class="flex flex-col gap-4">
-          <h2 id="faq" class="text-2xl sm:text-3xl">Questions</h2>
+      <section aria-labelledby="faq" class="scroll-mt-16 px-5 py-16 sm:px-8 lg:py-24">
+        <div class="mx-auto grid w-full max-w-300 gap-8 lg:grid-cols-[1fr_2fr] lg:gap-16">
+          <div class="flex flex-col gap-3">
+            <h2 id="faq" class="text-2xl sm:text-3xl">Questions</h2>
+            <p class="text-ink-soft">Short answers to what people ask first.</p>
+          </div>
           <div class="faq overflow-hidden rounded-card border border-line-strong bg-surface">
             <details>
               <summary>Is it free?</summary>
-              <p>Yes. The checklist and both letters are free, and there is no account to make.</p>
+              <p>Yes. The checklist and the letters are free, and there is no account to make.</p>
             </details>
             <details>
               <summary>Do you keep my answers?</summary>
@@ -167,21 +232,41 @@
               </p>
             </details>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section aria-labelledby="begin" class="flex flex-col items-start gap-4 rounded-panel bg-tint p-6 sm:p-8">
-          <h2 id="begin" class="text-2xl">Most of it can wait</h2>
-          <p>Start with the steps for the first 7 days. The rest can be done over the coming weeks.</p>
-          <a href="/start" class="inline-flex min-h-13 items-center justify-center rounded-pill bg-ink px-8 text-lg font-medium text-surface hover:bg-ink/85">
+      <section aria-labelledby="begin" class="px-5 pb-16 sm:px-8 lg:pb-24">
+        <div class="mx-auto flex w-full max-w-300 flex-col items-start gap-4 rounded-panel bg-tint p-6 sm:p-10 md:flex-row md:items-center md:justify-between md:gap-10">
+          <div class="flex flex-col gap-2">
+            <h2 id="begin" class="text-2xl">Most of it can wait</h2>
+            <p>Start with the steps for the first 7 days. The rest can be done over the coming weeks.</p>
+          </div>
+          <a href="/start" class="inline-flex min-h-13 shrink-0 items-center justify-center rounded-pill bg-ink px-8 text-lg font-medium text-surface hover:bg-ink/85">
             Start the checklist
           </a>
-        </section>
-      </main>
+        </div>
+      </section>
+    </main>
 
-      <footer class="flex flex-col gap-2 border-t border-line-strong py-8 text-sm text-ink-soft sm:flex-row sm:justify-between">
-        <p>EyesClose. General information, not legal advice.</p>
-        <a href="/data" class="self-start rounded-md underline decoration-ink/30 underline-offset-4 hover:text-ink">How we handle your data</a>
-      </footer>
-    </div>
+    <footer class="border-t border-line-strong bg-surface px-5 py-12 text-sm sm:px-8">
+      <div class="mx-auto grid w-full max-w-300 gap-8 md:grid-cols-[2fr_1fr_1fr]">
+        <div class="flex flex-col gap-2">
+          <p class="text-base font-semibold tracking-heading">EyesClose</p>
+          <p class="max-w-sm text-ink-soft">A free checklist of what to close after a family member dies in India, and who to contact.</p>
+        </div>
+        <nav aria-label="Footer">
+          <ul class="flex flex-col gap-2">
+            <li><a href="#how" class="footer-link">How it works</a></li>
+            <li><a href="#today" class="footer-link">What you get</a></li>
+            <li><a href="#faq" class="footer-link">FAQ</a></li>
+            <li><a href="/data" class="footer-link">How we handle your data</a></li>
+          </ul>
+        </nav>
+        <div class="flex flex-col gap-2 text-ink-soft">
+          <p>This is general information, not legal advice.</p>
+          <p>&copy; %YEAR% EyesClose</p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

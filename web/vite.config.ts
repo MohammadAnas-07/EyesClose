@@ -27,7 +27,7 @@ export const PAGES = ['/', '/start', '/data'];
 function siteFiles(): Plugin {
   return {
     name: 'eyesclose-site-files',
-    transformIndexHtml: (html) => html.replaceAll('%SITE_URL%', SITE_URL),
+    transformIndexHtml: (html) => html.replaceAll('%SITE_URL%', SITE_URL).replaceAll('%YEAR%', String(new Date().getFullYear())),
     generateBundle() {
       this.emitFile({
         type: 'asset',
