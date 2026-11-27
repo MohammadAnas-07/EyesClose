@@ -148,7 +148,17 @@ describe('the built site', () => {
 
 describe('the dev server (npm run dev)', () => {
   it('serves /start, /data and the help pages without a trailing slash, like production', async () => {
-    const dev = await createServer({ root, configFile, logLevel: 'silent', server: { port: 0 } });
+    // Own cache folder and no dependency scan: sharing node_modules/.vite with a running `npm run dev`
+    // would make that server serve stale React files (504 "Outdated Optimize Dep").
+    const cacheDir = mkdtempSync(join(tmpdir(), 'eyesclose-vite-cache-'));
+    const dev = await createServer({
+      root,
+      configFile,
+      cacheDir,
+      logLevel: 'silent',
+      server: { port: 0, ws: false },
+      optimizeDeps: { noDiscovery: true, include: [] },
+    });
     await dev.listen();
     try {
       const url = dev.resolvedUrls!.local[0]!.replace(/\/$/, '');
@@ -165,6 +175,7 @@ describe('the dev server (npm run dev)', () => {
       }
     } finally {
       await dev.close();
+      rmSync(cacheDir, { recursive: true, force: true });
     }
   }, 60_000);
 });
