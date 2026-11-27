@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+coverage/
+.vercel/
+*.tsbuildinfo
+
+# Environment files (keep only the example)
+.env
+.env.*
+!.env.example
+
+# Local AI assistant files. Real rules live in rules.md.
+CLAUDE.md
+CLAUDE.local.md
+.claude/settings.local.json
+.claude/skills/
+.agents/
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+.claude/agents/
+.claude/skills-disabled/
