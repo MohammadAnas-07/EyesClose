@@ -38,7 +38,8 @@ Layer 2 is in `web/src/features/form/ui/FormFlow.test.tsx` (it also stubs `WebSo
 Test files may spy on these APIs, so they are left out of the ESLint rule; form source code is not.
 Layer 3 is still to come; it needs the letters and PDFs.
 
-## CSP check (planned)
+## CSP check
 
-A test reads `vercel.json` and fails if the CSP loses `default-src 'self'`, adds `'unsafe-inline'` or
-`'unsafe-eval'` to `script-src`, or adds any third-party origin to `connect-src` without the PR saying why.
+`web/src/csp.test.ts` reads `vercel.json` and fails if the CSP loses `default-src 'none'`, gains any `unsafe-`
+keyword, a wildcard or a third-party origin, or drops Trusted Types, `form-action 'none'` or `frame-ancestors 'none'`.
+Any change to the CSP needs a reason in the PR.

@@ -67,8 +67,11 @@ database can be dropped.
 
 ## How we prove "nothing leaves your phone"
 
-1. **Strict Content-Security-Policy** (set in `vercel.json`): `default-src 'self'`, `script-src 'self'`,
-   `connect-src 'self'`, no inline scripts, no third-party origins, `frame-ancestors 'none'`.
+1. **Strict Content-Security-Policy** (set in `vercel.json`): `default-src 'none'`, then only `'self'` for
+   scripts, styles, fonts and `connect-src`, `img-src 'self' data:`, Trusted Types required, `form-action 'none'`,
+   `frame-ancestors 'none'`, no inline scripts, no third-party origins. `vite preview` sends the same headers, so
+   the policy is tested locally. `web/src/csp.test.ts` fails if it is loosened. PDF downloads use a `blob:` link,
+   which the CSP does not need to allow.
    A third-party script cannot load, and the page cannot send data to any other site.
 2. **No third-party scripts at all.** No tag managers, session recording, chat widgets or ad pixels.
    Fonts are self-hosted.
