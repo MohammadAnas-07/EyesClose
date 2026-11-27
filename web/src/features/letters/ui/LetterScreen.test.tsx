@@ -105,7 +105,7 @@ describe('LetterScreen', () => {
     openSbiLetter();
     type('Your full name', 'Writer Markertwo');
     fireEvent.click(screen.getByRole('button', { name: 'Download PDF' }));
-    await screen.findByText(/We could not make the PDF on this phone/);
+    await screen.findByText(/We could not make the PDF on this device/);
     expect(screen.getByLabelText('Your full name')).toHaveValue('Writer Markertwo');
     fireEvent.click(screen.getByRole('button', { name: 'Print instead' }));
     expect(print).toHaveBeenCalledTimes(1);

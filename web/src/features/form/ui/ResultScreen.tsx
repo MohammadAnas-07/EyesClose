@@ -39,7 +39,7 @@ export function ResultScreen({ answers, items, checked, dispatch }: Props) {
         </h1>
         {answers.name && <p className="text-lg">For {answers.name}</p>}
         <p className="text-ink-soft">
-          Start with the first group. It is fine to go slowly, one step at a time. Ticks stay only while this page is
+          Start with the first group, and take one step at a time. Ticks stay only while this page is
           open.
         </p>
       </div>
@@ -191,7 +191,7 @@ export function ResultScreen({ answers, items, checked, dispatch }: Props) {
         </Button>
         <p className="flex gap-2 text-sm text-ink-soft">
           <LockIcon className="size-4 shrink-0 translate-y-0.5" />
-          Your answers stay on this phone and disappear when you close this page.
+          Your answers stay in this browser and disappear when you close this page.
         </p>
       </div>
     </div>

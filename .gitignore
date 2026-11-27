@@ -28,3 +28,6 @@ Thumbs.db
 *.log
 .claude/agents/
 .claude/skills-disabled/
+
+# Before and after screenshots for design review. Not shipped, not committed.
+screenshots/

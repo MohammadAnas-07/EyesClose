@@ -5,7 +5,16 @@ import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { parseHelpPages } from './src/features/help/schema';
-import { helpIndexBody, helpIndexHead, helpPageBody, helpPageHead } from './src/features/help/render';
+import {
+  CARDS_MARK,
+  FOOTER_MARK,
+  helpCards,
+  helpIndexBody,
+  helpIndexHead,
+  helpPageBody,
+  helpPageHead,
+  siteFooter,
+} from './src/features/help/render';
 
 interface VercelConfig {
   headers: { headers: { key: string; value: string }[] }[];
@@ -34,7 +43,7 @@ export const helpPages = parseHelpPages(
 /** The real pages, for the sitemap. The 404 page is left out on purpose. */
 export const PAGES = ['/', '/start', '/data', '/help', ...helpPages.map((p) => `/help/${p.slug}`)];
 
-/** Fills the /help page shells (web/help/index.html and web/help/<slug>/index.html) from content/help. */
+/** Fills the /help page shells (web/help/index.html and web/help/<slug>/index.html), the shared footer and the home page cards from content/help. */
 function helpFiles(): Plugin {
   return {
     name: 'eyesclose-help-pages',
@@ -42,12 +51,15 @@ function helpFiles(): Plugin {
       order: 'pre',
       handler(html, ctx) {
         const match = /^\/help\/(?:([a-z0-9-]+)\/)?index\.html$/.exec(ctx.path);
-        if (!match) return html;
-        const page = match[1] ? helpPages.find((p) => p.slug === match[1]) : null;
-        if (match[1] && !page) throw new Error(`No content/help file for ${ctx.path}`);
-        return html
-          .replace('<!--help-head-->', page ? helpPageHead(page) : helpIndexHead())
-          .replace('<!--help-body-->', page ? helpPageBody(page) : helpIndexBody(helpPages));
+        if (match) {
+          const page = match[1] ? helpPages.find((p) => p.slug === match[1]) : null;
+          if (match[1] && !page) throw new Error(`No content/help file for ${ctx.path}`);
+          html = html
+            .replace('<!--help-head-->', page ? helpPageHead(page) : helpIndexHead())
+            .replace('<!--help-body-->', page ? helpPageBody(page) : helpIndexBody(helpPages));
+        }
+        // Every plain page shares one footer, and the home page lists the help pages, all from content/help.
+        return html.replace(FOOTER_MARK, siteFooter(helpPages)).replace(CARDS_MARK, helpCards(helpPages));
       },
     },
   };

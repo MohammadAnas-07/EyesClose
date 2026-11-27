@@ -60,10 +60,24 @@ describe('If your situation is harder', () => {
     expect(r.filter((x) => x.match)).toHaveLength(1);
   });
 
-  it('the app footer links to the harder situations index in a new tab', () => {
+  it('the start screen offers "My situation is harder" in the same tab, below the main button', () => {
     render(<FormFlow />);
-    const link = screen.getByRole('link', { name: /^Harder situations/ });
-    expect(link).toHaveAttribute('href', '/help');
-    expect(link).toHaveAttribute('target', '_blank');
+    const main = screen.getByRole('main');
+    const entry = within(main).getByRole('link', { name: /^My situation is harder/ });
+    expect(entry).toHaveAttribute('href', '/help');
+    expect(entry).not.toHaveAttribute('target');
+    expect(entry.textContent).toContain('No death certificate yet, a joint account, a death abroad, or a police case');
+    // The main action stays the only button, and comes first.
+    const start = within(main).getByRole('button', { name: 'Start the questions' });
+    expect(start.compareDocumentPosition(entry) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
+  it('shows "My situation is harder" once; the slim footer keeps only the data link and the legal line', () => {
+    render(<FormFlow />);
+    expect(screen.getAllByRole('link', { name: /^My situation is harder/ })).toHaveLength(1);
+    const footer = screen.getByRole('contentinfo');
+    expect(within(footer).getAllByRole('link')).toHaveLength(1);
+    expect(within(footer).getByRole('link', { name: /^How we handle your data/ })).toHaveAttribute('href', '/data');
+    expect(footer).toHaveTextContent('General information, not legal advice.');
   });
 });

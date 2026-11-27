@@ -100,9 +100,51 @@ describe('the built site', () => {
   it('points every in-page link at a section that exists', async () => {
     const body = (await get('/')).body;
     const anchors = new Set([...body.matchAll(/href="#([\w-]+)"/g)].map((m) => m[1]!));
-    expect(anchors).toEqual(new Set(['main', 'how', 'today', 'faq']));
+    expect(anchors).toEqual(new Set(['main', 'how', 'today', 'harder', 'faq']));
     expect(body).toContain('href="/help"');
     for (const id of anchors) expect(body, id).toContain(`id="${id}"`);
+  });
+
+  it('never says things can wait, and does not tie answers to a phone', async () => {
+    for (const path of ['/', '/help', '/help/no-nominee', '/data']) {
+      const body = (await get(path)).body;
+      expect(body, path).not.toMatch(/can wait|no hurry|go slowly/i);
+      expect(body, path).not.toMatch(/(stay|stays|made|saved) (on|in) (your|this) phone|on your phone/i);
+    }
+    const home = (await get('/')).body;
+    expect(home).not.toContain('a locked phone');
+    expect(home).toContain('such as no death certificate yet, no nominee, a joint account, or a death abroad.');
+    expect(home).toContain('Start with the steps for the first 7 days.');
+  });
+
+  it('shows six harder-situation cards on the home page, one per help page, each a real page', async () => {
+    const body = (await get('/')).body;
+    const section = /<section aria-labelledby="harder"[\s\S]*?<\/section>/.exec(body)![0];
+    const cards = [...section.matchAll(/<a href="(\/help\/[a-z0-9-]+)" class="card-link/g)].map((m) => m[1]!);
+    expect(cards).toEqual(PAGES.filter((p) => p.startsWith('/help/')));
+    for (const card of cards) expect((await get(card)).status, card).toBe(200);
+  });
+
+  it('has a native FAQ: five <details name="faq"> rows, summary first, no script needed', async () => {
+    const body = (await get('/')).body;
+    const rows = [...body.matchAll(/<details name="faq" class="faq-item">\s*<summary>/g)];
+    expect(rows).toHaveLength(5);
+    // The only script on the page is the menu file, which has nothing to do with the FAQ.
+    expect(body.match(/<script[^>]*>/gi)).toEqual(['<script src="/menu.js" defer>']);
+  });
+
+  it('gives /, /help, a help page and /data the black footer with every help page, and no inline styles or handlers', async () => {
+    for (const path of ['/', '/help', '/help/no-nominee', '/data']) {
+      const body = (await get(path)).body;
+      const footer = /<footer class="site-footer[\s\S]*<\/footer>/.exec(body)?.[0];
+      expect(footer, path).toBeDefined();
+      for (const href of ['/start', '/#how', '/#today', '/#faq', '/help', '/data', ...PAGES.filter((p) => p.startsWith('/help/'))])
+        expect(footer, `${path} ${href}`).toContain(`href="${href}"`);
+      expect(footer).toContain('This is general information, not legal advice.');
+      expect(footer).not.toMatch(/mailto:|tel:|@/);
+      expect(body, path).not.toMatch(/\sstyle=|\son[a-z]+=/i);
+      expect(body, path).not.toContain('<!--site-footer-->');
+    }
   });
 
   it('makes the landing page load only files from our own origin', async () => {
