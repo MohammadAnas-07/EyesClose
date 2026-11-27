@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { requiredNameSchema } from '../form/answers';
+import { NAME_REQUIRED, requiredNameSchema } from '../form/answers';
 import { SUBJECT_KEYS } from './subjects';
 
 export const DATE_ERROR = 'Please choose a date.';
@@ -31,8 +31,22 @@ export function todayIso(now = new Date()): string {
   return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
 }
 
-/** The only details typed into the app for a letter. Everything else is written by hand after printing. */
 export const SUBJECT_ERROR = 'Please choose what the letter is about.';
+
+// Company names need more than a person's name: "L&T Finance", "Star Health & Allied Insurance", "Vi (Vodafone)".
+// Still no < or >, and the preview shows it as escaped plain text.
+export const INSTITUTION_PATTERN = /^[A-Za-z0-9 &.,'()/-]+$/;
+export const INSTITUTION_MAX = 100;
+export const INSTITUTION_ERROR =
+  "Please type the company name using English letters, numbers, spaces and only these marks: & . , ' - ( ) /";
+export const INSTITUTION_TOO_LONG = `Please keep the company name to ${INSTITUTION_MAX} characters or fewer.`;
+
+const institutionSchema = z
+  .string()
+  .trim()
+  .max(INSTITUTION_MAX, { error: INSTITUTION_TOO_LONG })
+  .refine((v) => v === '' || (INSTITUTION_PATTERN.test(v) && /[A-Za-z]/.test(v)), { error: INSTITUTION_ERROR })
+  .refine((v) => v !== '', { error: NAME_REQUIRED });
 
 /**
  * The only details typed into the app for a letter. Everything else is written by hand after printing.
@@ -42,7 +56,7 @@ export const letterDetailsSchema = z.object({
   deceasedName: requiredNameSchema,
   writerName: requiredNameSchema,
   date: z.string({ error: DATE_ERROR }).refine((v) => parseIsoDate(v) !== null, { error: DATE_ERROR }),
-  institution: requiredNameSchema.optional(),
+  institution: institutionSchema.optional(),
   subject: z.enum(SUBJECT_KEYS, { error: SUBJECT_ERROR }).optional(),
 });
 const typedInstitutionSchema = letterDetailsSchema.required({ institution: true, subject: true });
