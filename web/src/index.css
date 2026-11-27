@@ -1,4 +1,6 @@
+@import '@fontsource-variable/inter';
 @import 'tailwindcss';
+@import './pages.css';
 
 /*
   Design tokens, taken from design.md (nixtio.com reference). design.md is the

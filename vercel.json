@@ -2,6 +2,20 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "npm run build -w web",
   "outputDirectory": "web/dist",
+  "rewrites": [
+    {
+      "source": "/start",
+      "destination": "/start/index.html"
+    },
+    {
+      "source": "/start/:path*",
+      "destination": "/start/index.html"
+    },
+    {
+      "source": "/data",
+      "destination": "/data/index.html"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

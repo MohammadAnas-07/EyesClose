@@ -1,20 +1,104 @@
 /// <reference types="vitest/config" />
 import { readFileSync } from 'node:fs';
-import { defineConfig } from 'vite';
+import { resolve } from 'node:path';
+import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 
-// `vite preview` sends the same security headers as production (vercel.json), so the CSP is tested locally.
-const vercel = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url), 'utf8')) as {
+interface VercelConfig {
   headers: { headers: { key: string; value: string }[] }[];
-};
+  rewrites: { source: string; destination: string }[];
+}
+const vercel = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url), 'utf8')) as VercelConfig;
 const productionHeaders = Object.fromEntries(vercel.headers[0]!.headers.map((h) => [h.key, h.value]));
 
+/**
+ * The public address used in canonical links, share tags, robots.txt and the sitemap.
+ * SITE_URL wins; on Vercel the production domain comes from VERCEL_PROJECT_PRODUCTION_URL.
+ */
+const SITE_URL = (
+  process.env.SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : 'http://localhost:4173')
+).replace(/\/$/, '');
+
+/** The real pages, for the sitemap. The 404 page is left out on purpose. */
+export const PAGES = ['/', '/start', '/data'];
+
+function siteFiles(): Plugin {
+  return {
+    name: 'eyesclose-site-files',
+    transformIndexHtml: (html) => html.replaceAll('%SITE_URL%', SITE_URL),
+    generateBundle() {
+      this.emitFile({
+        type: 'asset',
+        fileName: 'robots.txt',
+        source: `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`,
+      });
+      const urls = PAGES.map((p) => `  <url><loc>${SITE_URL}${p === '/' ? '/' : p}</loc></url>`).join('\n');
+      this.emitFile({
+        type: 'asset',
+        fileName: 'sitemap.xml',
+        source: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,
+      });
+    },
+  };
+}
+
+/** Matches the two rewrite shapes vercel.json uses: an exact path, or a prefix ending in "/:path*". */
+function rewriteFor(url: string): string | null {
+  const path = url.split('?')[0]!;
+  for (const r of vercel.rewrites) {
+    const prefix = r.source.endsWith('/:path*') ? r.source.slice(0, -'/:path*'.length) : null;
+    if (path === r.source || (prefix !== null && (path === prefix || path.startsWith(`${prefix}/`)))) return r.destination;
+  }
+  return null;
+}
+
+/** `vite preview` routes like Vercel: the same rewrites, and 404.html for anything else. */
+function vercelRouting(): Plugin {
+  return {
+    name: 'eyesclose-vercel-routing',
+    configurePreviewServer(server) {
+      server.middlewares.use((req, res, next) => {
+        for (const [key, value] of Object.entries(productionHeaders)) res.setHeader(key, value);
+        const path = req.url?.split('?')[0] ?? '/';
+        const target = rewriteFor(path);
+        // Like Vercel: rewrites first, then a folder's index.html.
+        if (target) req.url = target;
+        else if (path.endsWith('/')) req.url = `${path}index.html`;
+        next();
+      });
+      return () => {
+        server.middlewares.use((_req, res) => {
+          const notFound = readFileSync(resolve(server.config.root, server.config.build.outDir, '404.html'));
+          res.statusCode = 404;
+          res.setHeader('Content-Type', 'text/html; charset=utf-8');
+          res.end(notFound);
+        });
+      };
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
-  build: { target: 'es2020', sourcemap: false },
+  plugins: [react(), tailwindcss(), siteFiles(), vercelRouting()],
+  appType: 'mpa',
+  build: {
+    target: 'es2020',
+    sourcemap: false,
+    rollupOptions: {
+      // The landing, data and 404 pages are plain HTML and CSS. Only /start loads the app's JavaScript.
+      input: {
+        landing: resolve(import.meta.dirname, 'index.html'),
+        start: resolve(import.meta.dirname, 'start/index.html'),
+        data: resolve(import.meta.dirname, 'data/index.html'),
+        notFound: resolve(import.meta.dirname, '404.html'),
+      },
+    },
+  },
   // Checklist and letter content lives in ../content and is bundled at build time.
   server: { fs: { allow: ['..'] } },
+  // `vite preview` sends the same security headers as production (vercel.json), so the CSP is tested locally.
   preview: { headers: productionHeaders },
   test: {
     environment: 'jsdom',
