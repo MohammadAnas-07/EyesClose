@@ -6,7 +6,7 @@ import { formatDate, todayIso, validateLetterDetails } from './details';
 import { TemplateError, fillText } from './template';
 
 const details = { deceasedName: 'Test Name Markerone', writerName: 'Writer Markertwo', date: '2026-11-27' };
-const values = { deceasedName: 'A', writerName: 'B', date: 'C', institution: 'D' };
+const values = { deceasedName: 'A', writerName: 'B', date: 'C', institution: 'D', subject: 'E', reference: 'F' };
 const bank = letters.find((l) => l.id === 'bank-covering-letter')!;
 const vi = letters.find((l) => l.id === 'vi-transfer-letter')!;
 
@@ -32,12 +32,18 @@ describe('fillText', () => {
 });
 
 describe('letter content', () => {
-  it('has exactly two letters, both unverified and with official sources', () => {
-    expect(letters.map((l) => l.id).sort()).toEqual(['bank-covering-letter', 'vi-transfer-letter']);
+  it('has three letters, all unverified; form letters have official sources', () => {
+    expect(letters.map((l) => l.id).sort()).toEqual(['bank-covering-letter', 'general-intimation-letter', 'vi-transfer-letter']);
     for (const l of letters) {
       expect(l.verifiedBy).toBeNull();
-      expect(l.sources.length).toBeGreaterThan(0);
+      if (l.kind === 'with-form') expect(l.sources.length).toBeGreaterThan(0);
+      else expect(l.sourceType).toBe('general intimation, no process claimed');
     }
+  });
+
+  it('offers at most one letter per checklist item', () => {
+    const items = letters.flatMap((l) => l.appliesTo.map((a) => a.item));
+    expect(new Set(items).size).toBe(items.length);
   });
 
   it('only offers letters for checklist items that exist', () => {
@@ -45,7 +51,10 @@ describe('letter content', () => {
     for (const l of letters) for (const a of l.appliesTo) expect(ids.has(a.item)).toBe(true);
     expect(letterForItem('bank-sbi')?.institution).toBe('State Bank of India');
     expect(letterForItem('sim-vi')?.letter.id).toBe('vi-transfer-letter');
-    expect(letterForItem('sim-jio')).toBeNull();
+    expect(letterForItem('sim-jio')?.letter.id).toBe('general-intimation-letter');
+    expect(letterForItem('epfo-claim')).toBeNull();
+    expect(letterForItem('sub-netflix')).toBeNull();
+    expect(letterForItem('family-pension')).toBeNull();
   });
 
   it('rejects content with an unknown placeholder', () => {

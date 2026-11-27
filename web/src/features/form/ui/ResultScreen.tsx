@@ -4,9 +4,9 @@ import type { Answers } from '../answers';
 import { buildChecklist, type ChecklistItem } from '../checklist';
 import type { FlowAction } from '../flow';
 import { notesFor } from '../notes';
-import { letterForItem } from '../../letters/content';
+import { letterForItem, type LetterChoice } from '../../letters/content';
 import { todayIso } from '../../letters/details';
-import { ChevronIcon, ExternalIcon, InfoIcon, LockIcon } from './icons';
+import { ChevronIcon, ExternalIcon, InfoIcon, LetterIcon, LockIcon } from './icons';
 
 interface Props {
   answers: Answers;
@@ -20,6 +20,15 @@ export function ResultScreen({ answers, items, checked, dispatch }: Props) {
   const notes = notesFor(answers);
   const total = groups.reduce((n, g) => n + g.items.length, 0);
   const done = groups.reduce((n, g) => n + g.items.filter((i) => checked.includes(i.id)).length, 0);
+  // One row per checklist item that has a letter, in checklist order (so several banks give several rows).
+  const letterRows = groups
+    .flatMap((g) => g.items)
+    .flatMap((item) => {
+      const choice = letterForItem(item.id);
+      return choice ? [{ item, choice }] : [];
+    });
+  const openLetter = (itemId: string, choice: LetterChoice) =>
+    dispatch({ type: 'open-letter', itemId, today: todayIso(), institution: choice.institution, subject: choice.subject });
 
   return (
     <div className="flex flex-col gap-10">
@@ -33,6 +42,41 @@ export function ResultScreen({ answers, items, checked, dispatch }: Props) {
           open.
         </p>
       </div>
+
+      <section aria-labelledby="letters-heading" className="flex flex-col gap-3">
+        <h2 id="letters-heading" className="text-xl">
+          Your letters
+        </h2>
+        {letterRows.length === 0 ? (
+          <p className="text-ink-soft">None of the steps in your checklist has a letter yet.</p>
+        ) : (
+          <>
+            <p className="text-ink-soft">Each letter opens with a short form and a preview. You print it and sign it.</p>
+            <ul className="overflow-hidden rounded-card border border-line-strong bg-surface">
+              {letterRows.map(({ item, choice }) => {
+                const name = choice.institution ?? item.title;
+                return (
+                  <li key={item.id} className="flex items-center gap-3 border-line-strong px-4 py-3 [&+&]:border-t">
+                    <LetterIcon className="size-5 shrink-0 text-ink-soft" />
+                    <div className="min-w-0 flex-1">
+                      <p className="font-medium">{name}</p>
+                      <p className="text-sm text-ink-soft">{choice.letter.title}</p>
+                    </div>
+                    <Button
+                      variant="secondary"
+                      onClick={() => openLetter(item.id, choice)}
+                      aria-label={`Make letter for ${name}`}
+                      className="shrink-0 px-4!"
+                    >
+                      Make letter
+                    </Button>
+                  </li>
+                );
+              })}
+            </ul>
+          </>
+        )}
+      </section>
 
       {notes.length > 0 && (
         <section aria-labelledby="notes-heading" className="flex flex-col gap-3">
@@ -88,11 +132,10 @@ export function ResultScreen({ answers, items, checked, dispatch }: Props) {
                     item={item}
                     checked={checked.includes(item.id)}
                     onToggle={() => dispatch({ type: 'toggle-item', id: item.id })}
-                    onLetter={
-                      letterForItem(item.id)
-                        ? () => dispatch({ type: 'open-letter', itemId: item.id, today: todayIso() })
-                        : undefined
-                    }
+                    onLetter={(() => {
+                      const choice = letterForItem(item.id);
+                      return choice ? () => openLetter(item.id, choice) : undefined;
+                    })()}
                   />
                 ))}
               </ol>
@@ -173,6 +216,7 @@ function Item({
           )}
           {onLetter && (
             <Button variant="secondary" onClick={onLetter} className="mt-1 self-start">
+              <LetterIcon className="size-5" />
               Make this letter
             </Button>
           )}

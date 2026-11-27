@@ -28,7 +28,7 @@ export type FlowAction =
   | { type: 'edit' }
   | { type: 'toggle-item'; id: string }
   | { type: 'open-guide'; guide: string }
-  | { type: 'open-letter'; itemId: string; today: string }
+  | { type: 'open-letter'; itemId: string; today: string; institution: string | null; subject: string | null }
   | { type: 'set-letter'; key: LetterDetailKey; value: string }
   | { type: 'letter-errors'; errors: FlowState['letterErrors'] };
 
@@ -100,16 +100,21 @@ export function flowReducer(state: FlowState, action: FlowAction): FlowState {
         letterItem: action.itemId,
         letterErrors: {},
         letterDraft: {
-          // The name from the questions is used, but can be changed here.
+          // The name from the questions is used, but can be changed here. Names and date carry over between letters.
           deceasedName: state.letterDraft.deceasedName ?? state.answers?.name ?? '',
           writerName: state.letterDraft.writerName ?? '',
           date: state.letterDraft.date ?? action.today,
+          // The institution and subject belong to one item: reset them when a different item's letter opens.
+          ...(action.itemId === state.letterItem
+            ? { institution: state.letterDraft.institution, subject: state.letterDraft.subject }
+            : { institution: action.institution ?? '', subject: action.subject ?? undefined }),
         },
       };
 
     case 'set-letter': {
       // Names are checked as the user types; an empty field only shows its error after Download.
-      const error = action.key !== 'date' && action.value !== '' ? validateLetterField(action.key, action.value) : null;
+      const live = action.key === 'deceasedName' || action.key === 'writerName' || action.key === 'institution';
+      const error = live && action.value !== '' ? validateLetterField(action.key, action.value) : null;
       return {
         ...state,
         letterDraft: { ...state.letterDraft, [action.key]: action.value },

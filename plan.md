@@ -11,7 +11,11 @@ This is a backlog, not an order of work. Chunks and their order are decided by t
       The name of the person who died is optional in the form for now. It becomes required where a letter is
       generated (same English-letters rule, checked again before the PDF is made).
       Chunk 2 built the engine and two letters: a covering letter for any bank, and a request letter for Vi.
-      More letters come in later chunks.
+      Chunk 4 added a general letter for places with no official process page (networks other than Vi,
+      payment apps, insurers, cards and loans). It only tells them about the death and asks what they need.
+      A "Your letters" section at the top of the checklist lists every letter that applies.
+      Not given a letter: EPFO, pension and subscriptions, which have their own official forms or processes,
+      and online accounts (Google, Facebook, others) and crypto.
       More than one bank: each bank item on the checklist has its own "Make this letter" button, so the user
       makes one letter per bank, each with that bank's name filled in. The names and date typed once are kept
       for the next letter. "Another bank" gives one letter with a blank line for the bank name, to print once

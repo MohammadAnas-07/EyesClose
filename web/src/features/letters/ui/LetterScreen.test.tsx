@@ -110,6 +110,73 @@ describe('LetterScreen', () => {
     expect(print).toHaveBeenCalledTimes(1);
   });
 
+  describe('general letter', () => {
+    const openFromList = (name: string) =>
+      fireEvent.click(
+        within(screen.getByRole('region', { name: 'Your letters' })).getByRole('button', { name: `Make letter for ${name}` }),
+      );
+
+    it('opens from "Your letters" with the company and subject filled in, per item', () => {
+      render(<FormFlow />);
+      answerAll();
+      openFromList('Jio');
+      expect(screen.getByRole('heading', { level: 1, name: 'Letter to tell them about the death' })).toBeInTheDocument();
+      expect(screen.getByLabelText('Name of the company')).toHaveValue('Jio');
+      expect(screen.getByLabelText('Mobile number')).toBeChecked();
+      expect(preview()).toContain('This letter is about their mobile number.');
+
+      type('Name of the company', 'Reliance Jio');
+      fireEvent.click(screen.getByRole('button', { name: 'Back to my checklist' }));
+      openFromList('PhonePe');
+      expect(screen.getByLabelText('Name of the company')).toHaveValue('PhonePe');
+      expect(screen.getByLabelText('Wallet or UPI account')).toBeChecked();
+      // Names typed once carry over.
+      expect(screen.getByLabelText('Name of the person who died')).toHaveValue('Test Name Markerone');
+    });
+
+    it('rejects a script as the company name and keeps the preview plain text', () => {
+      render(<FormFlow />);
+      answerAll();
+      openFromList('Jio');
+      type('Name of the company', '<script>alert(1)</script>');
+      expect(screen.getByText(NAME_ERROR)).toBeInTheDocument();
+      expect(preview()).not.toContain('<script>');
+      expect(document.querySelector('main script')).toBeNull();
+    });
+
+    it('builds the PDF on the device with no network calls', async () => {
+      const fetchSpy = vi.fn();
+      const xhrOpen = vi.spyOn(XMLHttpRequest.prototype, 'open');
+      vi.stubGlobal('fetch', fetchSpy);
+      const click = vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(function (this: HTMLAnchorElement) {
+        expect(this.download).toBe('eyesclose-intimation-letter.pdf');
+      });
+      render(<FormFlow />);
+      answerAll();
+      openFromList('Jio');
+      type('Your full name', 'Writer Markertwo');
+      fireEvent.click(screen.getByRole('button', { name: 'Download PDF' }));
+      await screen.findByText(/Your PDF is ready/, {}, { timeout: 5000 });
+      expect(click).toHaveBeenCalledTimes(1);
+      expect(fetchSpy).not.toHaveBeenCalled();
+      expect(xhrOpen).not.toHaveBeenCalled();
+      click.mockRestore();
+      xhrOpen.mockRestore();
+    });
+
+    it('has no axe violations, with and without errors', async () => {
+      render(<FormFlow />);
+      answerAll();
+      await expectNoAxeViolations();
+      openFromList('Jio');
+      await expectNoAxeViolations();
+      type('Name of the company', '');
+      fireEvent.click(screen.getByRole('button', { name: 'Download PDF' }));
+      await waitFor(() => expect(screen.getByLabelText('Name of the company')).toHaveAttribute('aria-invalid', 'true'));
+      await expectNoAxeViolations();
+    });
+  });
+
   it('has no axe violations', async () => {
     openSbiLetter();
     await expectNoAxeViolations();

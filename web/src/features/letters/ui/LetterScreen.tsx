@@ -7,6 +7,7 @@ import { COVER_FOOTER, LETTER_FOOTER, NOT_CHECKED, composeLetter, previewLetter,
 import { letterForItem } from '../content';
 import { formatDate, validateLetterDetails, type LetterDetailKey } from '../details';
 import { saveFile } from '../download';
+import { SUBJECTS, SUBJECT_KEYS } from '../subjects';
 import { renderPdf } from '../pdf';
 
 type Status = 'idle' | 'loading' | 'done' | 'error';
@@ -33,7 +34,10 @@ export function LetterScreen({ state, dispatch }: Props) {
   if (!choice) return null;
   const { letter, institution, formUrl } = choice;
   const draft = state.letterDraft;
-  const checked = validateLetterDetails(draft);
+  // The general letter asks for the institution's name and what the letter is about.
+  const typed = letter.kind === 'intimation';
+  const checked = validateLetterDetails(draft, typed);
+  const shownInstitution = typed ? draft.institution?.trim() || null : institution;
   const printable: LetterDocument | null = checked.ok ? composeLetter(letter, checked.details, institution, formUrl) : null;
 
   const set = (key: LetterDetailKey, value: string) => dispatch({ type: 'set-letter', key, value });
@@ -81,7 +85,7 @@ export function LetterScreen({ state, dispatch }: Props) {
           <h1 tabIndex={-1} className="text-[clamp(1.5rem,1.25rem+1.2vw,2rem)] text-balance outline-none">
             {letter.title}
           </h1>
-          {institution && <p className="text-lg">For {institution}</p>}
+          {shownInstitution && <p className="text-lg">For {shownInstitution}</p>}
           <p className="text-ink-soft">{letter.about}</p>
           <p className="self-start rounded-pill bg-tint px-3 py-1 text-sm">{NOT_CHECKED.replace(/\.$/, '')}</p>
         </div>
@@ -103,6 +107,46 @@ export function LetterScreen({ state, dispatch }: Props) {
             error={state.letterErrors.writerName}
             onChange={(v) => set('writerName', v)}
           />
+          {typed && (
+            <>
+              <NameField
+                id="institution"
+                label="Name of the company"
+                hint="As it is usually written, for example Airtel. English letters (A to Z) only."
+                value={draft.institution ?? ''}
+                error={state.letterErrors.institution}
+                onChange={(v) => set('institution', v)}
+              />
+              <fieldset aria-describedby="subject-error" className="flex flex-col gap-2">
+                <legend className="mb-2 text-lg font-medium">What is the letter about?</legend>
+                <div className="flex flex-col gap-2">
+                  {SUBJECT_KEYS.map((key) => (
+                    <label
+                      key={key}
+                      htmlFor={`subject-${key}`}
+                      className={`flex min-h-12 cursor-pointer items-center gap-3 rounded-card border px-4 py-2 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-ink ${
+                        draft.subject === key ? 'border-ink bg-selected' : 'border-line-strong bg-surface hover:border-ink/40'
+                      }`}
+                    >
+                      <input
+                        id={`subject-${key}`}
+                        type="radio"
+                        name="subject"
+                        value={key}
+                        checked={draft.subject === key}
+                        onChange={() => set('subject', key)}
+                        aria-invalid={state.letterErrors.subject ? true : undefined}
+                        className="size-5 shrink-0 cursor-pointer appearance-none rounded-full border-2 border-ink/55 bg-surface checked:border-ink checked:bg-ink checked:shadow-[inset_0_0_0_3px_var(--color-surface)]"
+                      />
+                      <span className={draft.subject === key ? 'font-medium' : ''}>{SUBJECTS[key].label}</span>
+                    </label>
+                  ))}
+                </div>
+                <ErrorText id="subject-error" message={state.letterErrors.subject} />
+              </fieldset>
+            </>
+          )}
+
           <div className="flex flex-col gap-2">
             <label htmlFor="letterDate" className="text-lg font-medium">
               Date on the letter
@@ -174,7 +218,13 @@ export function LetterScreen({ state, dispatch }: Props) {
           <h2 id="sources-heading" className="text-base tracking-normal">
             Where this comes from
           </h2>
-          {letter.sources.map((s) => (
+          {letter.kind === 'intimation' ? (
+            <p>
+              {letter.sourceNote}
+              <span className="block text-ink-soft">Written on {formatDate(letter.written)}.</span>
+            </p>
+          ) : (
+            letter.sources.map((s) => (
             <p key={s.url}>
               <a
                 href={s.url}
@@ -188,7 +238,8 @@ export function LetterScreen({ state, dispatch }: Props) {
               </a>
               <span className="block text-ink-soft">Checked on {formatDate(letter.lastChecked)}.</span>
             </p>
-          ))}
+            ))
+          )}
         </section>
       </div>
 

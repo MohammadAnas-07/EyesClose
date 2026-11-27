@@ -1,6 +1,7 @@
 {
   "id": "vi-transfer-letter",
-  "version": 2,
+  "version": 3,
+  "kind": "with-form",
   "title": "Request letter for Vi",
   "about": "A short letter to take to a Vi store with Vi's own Transfer of Ownership Request form and the papers Vi lists. Vi asks for its form; this letter is not a requirement.",
   "fileName": "eyesclose-vi-letter.pdf",
