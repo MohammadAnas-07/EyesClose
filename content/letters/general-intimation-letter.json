@@ -1,6 +1,6 @@
 {
   "id": "general-intimation-letter",
-  "version": 1,
+  "version": 2,
   "kind": "intimation",
   "title": "Letter to tell them about the death",
   "about": "A short letter that tells them about the death and asks them to explain, in writing, what they need from you. It does not ask them to close or transfer anything.",
@@ -15,7 +15,6 @@
     { "item": "sim-bsnl", "institution": "BSNL", "subject": "mobile" },
     { "item": "sim-other", "institution": null, "subject": "mobile" },
     { "item": "upi-phonepe", "institution": "PhonePe", "subject": "wallet" },
-    { "item": "upi-gpay", "institution": "Google Pay", "subject": "wallet" },
     { "item": "upi-paytm", "institution": "Paytm", "subject": "wallet" },
     { "item": "upi-other", "institution": null, "subject": "wallet" },
     { "item": "life-insurance", "institution": null, "subject": "policy" },

@@ -1,7 +1,7 @@
 import { NAME_ERROR, NAME_REQUIRED, NAME_TOO_LONG } from '../form/answers';
 import { composeLetter, toPlainText } from './compose';
 import { letters } from './content';
-import { validateLetterDetails } from './details';
+import { INSTITUTION_ERROR, INSTITUTION_TOO_LONG, validateLetterDetails } from './details';
 
 const general = letters.find((l) => l.id === 'general-intimation-letter')!;
 const details = { deceasedName: 'Test Name Markerone', writerName: 'Writer Markertwo', date: '2026-11-27' };
@@ -57,22 +57,64 @@ describe('general intimation letter', () => {
     expect(general.verifiedBy).toBeNull();
   });
 
-  it('requires the company name and the subject, and checks the name like any other', () => {
+  it('requires the company name and the subject', () => {
     const r = validateLetterDetails(details, true);
     expect(r.ok).toBe(false);
     if (!r.ok) {
       expect(r.errors.institution).toBe(NAME_REQUIRED);
       expect(r.errors.subject).toBeDefined();
     }
+    expect(validateLetterDetails(typed, true).ok).toBe(true);
+  });
+
+  it('accepts company names with numbers and common marks', () => {
+    for (const good of [
+      'L&T Finance',
+      'Star Health & Allied Insurance',
+      'Vi (Vodafone Idea Limited)',
+      "Kotak Mahindra Bank Ltd.",
+      'Aditya Birla Sun Life, Mumbai',
+      "Dr. Reddy's Credit Co-op",
+      'HDFC ERGO / Motor',
+      '1Mg Health 24',
+    ]) {
+      const v = validateLetterDetails({ ...typed, institution: good }, true);
+      expect(v.ok, good).toBe(true);
+    }
+  });
+
+  it('rejects unsafe or empty-looking company names', () => {
     for (const [bad, message] of [
-      ['<script>alert(1)</script>', NAME_ERROR],
-      ['. . .', NAME_ERROR],
-      ['A'.repeat(200), NAME_TOO_LONG],
+      ['<script>alert(1)</script>', INSTITUTION_ERROR],
+      ['Airtel <b>', INSTITUTION_ERROR],
+      ['Airtel > Jio', INSTITUTION_ERROR],
+      ['Airtel"', INSTITUTION_ERROR],
+      ['Jio; DROP', INSTITUTION_ERROR],
+      ['Paytm @home', INSTITUTION_ERROR],
+      ['. . .', INSTITUTION_ERROR],
+      ['123', INSTITUTION_ERROR],
+      ['सिम', INSTITUTION_ERROR],
+      ['A'.repeat(101), INSTITUTION_TOO_LONG],
+      ['   ', NAME_REQUIRED],
     ]) {
       const v = validateLetterDetails({ ...typed, institution: bad }, true);
-      expect(v.ok).toBe(false);
+      expect(v.ok, bad).toBe(false);
       if (!v.ok) expect(v.errors.institution).toBe(message);
     }
-    expect(validateLetterDetails(typed, true).ok).toBe(true);
+  });
+
+  it("people's names keep the strict rule even where the company name allows more", () => {
+    for (const [bad, message] of [
+      ['L&T Finance', NAME_ERROR],
+      ['Sunita 2', NAME_ERROR],
+      ['A'.repeat(200), NAME_TOO_LONG],
+    ]) {
+      const v = validateLetterDetails({ ...typed, deceasedName: bad, writerName: bad }, true);
+      expect(v.ok).toBe(false);
+      if (!v.ok) {
+        expect(v.errors.deceasedName).toBe(message);
+        expect(v.errors.writerName).toBe(message);
+      }
+    }
   });
 });

@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { NAME_ERROR, NAME_REQUIRED } from '../../form/answers';
 import { FormFlow } from '../../form/ui/FormFlow';
+import { INSTITUTION_ERROR } from '../details';
 import { answerAll, expectNoAxeViolations } from '../../../test/walk';
 import { renderPdf } from '../pdf';
 
@@ -139,9 +140,19 @@ describe('LetterScreen', () => {
       answerAll();
       openFromList('Jio');
       type('Name of the company', '<script>alert(1)</script>');
-      expect(screen.getByText(NAME_ERROR)).toBeInTheDocument();
+      expect(screen.getByText(INSTITUTION_ERROR)).toBeInTheDocument();
       expect(preview()).not.toContain('<script>');
       expect(document.querySelector('main script')).toBeNull();
+    });
+
+    it('takes a company name with & and shows it as plain text in the preview', () => {
+      render(<FormFlow />);
+      answerAll();
+      openFromList('Jio');
+      type('Name of the company', 'L&T Finance (Home Loans)');
+      expect(screen.queryByText(INSTITUTION_ERROR)).toBeNull();
+      expect(preview()).toContain('L&T Finance (Home Loans)');
+      expect(screen.getByRole('region', { name: 'Preview' }).querySelector('pre')!.innerHTML).toContain('L&amp;T Finance');
     });
 
     it('builds the PDF on the device with no network calls', async () => {

@@ -76,7 +76,7 @@ describe('Your letters', () => {
     ]);
   });
 
-  it('puts the general letter on networks, payment apps, insurance and loans, and not on EPFO, pension or subscriptions', () => {
+  it('puts the general letter on networks, payment apps except Google Pay, insurance and loans, and not on EPFO, pension or subscriptions', () => {
     const shown = rows({
       mobile: ['jio', 'airtel', 'bsnl', 'other'],
       upi: ['phonepe', 'gpay', 'paytm', 'other'],
@@ -92,7 +92,6 @@ describe('Your letters', () => {
       'BSNL',
       'Jio',
       'Their other mobile number',
-      'Google Pay',
       'Paytm',
       'PhonePe',
       'Other UPI or wallet apps',
@@ -101,6 +100,13 @@ describe('Your letters', () => {
       'Vehicle and its insurance',
       'Loans and credit cards',
     ]);
+  });
+
+  it('Google Pay: no letter, because Google has its own online form', () => {
+    expect(rows({ mobile: [] as never, upi: ['gpay'] })).toEqual(['None of the steps in your checklist has a letter yet.']);
+    renderResult({ mobile: [] as never, upi: ['gpay'] });
+    const card = screen.getByRole('heading', { level: 3, name: 'Google Pay' }).closest('li')!;
+    expect(within(card).queryByRole('button', { name: 'Make this letter' })).toBeNull();
   });
 
   it('offers the bank letter for every bank, on the list and on the item', () => {

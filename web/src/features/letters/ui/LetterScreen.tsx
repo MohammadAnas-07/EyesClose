@@ -112,7 +112,7 @@ export function LetterScreen({ state, dispatch }: Props) {
               <NameField
                 id="institution"
                 label="Name of the company"
-                hint="As it is usually written, for example Airtel. English letters (A to Z) only."
+                hint="As it is usually written, for example Airtel or L&T Finance."
                 value={draft.institution ?? ''}
                 error={state.letterErrors.institution}
                 onChange={(v) => set('institution', v)}
