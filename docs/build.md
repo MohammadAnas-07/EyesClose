@@ -53,6 +53,11 @@ npm run db:migrate
 
 ## Deploy (Vercel preview deployments)
 
+The site URL used in canonical links, share tags, `robots.txt` and `sitemap.xml` comes from `SITE_URL` if set,
+otherwise from Vercel's `VERCEL_PROJECT_PRODUCTION_URL` (available at build time when **Automatically expose
+System Environment Variables** is on, which is the default). Set `SITE_URL` in Vercel once a custom domain
+exists, for example `https://eyesclose.in`.
+
 Vercel builds with `npm run build -w web` and serves `web/dist`. Both are set in `vercel.json`, so the
 dashboard settings below only need to not fight it. No keys or environment variables are needed yet:
 the app is static and makes no server calls.

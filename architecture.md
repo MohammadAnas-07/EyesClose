@@ -21,6 +21,17 @@ React app (web/)                                Vercel functions (server/)
                                                   - waitlist confirmation email only
 ```
 
+### Pages
+
+- `/`: the landing page. Plain HTML and CSS (`web/index.html`), no JavaScript.
+- `/start` and anything under it: the app (`web/start/index.html`, React).
+- `/data`: how we handle data. Plain HTML (`web/data/index.html`). Draft until a professional reviews it.
+- Anything else: `web/404.html`, with a 404 status.
+
+Vite builds all four as separate entries. `vercel.json` rewrites `/start`, `/start/*` and `/data`; Vercel serves
+`404.html` for unknown paths. `vite preview` copies these rules, so routing is tested locally
+(`web/src/site.test.ts`).
+
 ### What runs in the browser
 
 Everything the user sees and does: the form, the checklist, the letters, the PDFs and the share link.

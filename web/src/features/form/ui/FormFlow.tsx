@@ -24,7 +24,11 @@ export function FormFlow() {
 
   return (
     <div className="mx-auto flex min-h-dvh w-full max-w-xl flex-col px-5 pb-12 pt-5 sm:px-8">
-      <header className="no-print mb-8 text-base font-semibold tracking-heading">EyesClose</header>
+      <header className="no-print mb-8">
+        <a href="/" className="rounded-md text-base font-semibold tracking-heading">
+          EyesClose
+        </a>
+      </header>
       <main ref={main} key={`${state.screen}-${state.step}`} className="flex flex-1 animate-fade-in flex-col">
         {state.screen === 'start' && <StartScreen onStart={() => dispatch({ type: 'start' })} />}
         {state.screen === 'question' && <QuestionScreen state={state} dispatch={dispatch} />}
