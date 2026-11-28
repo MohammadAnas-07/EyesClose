@@ -34,7 +34,7 @@ export function ResultScreen({ answers, items, checked, dispatch }: Props) {
   return (
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-3">
-        <h1 tabIndex={-1} className="text-[clamp(1.75rem,1.4rem+1.6vw,2.25rem)] text-balance outline-none">
+        <h1 tabIndex={-1} className="text-title text-balance outline-none">
           Your checklist
         </h1>
         {answers.name && <p className="text-lg">For {answers.name}</p>}
@@ -92,7 +92,7 @@ export function ResultScreen({ answers, items, checked, dispatch }: Props) {
                   <summary className="flex min-h-13 cursor-pointer list-none items-center gap-3 px-4 py-3 font-medium hover:bg-note-line/30 [&::-webkit-details-marker]:hidden">
                     <InfoIcon className="size-5 shrink-0 text-note-ink" />
                     <span className="flex-1">{n.title}</span>
-                    <ChevronIcon className="size-5 shrink-0 text-note-ink transition-transform duration-200 group-open:rotate-180" />
+                    <ChevronIcon className="size-5 shrink-0 text-note-ink transition-transform duration-fast group-open:rotate-180" />
                   </summary>
                   <div className="flex flex-col gap-1 px-4 pb-4 pl-12">
                     <p>{n.text}</p>
@@ -101,7 +101,7 @@ export function ResultScreen({ answers, items, checked, dispatch }: Props) {
                         href={`/help/${n.guide}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="-ml-1 mt-1 inline-flex min-h-11 items-center gap-1 self-start rounded-md px-1 font-medium underline decoration-note-ink/50 underline-offset-4 hover:decoration-note-ink"
+                        className="-ml-1 mt-1 inline-flex min-h-11 items-center gap-1 self-start rounded-control px-1 font-medium underline decoration-note-ink/50 underline-offset-4 hover:decoration-note-ink"
                       >
                         Read more about this
                         <ExternalIcon className="size-4" />
@@ -111,7 +111,7 @@ export function ResultScreen({ answers, items, checked, dispatch }: Props) {
                       <button
                         type="button"
                         onClick={() => dispatch({ type: 'open-guide', guide: n.guide })}
-                        className="-ml-1 mt-1 min-h-11 cursor-pointer self-start rounded-md px-1 text-left font-medium underline decoration-note-ink/50 underline-offset-4 hover:decoration-note-ink"
+                        className="-ml-1 mt-1 min-h-11 cursor-pointer self-start rounded-control px-1 text-left font-medium underline decoration-note-ink/50 underline-offset-4 hover:decoration-note-ink"
                       >
                         Read more about this
                       </button>
@@ -175,7 +175,7 @@ export function ResultScreen({ answers, items, checked, dispatch }: Props) {
                 <span className="flex min-w-0 flex-1 flex-col gap-1">
                   <span className="font-medium underline decoration-ink/30 underline-offset-4">{page.title}</span>
                   <span className="text-sm text-ink-soft">{page.description}</span>
-                  {relevant && <span className="self-start rounded-pill bg-note px-3 py-0.5 text-sm text-note-ink">Matches your answers</span>}
+                  {relevant && <span className="self-start rounded-control bg-note px-3 py-0.5 text-sm text-note-ink">Matches your answers</span>}
                 </span>
                 <ExternalIcon className="mt-1 size-4 shrink-0 text-ink-soft" />
                 <span className="sr-only">(opens in a new tab)</span>
@@ -212,7 +212,7 @@ function Item({
   const id = `item-${item.id}`;
   return (
     <li
-      className={`rounded-card border p-4 transition-colors duration-200 ${
+      className={`rounded-card border p-4 transition-colors duration-fast ${
         checked ? 'border-line-strong bg-tint' : 'border-line-strong bg-surface'
       }`}
     >
@@ -225,11 +225,11 @@ function Item({
           aria-describedby={[item.official && `${id}-official`, item.suggestion && `${id}-suggestion`]
             .filter(Boolean)
             .join(' ')}
-          className="tick mt-0.5 size-6 shrink-0 cursor-pointer appearance-none rounded-md border-2 border-ink/55 bg-surface transition-colors duration-150 checked:border-ink checked:bg-ink"
+          className="tick mt-0.5 size-6 shrink-0 cursor-pointer appearance-none rounded-control border-2 border-line-control bg-surface transition-colors duration-fast checked:border-ink checked:bg-ink"
         />
         <div className="flex min-w-0 flex-col gap-2">
           <h3
-            className={`text-lg tracking-normal transition-colors duration-200 ${
+            className={`text-lg tracking-normal transition-colors duration-fast ${
               checked ? 'text-ink-soft line-through decoration-ink/40' : ''
             }`}
           >
@@ -262,7 +262,7 @@ function Item({
             </Button>
           )}
           <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
-            {item.verifiedBy === null && <span className="rounded-pill bg-tint px-3 py-1">Not yet checked by a professional</span>}
+            {item.verifiedBy === null && <span className="rounded-control bg-tint px-3 py-1">Not yet checked by a professional</span>}
             {item.source ? (
               <a
                 href={item.source}
@@ -275,7 +275,7 @@ function Item({
                 <span className="sr-only">(opens in a new tab)</span>
               </a>
             ) : (
-              <span className="rounded-pill bg-note px-3 py-1 text-note-ink">Source needed</span>
+              <span className="rounded-control bg-note px-3 py-1 text-note-ink">Source needed</span>
             )}
           </div>
         </div>

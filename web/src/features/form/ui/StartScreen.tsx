@@ -7,7 +7,7 @@ export function StartScreen({ onStart }: { onStart: () => void }) {
   return (
     <div className="flex flex-1 flex-col gap-6">
       <p className="text-ink-soft">We are sorry for your loss.</p>
-      <h1 tabIndex={-1} className="text-[clamp(1.75rem,1.4rem+1.6vw,2.25rem)] text-balance outline-none">
+      <h1 tabIndex={-1} className="text-title text-balance outline-none">
         Know what to close, and in what order
       </h1>
       <p className="text-lg">

@@ -82,12 +82,12 @@ export function LetterScreen({ state, dispatch }: Props) {
         </div>
 
         <div className="flex flex-col gap-3">
-          <h1 tabIndex={-1} className="text-[clamp(1.5rem,1.25rem+1.2vw,2rem)] text-balance outline-none">
+          <h1 tabIndex={-1} className="text-heading text-balance outline-none">
             {letter.title}
           </h1>
           {shownInstitution && <p className="text-lg">For {shownInstitution}</p>}
           <p className="text-ink-soft">{letter.about}</p>
-          <p className="self-start rounded-pill bg-tint px-3 py-1 text-sm">{NOT_CHECKED.replace(/\.$/, '')}</p>
+          <p className="self-start rounded-control bg-tint px-3 py-1 text-sm">{NOT_CHECKED.replace(/\.$/, '')}</p>
         </div>
 
         <form ref={form} onSubmit={download} noValidate className="flex flex-col gap-6">
@@ -125,7 +125,7 @@ export function LetterScreen({ state, dispatch }: Props) {
                       key={key}
                       htmlFor={`subject-${key}`}
                       className={`flex min-h-12 cursor-pointer items-center gap-3 rounded-card border px-4 py-2 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-ink ${
-                        draft.subject === key ? 'border-ink bg-selected' : 'border-line-strong bg-surface hover:border-ink/40'
+                        draft.subject === key ? 'border-ink bg-selected' : 'border-line-strong bg-surface hover:border-ink'
                       }`}
                     >
                       <input
@@ -136,7 +136,7 @@ export function LetterScreen({ state, dispatch }: Props) {
                         checked={draft.subject === key}
                         onChange={() => set('subject', key)}
                         aria-invalid={state.letterErrors.subject ? true : undefined}
-                        className="size-5 shrink-0 cursor-pointer appearance-none rounded-full border-2 border-ink/55 bg-surface checked:border-ink checked:bg-ink checked:shadow-[inset_0_0_0_3px_var(--color-surface)]"
+                        className="size-5 shrink-0 cursor-pointer appearance-none rounded-full border-2 border-line-control bg-surface checked:border-ink checked:bg-ink checked:shadow-[inset_0_0_0_3px_var(--color-surface)]"
                       />
                       <span className={draft.subject === key ? 'font-medium' : ''}>{SUBJECTS[key].label}</span>
                     </label>
@@ -158,8 +158,8 @@ export function LetterScreen({ state, dispatch }: Props) {
               onChange={(e) => set('date', e.target.value)}
               aria-invalid={state.letterErrors.date ? true : undefined}
               aria-describedby="letterDate-error"
-              className={`min-h-13 w-full rounded-card border bg-surface px-4 text-lg hover:border-ink/40 ${
-                state.letterErrors.date ? 'border-error' : 'border-ink/30'
+              className={`min-h-13 w-full rounded-card border bg-surface px-4 text-lg hover:border-ink ${
+                state.letterErrors.date ? 'border-error' : 'border-line-control'
               }`}
             />
             <ErrorText id="letterDate-error" message={state.letterErrors.date} />
@@ -276,8 +276,8 @@ function NameField(props: {
         onChange={(e) => props.onChange(e.target.value)}
         aria-invalid={props.error ? true : undefined}
         aria-describedby={`${hintId} ${errorId}`}
-        className={`min-h-13 w-full rounded-card border bg-surface px-4 text-lg hover:border-ink/40 ${
-          props.error ? 'border-error' : 'border-ink/30'
+        className={`min-h-13 w-full rounded-card border bg-surface px-4 text-lg hover:border-ink ${
+          props.error ? 'border-error' : 'border-line-control'
         }`}
       />
       <ErrorText id={errorId} message={props.error} />

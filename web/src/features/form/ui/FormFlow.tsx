@@ -24,9 +24,9 @@ export function FormFlow() {
 
   return (
     <>
-      <div className="mx-auto flex min-h-dvh w-full max-w-xl flex-col px-5 pb-12 pt-5 sm:px-8">
+      <div className="mx-auto flex min-h-dvh w-full max-w-xl flex-col gutter pb-12 pt-5">
         <header className="no-print mb-8">
-          <a href="/" className="inline-flex min-h-11 items-center rounded-md text-base font-semibold tracking-heading">
+          <a href="/" className="inline-flex min-h-11 items-center rounded-control text-base font-medium tracking-heading">
             EyesClose
           </a>
         </header>
@@ -41,14 +41,13 @@ export function FormFlow() {
         </main>
       </div>
       {/* Slim footer, so the form stays the focus. Links open in a new tab: leaving would clear the answers. */}
-      <footer className="app-footer no-print bg-paper-dark px-5 py-10 text-sm text-surface sm:px-8">
-        <div className="mx-auto flex w-full max-w-xl flex-col gap-6">
-          <div className="flex flex-col gap-1 text-ink-on-dark-soft sm:flex-row sm:items-center sm:justify-between">
-            <a href="/data" target="_blank" rel="noopener noreferrer" className="footer-dark-link self-start">
-              How we handle your data<span className="sr-only"> (opens in a new tab)</span>
-            </a>
-            <p>General information, not legal advice.</p>
-          </div>
+      <footer className="app-footer no-print bg-paper-dark py-8 text-sm text-surface">
+        {/* Same width and gutter as the column above, so the edges line up. */}
+        <div className="mx-auto flex w-full max-w-xl flex-col gutter text-ink-on-dark-soft sm:flex-row sm:items-center sm:gap-x-6">
+          <a href="/data" target="_blank" rel="noopener noreferrer" className="footer-dark-link self-start sm:self-auto">
+            How we handle your data<span className="sr-only"> (opens in a new tab)</span>
+          </a>
+          <p>General information, not legal advice.</p>
         </div>
       </footer>
     </>

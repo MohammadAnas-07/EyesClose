@@ -5,7 +5,7 @@ import { BackIcon } from './icons';
 export function GuideScreen({ onBack }: { onBack: () => void }) {
   return (
     <div className="flex flex-col gap-5">
-      <h1 tabIndex={-1} className="text-[clamp(1.75rem,1.4rem+1.6vw,2.25rem)] text-balance outline-none">
+      <h1 tabIndex={-1} className="text-title text-balance outline-none">
         This guide is not ready yet
       </h1>
       <p className="text-lg">

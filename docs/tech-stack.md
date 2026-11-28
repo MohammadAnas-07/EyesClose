@@ -9,7 +9,7 @@ Last updated 2026-11-27.
 | React + TypeScript | Common, well supported, strict types catch mistakes in content-driven code. |
 | Vite | Fast builds, small output, simple config. |
 | Tailwind CSS v4 | Tokens from design.md live in one `@theme` block in `web/src/index.css`. Unused CSS is dropped, so pages stay light. |
-| Inter, self-hosted (`@fontsource-variable/inter`) | The font design.md uses. Self-hosted so no font CDN is contacted, the CSP stays `'self'`, and it works offline. |
+| Host Grotesk, self-hosted (`web/public/fonts/host-grotesk.woff2`, SIL Open Font License) | The self-hostable font in design.md's font stack. One 18 KB variable file, cut to Latin and weights 300 to 500, preloaded on every page. Served from our own site, so no font CDN is contacted, the CSP stays `'self'`, and it works offline. |
 | motion | Animation library. Used sparingly, for calm fades only. Not imported yet, so it adds nothing to the bundle. |
 | dialkit (dev only) | A tuning panel to adjust motion values while building. Dev dependency only; never shipped. |
 | pdf-lib (planned) | Makes PDFs in the browser. Built-in Helvetica, so no font download. Lazy loaded. See prd.md open question 4. |
