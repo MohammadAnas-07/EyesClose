@@ -68,7 +68,12 @@ function helpFiles(): Plugin {
 function siteFiles(): Plugin {
   return {
     name: 'eyesclose-site-files',
-    transformIndexHtml: (html) => html.replaceAll('%SITE_URL%', SITE_URL).replaceAll('%YEAR%', String(new Date().getFullYear())),
+    // Every page preloads the one font file, so text does not swap late.
+    transformIndexHtml: (html) =>
+      html
+        .replaceAll('%SITE_URL%', SITE_URL)
+        .replaceAll('%YEAR%', String(new Date().getFullYear()))
+        .replace('</head>', '  <link rel="preload" href="/fonts/host-grotesk.woff2" as="font" type="font/woff2" crossorigin />\n  </head>'),
     generateBundle() {
       this.emitFile({
         type: 'asset',
