@@ -21,7 +21,7 @@ This file lists where EyesClose departs from design.md, and why.
 | `tint`, `selected` | #1d1d1b at 5%, 8% | added: hover and chosen states |
 | `error`, `error-tint`, `note`, `note-ink`, `note-line` | see index.css | added: design.md has no status colours |
 
-Type: `text-display` (hero, up to 72px, weight 300), `text-section` (section headings, up to 60px, weight 300),
+Type: `text-display` (hero, up to 64px, weight 300), `text-section` (section headings, up to 60px, weight 300),
 `text-title` (page and screen headings, up to 40px, weight 300), `text-heading` (question headings, up to 32px,
 weight 400). Other headings are weight 500 (design.md subheading). Tracking on headings is -0.01em.
 Radii: `card` and `control` are 0 (square corners); round marks use 50%. No shadows.
@@ -43,7 +43,7 @@ Motion: 200ms and 300ms with `cubic-bezier(0.16, 1, 0.3, 1)`.
    need a visible edge (WCAG 1.4.11), so they use `line-control` (3:1 or more on paper and surface). Cards keep
    a light `line-strong` border so they read as groups on a plain background.
 5. **Heading sizes are capped.** design.md's heading is 104px. The hero heading is a full sentence, so it stops
-   at 72px. All heading sizes shrink on phones with `clamp()`.
+   at 64px, in a column 7/12 wide, so it wraps to about four lines. All heading sizes shrink on phones with `clamp()`.
 6. **Calm motion.** design.md also uses 0.7s and 1.1s reveals and a marquee. EyesClose is for people in grief:
    only short fades and colour changes (200ms to 300ms), no marquee, no page slides, and everything turns off
    under prefers-reduced-motion.
@@ -59,6 +59,7 @@ One scale on every page (`.gutter` and `.section` in `web/src/pages.css`):
 
 - Side gutter: 20px on phones, 32px from 640px, 40px from 1024px (design.md `--pad`).
 - Section padding: 64px top and bottom on phones, 96px from 1024px (design.md uses 96px at the top).
+  The hero is the one exception: 64px below it from 1024px, because the next section adds its own 96px.
 - The gap between a section's heading block and its content is 32px, 40px from 1024px. Inside a heading
   block, the heading and its intro are 12px apart (`.section-intro`).
 - Content sits in a 1200px container. The header and footer use the same gutter, so their edges line up.
