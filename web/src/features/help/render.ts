@@ -133,19 +133,19 @@ export function helpPageBody(page: HelpPage): string {
       </div>
 
       <section aria-labelledby="official" class="flex flex-col gap-4">
-        <h2 id="official" class="text-xl">What the official sources say</h2>
+        <h2 id="official" class="text-2xl">What the official sources say</h2>
         <ul class="flex flex-col gap-3">${claims}</ul>
         ${page.note ? `<p class="text-sm text-ink-soft">${esc(page.note)}</p>` : ''}
       </section>
 
       <section aria-labelledby="next" class="flex flex-col gap-3 rounded-card bg-tint p-5">
-        <h2 id="next" class="text-xl">What families often do next</h2>
+        <h2 id="next" class="text-2xl">What families often do next</h2>
         <p class="text-sm font-medium text-ink-soft">Our suggestion, not from an official page</p>
         ${list(page.suggestions)}
       </section>
 
       <section aria-labelledby="lawyer" class="flex flex-col gap-3">
-        <h2 id="lawyer" class="text-xl">When to talk to a lawyer</h2>
+        <h2 id="lawyer" class="text-2xl">When to talk to a lawyer</h2>
         <p>It can help to talk to a lawyer when:</p>
         ${list(page.lawyer)}
       </section>
