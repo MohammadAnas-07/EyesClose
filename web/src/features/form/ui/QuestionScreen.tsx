@@ -11,7 +11,7 @@ interface Props {
   dispatch: Dispatch<FlowAction>;
 }
 
-const headingClass = 'block text-[clamp(1.5rem,1.25rem+1.2vw,2rem)] text-balance outline-none';
+const headingClass = 'block text-heading text-balance outline-none';
 
 export function QuestionScreen({ state, dispatch }: Props) {
   const question = QUESTIONS[state.step];
@@ -84,8 +84,8 @@ function QuestionBody({ question, state, dispatch }: { question: Question } & Pr
           onChange={(e) => set('name', e.target.value)}
           aria-invalid={error ? true : undefined}
           aria-describedby={`${hintId} ${errorId}`}
-          className={`mt-1 min-h-13 w-full rounded-card border bg-surface px-4 text-lg transition-colors duration-150 placeholder:text-ink-soft hover:border-ink/40 ${
-            error ? 'border-error' : 'border-ink/30'
+          className={`mt-1 min-h-13 w-full rounded-card border bg-surface px-4 text-lg transition-colors duration-fast placeholder:text-ink-soft hover:border-ink ${
+            error ? 'border-error' : 'border-line-control'
           }`}
           placeholder="For example: Sunita Sharma"
         />
@@ -193,9 +193,9 @@ function Choice({ type, name, option, checked, invalid, compact, onChange }: Cho
   return (
     <label
       htmlFor={id}
-      className={`flex min-h-13 cursor-pointer has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-ink items-center gap-3 rounded-card border px-4 py-3 transition-[background-color,border-color,transform] duration-150 ease-out-expo active:scale-[0.99] ${
+      className={`flex min-h-13 cursor-pointer has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-ink items-center gap-3 rounded-card border px-4 py-3 transition-[background-color,border-color,transform] duration-fast ease-out-expo active:scale-[0.99] ${
         compact ? 'justify-center px-2 text-center' : ''
-      } ${checked ? 'border-ink bg-selected' : invalid ? 'border-error/60 bg-surface' : 'border-line-strong bg-surface hover:border-ink/40'}`}
+      } ${checked ? 'border-ink bg-selected' : invalid ? 'border-error/60 bg-surface' : 'border-line-strong bg-surface hover:border-ink'}`}
     >
       <input
         id={id}
@@ -205,8 +205,8 @@ function Choice({ type, name, option, checked, invalid, compact, onChange }: Cho
         checked={checked}
         onChange={onChange}
         aria-invalid={invalid ? true : undefined}
-        className={`size-5 shrink-0 cursor-pointer appearance-none border-2 border-ink/55 bg-surface transition-colors duration-150 checked:border-ink checked:bg-ink ${
-          type === 'radio' ? 'rounded-full checked:shadow-[inset_0_0_0_3px_var(--color-surface)]' : 'tick rounded-md'
+        className={`size-5 shrink-0 cursor-pointer appearance-none border-2 border-line-control bg-surface transition-colors duration-fast checked:border-ink checked:bg-ink ${
+          type === 'radio' ? 'rounded-full checked:shadow-[inset_0_0_0_3px_var(--color-surface)]' : 'tick rounded-control'
         } ${compact ? 'sr-only' : ''}`}
       />
       <span className={checked ? 'font-medium' : ''}>{option.label}</span>
